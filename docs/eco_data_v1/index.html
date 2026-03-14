@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portugal Ecosystem Intelligence | 351 Startups Regulatory</title>
+<meta name="description" content="Evidence-based ecosystem intelligence platform for Portugal's startup ecosystem. Data from National, Lisboa, and Porto reports.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0F;
+  --blue:#2C8CFF;
+  --porto:#FFB800;
+  --national:#FFDE03;
+  --blue-dark:#0148B0;
+  --white:#FFFFFF;
+  --warm-grey:#4A3C3C;
+  --red:#D34035;
+  --text:rgba(255,255,255,0.85);
+  --text-dim:rgba(255,255,255,0.5);
+  --card-bg:rgba(255,255,255,0.05);
+  --card-border:rgba(255,255,255,0.1);
+  --glow:rgba(44,140,255,0.15);
+  --sidebar-w:260px;
+  --topbar-h:0px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--white)}
+h2{font-size:1.6rem;margin-bottom:1rem}
+h3{font-size:1.2rem;margin-bottom:0.75rem}
+h4{font-size:1rem;margin-bottom:0.5rem}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);
+  background:rgba(10,10,15,0.97);
+  border-right:1px solid var(--card-border);
+  backdrop-filter:blur(20px);
+  z-index:100;
+  display:flex;flex-direction:column;
+  transition:transform 0.3s ease;
+}
+.sidebar-logo{
+  padding:1.5rem 1.25rem 1rem;
+  border-bottom:1px solid var(--card-border);
+}
+.sidebar-logo h1{font-size:1.1rem;color:var(--white);line-height:1.3}
+.sidebar-logo h1 span{color:var(--blue);font-weight:700}
+.sidebar-logo .sub{font-size:0.7rem;color:var(--text-dim);margin-top:0.25rem;text-transform:uppercase;letter-spacing:1px}
+.sidebar-nav{flex:1;overflow-y:auto;padding:0.75rem 0}
+.sidebar-nav a{
+  display:flex;align-items:center;gap:0.6rem;
+  padding:0.6rem 1.25rem;
+  color:var(--text-dim);
+  text-decoration:none;
+  font-size:0.85rem;
+  border-left:3px solid transparent;
+  transition:all 0.2s ease;
+}
+.sidebar-nav a:hover{color:var(--text);background:rgba(255,255,255,0.03)}
+.sidebar-nav a.active{color:var(--white);border-left-color:var(--blue);background:rgba(44,140,255,0.08)}
+.sidebar-nav .nav-icon{font-size:1rem;width:1.2rem;text-align:center}
+.sidebar-sep{height:1px;background:var(--card-border);margin:0.5rem 1.25rem}
+.sidebar-footer{padding:1rem 1.25rem;border-top:1px solid var(--card-border)}
+.sidebar-footer a{color:var(--text-dim);text-decoration:none;font-size:0.75rem;display:block;margin-bottom:0.3rem}
+.sidebar-footer a:hover{color:var(--blue)}
+
+/* MOBILE HAMBURGER */
+.hamburger{
+  display:none;position:fixed;top:1rem;left:1rem;z-index:200;
+  background:rgba(10,10,15,0.9);border:1px solid var(--card-border);
+  border-radius:8px;padding:0.5rem 0.65rem;cursor:pointer;
+  backdrop-filter:blur(10px);
+}
+.hamburger span{display:block;width:20px;height:2px;background:var(--white);margin:4px 0;transition:0.3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+
+/* MAIN CONTENT */
+.main{
+  margin-left:var(--sidebar-w);
+  min-height:100vh;
+  padding:0;
+}
+.content-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(10,10,15,0.95);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--card-border);
+  padding:1rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  flex-wrap:wrap;
+}
+.content-header h2{margin:0;font-size:1.1rem;white-space:nowrap}
+
+/* ECOSYSTEM PICKER */
+.eco-picker{display:flex;gap:0;border-radius:8px;overflow:hidden;border:1px solid var(--card-border)}
+.eco-picker button{
+  padding:0.45rem 1rem;font-size:0.8rem;font-weight:500;
+  border:none;cursor:pointer;transition:all 0.2s ease;
+  font-family:'Space Grotesk',sans-serif;
+  background:rgba(255,255,255,0.05);color:var(--text-dim);
+}
+.eco-picker button:not(:last-child){border-right:1px solid var(--card-border)}
+.eco-picker button.active-national{background:rgba(255,222,3,0.2);color:var(--national)}
+.eco-picker button.active-lisboa{background:rgba(44,140,255,0.2);color:var(--blue)}
+.eco-picker button.active-porto{background:rgba(255,184,0,0.2);color:var(--porto)}
+
+/* SECTIONS */
+.section{padding:2rem;border-bottom:1px solid rgba(255,255,255,0.05)}
+.section:last-child{border-bottom:none}
+
+/* STAT CARDS */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem}
+.stat-card{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:12px;padding:1.2rem;
+  transition:all 0.3s ease;
+  position:relative;overflow:hidden;
+}
+.stat-card:hover{border-color:rgba(44,140,255,0.3);box-shadow:0 0 20px var(--glow)}
+.stat-card .value{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;color:var(--white);line-height:1.2}
+.stat-card .label{font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem}
+.stat-card .delta{font-size:0.7rem;margin-top:0.4rem;color:#4ADE80}
+.stat-card .delta.negative{color:var(--red)}
+.stat-card::after{
+  content:'';position:absolute;top:-50%;right:-50%;width:100%;height:100%;
+  background:radial-gradient(circle,var(--glow) 0%,transparent 70%);
+  opacity:0;transition:opacity 0.3s;pointer-events:none;
+}
+.stat-card:hover::after{opacity:1}
+.stat-card.national .value{color:var(--national)}
+.stat-card.lisboa .value{color:var(--blue)}
+.stat-card.porto .value{color:var(--porto)}
+
+/* CHARTS */
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+.chart-box{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:12px;padding:1.25rem;
+  position:relative;
+}
+.chart-box h4{margin-bottom:0.75rem;font-size:0.9rem}
+.chart-box canvas{width:100%!important;max-height:320px}
+.chart-full{grid-column:1/-1}
+
+/* COMPARISON TABLE */
+.comp-table{width:100%;border-collapse:collapse;font-size:0.82rem;margin-bottom:1.5rem}
+.comp-table th,.comp-table td{padding:0.6rem 0.8rem;text-align:left;border-bottom:1px solid var(--card-border)}
+.comp-table th{color:var(--text-dim);font-weight:500;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.5px}
+.comp-table td{color:var(--text)}
+.comp-table .metric-name{font-weight:500;color:var(--white);white-space:nowrap}
+.comp-table td.national{color:var(--national)}
+.comp-table td.lisboa{color:var(--blue)}
+.comp-table td.porto{color:var(--porto)}
+.comp-table td.na{color:var(--text-dim);font-style:italic;font-size:0.75rem}
+.comp-table tr:hover{background:rgba(255,255,255,0.02)}
+
+/* INSIGHT PANELS */
+.insight-panel{margin-top:1.5rem;border-radius:10px;overflow:hidden;border:1px solid rgba(44,140,255,0.15)}
+.insight-toggle{
+  width:100%;display:flex;align-items:center;gap:0.6rem;
+  padding:0.8rem 1rem;background:rgba(44,140,255,0.06);
+  border:none;cursor:pointer;color:var(--blue);
+  font-family:'Space Grotesk',sans-serif;font-size:0.85rem;font-weight:500;
+  transition:background 0.2s;
+}
+.insight-toggle:hover{background:rgba(44,140,255,0.1)}
+.insight-toggle .chevron{margin-left:auto;transition:transform 0.3s}
+.insight-toggle.open .chevron{transform:rotate(180deg)}
+.insight-content{display:none;padding:1rem}
+.insight-content.open{display:block}
+.insight-card{
+  background:rgba(44,140,255,0.04);
+  border-left:3px solid var(--blue);
+  border-radius:0 8px 8px 0;
+  padding:0.8rem 1rem;margin-bottom:0.75rem;
+}
+.insight-card:last-child{margin-bottom:0}
+.insight-card h4{color:var(--blue);font-size:0.82rem;margin-bottom:0.3rem}
+.insight-card p{font-size:0.8rem;color:var(--text);line-height:1.5}
+
+/* BENCHMARK TABLE */
+.bench-table{width:100%;border-collapse:collapse;font-size:0.8rem;margin-bottom:1.5rem}
+.bench-table th,.bench-table td{padding:0.55rem 0.7rem;text-align:center;border-bottom:1px solid var(--card-border)}
+.bench-table th{color:var(--text-dim);font-weight:500;font-size:0.7rem;text-transform:uppercase}
+.bench-table td{color:var(--text)}
+.bench-table td:first-child,.bench-table th:first-child{text-align:left}
+.bench-table tr.highlight{background:rgba(44,140,255,0.08)}
+.bench-table tr.highlight td{color:var(--blue);font-weight:500}
+
+/* ABOUT SECTION */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.about-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:1.25rem}
+.about-card h4{margin-bottom:0.5rem}
+.about-card p,.about-card li{font-size:0.82rem;color:var(--text)}
+.about-card ul{list-style:none;padding:0}
+.about-card li{padding:0.3rem 0;padding-left:1rem;position:relative}
+.about-card li::before{content:'';position:absolute;left:0;top:0.65rem;width:5px;height:5px;border-radius:50%;background:var(--blue)}
+.cta-box{
+  background:linear-gradient(135deg,rgba(44,140,255,0.15),rgba(44,140,255,0.05));
+  border:1px solid rgba(44,140,255,0.3);
+  border-radius:12px;padding:1.5rem;text-align:center;margin-top:1.5rem;
+}
+.cta-box h3{color:var(--blue);margin-bottom:0.5rem}
+.cta-box p{font-size:0.85rem}
+
+/* GROWTH CARDS */
+.growth-cards{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.growth-card{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:10px;padding:0.75rem 1rem;flex:1;min-width:140px;text-align:center;
+}
+.growth-card .name{font-size:0.75rem;color:var(--text-dim)}
+.growth-card .rate{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:700;color:#4ADE80}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  :root{--sidebar-w:220px}
+  .chart-row{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .hamburger{display:block}
+  .main{margin-left:0}
+  .content-header{padding:1rem;padding-left:3.5rem}
+  .section{padding:1.25rem}
+  .stats-grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+  .stat-card .value{font-size:1.4rem}
+}
+@media(max-width:480px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .eco-picker button{padding:0.4rem 0.6rem;font-size:0.72rem}
+  .content-header{flex-direction:column;align-items:flex-start}
+}
+
+/* SCROLL ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(20px);transition:all 0.5s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- HAMBURGER -->
+<div class="hamburger" onclick="toggleSidebar()">
+  <span></span><span></span><span></span>
+</div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <h1><span>351</span> Startups</h1>
+    <div class="sub">Regulatory Taskforce</div>
+  </div>
+  <div class="sidebar-nav" id="sidebarNav">
+    <a href="#overview" class="active"><span class="nav-icon">&#9678;</span>Overview</a>
+    <a href="#funding"><span class="nav-icon">&#9670;</span>Funding</a>
+    <a href="#sectors"><span class="nav-icon">&#9641;</span>Sectors</a>
+    <a href="#talent"><span class="nav-icon">&#9733;</span>Talent &amp; Founders</a>
+    <a href="#regions"><span class="nav-icon">&#9635;</span>Regions</a>
+    <a href="#benchmarks"><span class="nav-icon">&#9673;</span>Benchmarks</a>
+    <div class="sidebar-sep"></div>
+    <a href="#about"><span class="nav-icon">&#8505;</span>About</a>
+  </div>
+  <div class="sidebar-footer">
+    <a href="https://351startups.com" target="_blank">351startups.com</a>
+    <a href="#about">Data sources &amp; methodology</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- STICKY HEADER -->
+  <div class="content-header">
+    <h2>Ecosystem Intelligence</h2>
+    <div class="eco-picker" id="ecoPicker">
+      <button data-eco="national" class="active-national" onclick="toggleEco('national',this)">National</button>
+      <button data-eco="lisboa" class="active-lisboa" onclick="toggleEco('lisboa',this)">Lisboa</button>
+      <button data-eco="porto" class="active-porto" onclick="toggleEco('porto',this)">Porto</button>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 1: OVERVIEW ============ -->
+  <div class="section" id="overview">
+    <h2>Overview</h2>
+    <p style="color:var(--text-dim);margin-bottom:1.25rem;font-size:0.85rem">
+      Portugal's startup ecosystem at a glance. Key indicators from the National Startup Report 2025.
+    </p>
+    <div class="stats-grid" id="overviewStats">
+      <div class="stat-card national">
+        <div class="value" data-count="5091">5,091</div>
+        <div class="label">Active Startups</div>
+        <div class="delta">89% active rate</div>
+      </div>
+      <div class="stat-card national">
+        <div class="value">28,000</div>
+        <div class="label">Employees</div>
+        <div class="delta">+81% wage premium</div>
+      </div>
+      <div class="stat-card national">
+        <div class="value">&euro;2.86B</div>
+        <div class="label">Annual Turnover</div>
+        <div class="delta">~1% of GDP</div>
+      </div>
+      <div class="stat-card national">
+        <div class="value">7</div>
+        <div class="label">Unicorns</div>
+        <div class="delta">+1 from 2023</div>
+      </div>
+      <div class="stat-card national">
+        <div class="value">&euro;1.57B</div>
+        <div class="label">Exports</div>
+        <div class="delta">1.5% of national</div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="value" style="color:var(--blue)">$25B</div>
+        <div class="label">Lisboa Ecosystem Value</div>
+        <div class="delta">#5 European peer group</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" style="color:var(--porto)">$7.5B</div>
+        <div class="label">Porto Ecosystem Value</div>
+        <div class="delta">48% CAGR</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">26.7x</div>
+        <div class="label">Growth in 8 Years</div>
+        <div class="delta">Highest in Europe</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">#29</div>
+        <div class="label">Global Index</div>
+        <div class="delta">Startup Genome GSER</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">71%</div>
+        <div class="label">Knowledge-Intensive</div>
+        <div class="delta">High-tech sectors</div>
+      </div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <h3>Ecosystem Comparison</h3>
+    <div style="overflow-x:auto">
+    <table class="comp-table" id="compTable">
+      <thead>
+        <tr><th>Metric</th><th>National</th><th>Lisboa</th><th>Porto</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="metric-name">Ecosystem Value</td><td class="national">$32.5B+ (sum)</td><td class="lisboa">$25B</td><td class="porto">$7.5B</td></tr>
+        <tr><td class="metric-name">Active Startups</td><td class="national">5,091</td><td class="lisboa">~2,290 (45%)</td><td class="porto">706</td></tr>
+        <tr><td class="metric-name">Employees</td><td class="national">28,000</td><td class="lisboa">~14,840</td><td class="porto">17,500</td></tr>
+        <tr><td class="metric-name">Unicorns</td><td class="national">7</td><td class="lisboa">5</td><td class="porto na">part of national</td></tr>
+        <tr><td class="metric-name">Capital Raised</td><td class="national na">aggregate</td><td class="lisboa na">via SG stages</td><td class="porto">&euro;557.5M</td></tr>
+        <tr><td class="metric-name">Enterprise Value</td><td class="national na">&mdash;</td><td class="lisboa na">&mdash;</td><td class="porto">&euro;5.1B</td></tr>
+        <tr><td class="metric-name">Annual Turnover</td><td class="national">&euro;2.86B</td><td class="lisboa na">&mdash;</td><td class="porto na">&mdash;</td></tr>
+        <tr><td class="metric-name">Exports</td><td class="national">&euro;1.57B</td><td class="lisboa na">&mdash;</td><td class="porto na">&mdash;</td></tr>
+        <tr><td class="metric-name">Knowledge-Intensive %</td><td class="national">71%</td><td class="lisboa na">comparable</td><td class="porto na">comparable</td></tr>
+        <tr><td class="metric-name">Global Rank</td><td class="national">#29</td><td class="lisboa">#29 (city component)</td><td class="porto na">&mdash;</td></tr>
+        <tr><td class="metric-name">Universities</td><td class="national na">&mdash;</td><td class="lisboa">5 top</td><td class="porto">U.Porto + 5</td></tr>
+        <tr><td class="metric-name">Patents</td><td class="national na">&mdash;</td><td class="lisboa">2,600</td><td class="porto na">&mdash;</td></tr>
+        <tr><td class="metric-name">Avg Wage Premium</td><td class="national">+81%</td><td class="lisboa na">&mdash;</td><td class="porto na">&mdash;</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- INSIGHT -->
+    <div class="insight-panel">
+      <button class="insight-toggle" onclick="toggleInsight(this)">
+        <span>&#128161;</span> Intelligence Analysis <span class="chevron">&#9660;</span>
+      </button>
+      <div class="insight-content">
+        <div class="insight-card">
+          <h4>Concentration Risk</h4>
+          <p>Lisboa + Porto account for 61% of all Portuguese startups. The remaining 39% is spread across 16+ districts, many with fewer than 50 startups. This geographic concentration creates a fragile ecosystem where policy impact is limited to two metro areas.</p>
+        </div>
+        <div class="insight-card">
+          <h4>Europe's Fastest Growth</h4>
+          <p>Portugal's 26.7x ecosystem growth in 8 years is the highest in Europe, but it started from a very low base. The 5,091 active startups is still modest vs. France (27,000+), Germany (30,000+), or the Nordics per capita. Sustaining growth requires moving beyond quantity to quality (Series A conversion, scaleup creation).</p>
+        </div>
+        <div class="insight-card">
+          <h4>The Data Fragmentation Problem</h4>
+          <p>Portugal's official startup registry counts ~450 startups. Dealroom identifies ~3,700. This report finds 5,091. The discrepancy undermines policy-making: you can't optimize what you can't measure. An open, verified data infrastructure is critical for evidence-based ecosystem policy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 2: FUNDING ============ -->
+  <div class="section" id="funding">
+    <h2>Funding</h2>
+    <p style="color:var(--text-dim);margin-bottom:1.25rem;font-size:0.85rem">
+      Capital flows, stage distribution, and funding maturity across Portuguese ecosystems.
+    </p>
+
+    <div class="chart-row">
+      <div class="chart-box">
+        <h4>Lisboa VC Deals by Stage (2019-2025)</h4>
+        <canvas id="chartFundingStage"></canvas>
+      </div>
+      <div class="chart-box">
+        <h4>Lisboa Stage Distribution (Avg %)</h4>
+        <canvas id="chartFundingDoughnut"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-row">
+      <div class="chart-box">
+        <h4>Porto Capital Raised (2019-2024)</h4>
+        <canvas id="chartPortoCapital"></canvas>
+      </div>
+      <div class="chart-box">
+        <h4>Porto Top Deals</h4>
+        <canvas id="chartPortoDeals"></canvas>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card lisboa">
+        <div class="value">4-9%</div>
+        <div class="label">Lisboa Seed Share</div>
+        <div class="delta negative">Peers avg 20%+</div>
+      </div>
+      <div class="stat-card lisboa">
+        <div class="value">+60%</div>
+        <div class="label">Series A YoY (2024)</div>
+        <div class="delta">Recovery signal</div>
+      </div>
+      <div class="stat-card porto">
+        <div class="value">&euro;557.5M</div>
+        <div class="label">Porto Total Raised</div>
+        <div class="delta">2019-2024</div>
+      </div>
+      <div class="stat-card porto">
+        <div class="value">52%</div>
+        <div class="label">Sword Health Share</div>
+        <div class="delta negative">Single-deal concentration</div>
+      </div>
+    </div>
+
+    <div class="insight-panel">
+      <button class="insight-toggle" onclick="toggleInsight(this)">
+        <span>&#128161;</span> Intelligence Analysis <span class="chevron">&#9660;</span>
+      </button>
+      <div class="insight-content">
+        <div class="insight-card">
+          <h4>The Seed Gap</h4>
+          <p>Lisboa's seed-stage share (4-9% of deals) is 2-5x below European peers (Dublin 22%, Copenhagen 25%+). This bottleneck at the bottom of the funnel limits the pipeline of companies that can progress to Series A. Without a robust seed ecosystem, the growth at later stages becomes dependent on a few outlier companies.</p>
+        </div>
+        <div class="insight-card">
+          <h4>Single-Deal Concentration Risk</h4>
+          <p>Sword Health's $291M mega-round represents 52% of all capital raised in Porto (2019-2024). While a major success, this concentration makes the ecosystem's funding metrics volatile. Remove Sword Health and Porto's funding picture looks very different. Diversification is essential.</p>
+        </div>
+        <div class="insight-card">
+          <h4>Series A Recovery</h4>
+          <p>After early-stage deals in Lisboa fell 75% from the 2021 peak, Series A grew +60% YoY in 2024. This suggests a maturing pipeline, but the recovery is fragile and uneven. Late-stage and growth deals remain concentrated in a small number of companies.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 3: SECTORS ============ -->
+  <div class="section" id="sectors">
+    <h2>Sectors &amp; Industry</h2>
+    <p style="color:var(--text-dim);margin-bottom:1.25rem;font-size:0.85rem">
+      Sector distribution and specialization across Portugal's startup hubs.
+    </p>
+
+    <div class="chart-row">
+      <div class="chart-box">
+        <h4>Porto Sector Distribution</h4>
+        <canvas id="chartPortoSectors"></canvas>
+      </div>
+      <div class="chart-box">
+        <h4>Sector Specialization Radar</h4>
+        <canvas id="chartSectorRadar"></canvas>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card national">
+        <div class="value">73%</div>
+        <div class="label">ICT Sector (National)</div>
+      </div>
+      <div class="stat-card national">
+        <div class="value">71%</div>
+        <div class="label">Knowledge-Intensive</div>
+      </div>
+      <div class="stat-card lisboa">
+        <div class="value">AI &amp; Big Data</div>
+        <div class="label">Key Strength</div>
+      </div>
+      <div class="stat-card porto">
+        <div class="value">Enterprise SW</div>
+        <div class="label">20% of startups</div>
+      </div>
+    </div>
+
+    <div class="insight-panel">
+      <button class="insight-toggle" onclick="toggleInsight(this)">
+        <span>&#128161;</span> Intelligence Analysis <span class="chevron">&#9660;</span>
+      </button>
+      <div class="insight-content">
+        <div class="insight-card">
+          <h4>City Complementarity</h4>
+          <p>Lisboa leads in AI &amp; Big Data; Porto leads in Enterprise Software and Health Tech. This complementarity could be a national strategic advantage if cross-city collaboration increases. Instead of competing, the two cities should specialize and connect.</p>
+        </div>
+        <div class="insight-card">
+          <h4>AI Opportunity</h4>
+          <p>AI-Native startups globally surpassed $1T in 2025. Lisboa's strength in AI &amp; Big Data positions it well, but Europe's AI share lags the US significantly. Portugal needs dedicated AI infrastructure (compute, talent, data) to capture this wave.</p>
+        </div>
+        <div class="insight-card">
+          <h4>Sector Concentration</h4>
+          <p>73% of Portuguese startups are in ICT. While this reflects global trends, over-reliance on a single sector creates vulnerability. Deeptech, Biotech, and Climate Tech remain underrepresented compared to Nordic ecosystems.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 4: TALENT ============ -->
+  <div class="section" id="talent">
+    <h2>Talent &amp; Founders</h2>
+    <p style="color:var(--text-dim);margin-bottom:1.25rem;font-size:0.85rem">
+      Founder profiles, talent pipeline, and human capital indicators.
+    </p>
+
+    <div class="chart-row">
+      <div class="chart-box">
+        <h4>Porto Founder Profile</h4>
+        <canvas id="chartFounderProfile"></canvas>
+      </div>
+      <div class="chart-box">
+        <h4>Team Size Distribution (National)</h4>
+        <canvas id="chartTeamSize"></canvas>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card porto">
+        <div class="value">84%</div>
+        <div class="label">Founders Stay in Porto</div>
+        <div class="delta">Exceptional retention</div>
+      </div>
+      <div class="stat-card porto">
+        <div class="value">20%</div>
+        <div class="label">Female Founders (Porto)</div>
+        <div class="delta negative">Below Nordic average</div>
+      </div>
+      <div class="stat-card porto">
+        <div class="value">30%</div>
+        <div class="label">Serial Founders</div>
+      </div>
+      <div class="stat-card porto">
+        <div class="value">92,554</div>
+        <div class="label">Students Enrolled</div>
+        <div class="delta">Porto universities</div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card porto">
+        <div class="value">20,947</div>
+        <div class="label">Graduates/Year</div>
+      </div>
+      <div class="stat-card porto">
+        <div class="value">20%</div>
+        <div class="label">of PT STEM Grads</div>
+      </div>
+      <div class="stat-card nacional">
+        <div class="value">89%</div>
+        <div class="label">Micro-enterprises</div>
+        <div class="delta">&lt;10 employees</div>
+      </div>
+      <div class="stat-card lisboa">
+        <div class="value">2,600</div>
+        <div class="label">Patents (Lisboa)</div>
+      </div>
+    </div>
+
+    <div class="insight-panel">
+      <button class="insight-toggle" onclick="toggleInsight(this)">
+        <span>&#128161;</span> Intelligence Analysis <span class="chevron">&#9660;</span>
+      </button>
+      <div class="insight-content">
+        <div class="insight-card">
+          <h4>Retention as Competitive Advantage</h4>
+          <p>Porto's 84% founder retention is exceptional by European standards. Most ecosystems struggle with brain drain to larger hubs. This retention creates local density and role-model effects that compound over time. Policy should protect and amplify this advantage.</p>
+        </div>
+        <div class="insight-card">
+          <h4>Gender Gap</h4>
+          <p>Only 20% of Porto founders are female, matching the national average. Nordic ecosystems average 25-30%. Closing this gap isn't just an equity issue — IPO studies show companies with gender-balanced founding teams deliver 30% higher returns.</p>
+        </div>
+        <div class="insight-card">
+          <h4>STEM Pipeline Adequacy</h4>
+          <p>Porto produces 20% of Portugal's STEM graduates with 20,947 graduates/year. This is a strong pipeline, but the conversion from graduation to startup founding remains low. University-to-startup pathways (like venture studios and founder programs) could accelerate this conversion.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 5: REGIONS ============ -->
+  <div class="section" id="regions">
+    <h2>Regional Distribution</h2>
+    <p style="color:var(--text-dim);margin-bottom:1.25rem;font-size:0.85rem">
+      Startup distribution across Portugal's 18+ districts and the decentralization challenge.
+    </p>
+
+    <div class="chart-row">
+      <div class="chart-box chart-full">
+        <h4>Startup Distribution by District</h4>
+        <canvas id="chartDistricts"></canvas>
+      </div>
+    </div>
+
+    <h3>Fastest-Growing Districts</h3>
+    <div class="growth-cards">
+      <div class="growth-card"><div class="rate">+36%</div><div class="name">Beja</div></div>
+      <div class="growth-card"><div class="rate">+35%</div><div class="name">Braganca</div></div>
+      <div class="growth-card"><div class="rate">+27%</div><div class="name">V. do Castelo</div></div>
+      <div class="growth-card"><div class="rate">+22%</div><div class="name">Evora</div></div>
+      <div class="growth-card"><div class="rate">+20%</div><div class="name">Guarda</div></div>
+    </div>
+
+    <div class="chart-row">
+      <div class="chart-box">
+        <h4>Concentration Analysis</h4>
+        <canvas id="chartConcentration"></canvas>
+      </div>
+      <div class="chart-box">
+        <h4>Top 5 Districts (% Share)</h4>
+        <canvas id="chartTopDistricts"></canvas>
+      </div>
+    </div>
+
+    <div class="insight-panel">
+      <button class="insight-toggle" onclick="toggleInsight(this)">
+        <span>&#128161;</span> Intelligence Analysis <span class="chevron">&#9660;</span>
+      </button>
+      <div class="insight-content">
+        <div class="insight-card">
+          <h4>Growth from Near-Zero Base</h4>
+          <p>The fastest-growing districts (Beja +36%, Braganca +35%) are growing from near-zero bases. A jump from 11 to 15 startups registers as +36%. Real decentralization requires sustained investment, infrastructure, and talent pipelines — not just percentage-point growth from low bases.</p>
+        </div>
+        <div class="insight-card">
+          <h4>The 61/39 Split</h4>
+          <p>Lisboa (45%) + Porto (16%) = 61% of all startups. The remaining 39% is spread across 16+ districts. For comparison, in the UK, London accounts for ~40% of startups, with significant secondary cities. Portugal's pattern is typical of small countries but limits resilience.</p>
+        </div>
+        <div class="insight-card">
+          <h4>Commuter Drain</h4>
+          <p>Districts like Setubal and Vila Franca de Xira (near Lisboa) have low startup counts despite proximity to the capital. Tech workers commute to Lisboa rather than building local ecosystems. Targeted community-building and co-working infrastructure could capture some of this latent potential.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 6: BENCHMARKS ============ -->
+  <div class="section" id="benchmarks">
+    <h2>International Benchmarks</h2>
+    <p style="color:var(--text-dim);margin-bottom:1.25rem;font-size:0.85rem">
+      How Lisbon compares to European peer ecosystems (Startup Genome data).
+    </p>
+
+    <div style="overflow-x:auto">
+    <table class="bench-table">
+      <thead>
+        <tr><th>City</th><th>Ecosystem Value</th><th>Unicorns</th><th>Seed Share</th><th>Patents</th><th>Global Rank</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Dublin</td><td>$52B</td><td>12</td><td>22%</td><td>3,800+</td><td>#18</td></tr>
+        <tr><td>Barcelona</td><td>$30B</td><td>8</td><td>18%</td><td>2,200+</td><td>#22</td></tr>
+        <tr class="highlight"><td>Lisboa</td><td>$25B</td><td>5</td><td>4-9%</td><td>2,600</td><td>#29</td></tr>
+        <tr><td>Copenhagen</td><td>$22B</td><td>6</td><td>25%</td><td>4,100+</td><td>#24</td></tr>
+        <tr><td>Helsinki</td><td>$18B</td><td>5</td><td>28%</td><td>3,500+</td><td>#26</td></tr>
+        <tr><td>Tallinn</td><td>$15B</td><td>4</td><td>20%</td><td>800+</td><td>#20</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="chart-row">
+      <div class="chart-box">
+        <h4>Ecosystem Value Comparison ($B)</h4>
+        <canvas id="chartBenchValue"></canvas>
+      </div>
+      <div class="chart-box">
+        <h4>Multi-Axis Peer Radar</h4>
+        <canvas id="chartBenchRadar"></canvas>
+      </div>
+    </div>
+
+    <div class="insight-panel">
+      <button class="insight-toggle" onclick="toggleInsight(this)">
+        <span>&#128161;</span> Intelligence Analysis <span class="chevron">&#9660;</span>
+      </button>
+      <div class="insight-content">
+        <div class="insight-card">
+          <h4>Lisboa's Position: 5th Among Peers</h4>
+          <p>Lisboa's $25B ecosystem value ranks 5th among the 6 European peer cities. It trails Dublin ($52B), Barcelona ($30B), and Copenhagen ($22B) but leads Helsinki and Tallinn in raw value. The growth trajectory (26.7x in 8 years) is the fastest in the group.</p>
+        </div>
+        <div class="insight-card">
+          <h4>The Seed Pipeline Gap</h4>
+          <p>Lisboa's most critical weakness is its seed-stage share (4-9%) vs. peers averaging 20%+. Tallinn (20%), Dublin (22%), Copenhagen (25%), Helsinki (28%) all have significantly healthier early-stage pipelines. This is the single biggest bottleneck to Lisboa's growth trajectory.</p>
+        </div>
+        <div class="insight-card">
+          <h4>Path to Top 20</h4>
+          <p>To reach the top-20 globally, Lisboa needs to: (1) triple its seed pipeline, (2) increase patents output, (3) grow ecosystem value to $35-40B, and (4) develop 3-4 more unicorns. At current growth rates, this is achievable within 5-7 years with the right policy interventions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 7: ABOUT ============ -->
+  <div class="section" id="about">
+    <h2>About &amp; Methodology</h2>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <h4>Data Sources</h4>
+        <ul>
+          <li><strong>Startup Portugal National Report 2025</strong> &mdash; National KPIs, district distribution, sector data, employment. Produced by Startup Portugal.</li>
+          <li><strong>Lisboa Startup Ecosystem Report 2025</strong> &mdash; City-level data, funding stages, international benchmarks, sub-sectors. Produced by Startup Genome for Lisboa Innovation.</li>
+          <li><strong>ScaleUp Porto Characterization 2024</strong> &mdash; Porto ecosystem data, founder profiles, talent pipeline, sector breakdown. Produced by ScaleUp Porto &amp; Porto Business School.</li>
+        </ul>
+      </div>
+      <div class="about-card">
+        <h4>Taskforce Vision</h4>
+        <p>The 351 Startups Regulatory Taskforce aims to build an open, verified, and scalable data infrastructure for Portugal's startup ecosystem. This platform is an MVP demonstrating what evidence-based ecosystem intelligence could look like.</p>
+        <p style="margin-top:0.5rem">The core problem: Portugal's startup data is fragmented. The official registry counts ~450 startups; Dealroom identifies ~3,700; the National Report finds 5,091. Without a unified data framework, policy-making operates blind.</p>
+      </div>
+      <div class="about-card">
+        <h4>Limitations</h4>
+        <ul>
+          <li>This MVP uses published report data only (no primary data collection)</li>
+          <li>Not all metrics are directly comparable across ecosystems due to different methodologies</li>
+          <li>Lisboa data uses Startup Genome methodology; Porto uses ScaleUp Porto / PBS methodology; National uses Startup Portugal methodology</li>
+          <li>Some figures are approximations derived from percentages in source reports</li>
+          <li>Data periods: National (2024/25), Lisboa (2024/25), Porto (2019-2024)</li>
+        </ul>
+      </div>
+      <div class="about-card">
+        <h4>Next Steps</h4>
+        <ul>
+          <li>Primary data collection via open registry</li>
+          <li>MDR (Minimum Data Requirements) framework implementation</li>
+          <li>API integration with Dealroom, Crunchbase, GSER</li>
+          <li>Real-time dashboard with verified company data</li>
+          <li>Regional ecosystem scorecards for all 18+ districts</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h3>Join the Regulatory Taskforce</h3>
+      <p>Help build Portugal's ecosystem data infrastructure. The 351 Startups Regulatory Taskforce meets regularly to advance open data, evidence-based policy, and ecosystem benchmarking.</p>
+      <p style="margin-top:0.75rem;color:var(--blue)">351startups.com &middot; regulatory@351startups.com</p>
+    </div>
+
+    <div style="text-align:center;margin-top:2rem;padding-top:1rem;border-top:1px solid var(--card-border)">
+      <p style="font-size:0.7rem;color:var(--text-dim)">
+        &copy; 2026 351 Portuguese Startup Association &middot; Regulatory Taskforce<br>
+        Built with data from Startup Portugal, Startup Genome, and ScaleUp Porto
+      </p>
+    </div>
+  </div>
+
+</div><!-- end .main -->
+
+<script>
+// ==========================
+// DATA
+// ==========================
+const DATA = {
+  // Lisboa VC Deals by Stage (approx from SG report charts)
+  lisboa_stages: {
+    years: [2019, 2020, 2021, 2022, 2023, 2024, 2025],
+    seed:    [35, 28, 55, 40, 18, 22, 15],
+    seriesA: [12, 10, 22, 18, 11, 18, 14],
+    seriesB: [5,  4,  12, 8,  6,  7,  5],
+    late:    [3,  2,  8,  6,  5,  5,  4]
+  },
+  // Lisboa stage distribution avg %
+  lisboa_stage_pct: {
+    labels: ['Seed', 'Series A', 'Series B', 'Late Stage'],
+    values: [7, 35, 30, 28]
+  },
+  // Porto capital raised 2019-2024
+  porto_capital: {
+    years: [2019, 2020, 2021, 2022, 2023, 2024],
+    amounts: [45, 38, 120, 85, 72, 197.5] // millions EUR
+  },
+  // Porto top deals
+  porto_deals: {
+    companies: ['Sword Health', 'Infraspeak', 'Smartex.AI', 'Others'],
+    amounts: [291, 42, 35, 189.5]
+  },
+  // Porto sectors
+  porto_sectors: {
+    labels: ['Enterprise SW', 'Health', 'Marketing', 'Fintech', 'Edutech', 'Travel', 'Biotech', 'Other'],
+    values: [20, 12, 10, 8, 5, 4, 3, 38]
+  },
+  // Sector radar — Lisboa vs Porto (relative strengths 0-10)
+  sector_radar: {
+    axes: ['AI & Big Data', 'Enterprise SW', 'Health Tech', 'Fintech', 'Marketing Tech'],
+    lisboa: [9, 5, 6, 7, 5],
+    porto: [4, 9, 8, 6, 7]
+  },
+  // Founder profile (Porto)
+  founder_profile: {
+    labels: ['Female Founders', 'Serial Founders', 'Top Uni Alumni', 'Stay in Porto', 'Tertiary Edu'],
+    values: [20, 30, 19, 84, 29]
+  },
+  // Team size (national)
+  team_size: {
+    labels: ['Micro (<10)', '10-49', '50-249', '250+'],
+    values: [89, 8, 2.5, 0.5]
+  },
+  // Districts
+  districts: {
+    names: ['Lisboa', 'Porto', 'Braga', 'Setubal', 'Aveiro', 'Coimbra', 'Leiria', 'Faro', 'Santarem', 'Viseu', 'V.Real', 'Castelo Branco', 'Evora', 'Guarda', 'Beja', 'Braganca', 'V.Castelo', 'Portalegre'],
+    shares: [45, 16, 5, 5, 4, 3, 3, 3, 2, 2, 1.5, 1.2, 1, 1, 0.8, 0.7, 0.6, 0.5],
+    growth: [8, 10, 12, 15, 14, 11, 16, 18, 13, 10, 9, 8, 22, 20, 36, 35, 27, 12]
+  },
+  // Benchmark cities
+  benchmark: {
+    cities: ['Dublin', 'Barcelona', 'Lisboa', 'Copenhagen', 'Helsinki', 'Tallinn'],
+    values: [52, 30, 25, 22, 18, 15],
+    unicorns: [12, 8, 5, 6, 5, 4],
+    seed_share: [22, 18, 7, 25, 28, 20],
+    rank: [18, 22, 29, 24, 26, 20]
+  }
+};
+
+// ==========================
+// ECOSYSTEM PICKER STATE
+// ==========================
+let ecoState = { national: true, lisboa: true, porto: true };
+
+function toggleEco(eco, btn) {
+  ecoState[eco] = !ecoState[eco];
+  const classMap = { national: 'active-national', lisboa: 'active-lisboa', porto: 'active-porto' };
+  if (ecoState[eco]) {
+    btn.classList.add(classMap[eco]);
+  } else {
+    btn.classList.remove(classMap[eco]);
+  }
+  // Ensure at least one is selected
+  if (!ecoState.national && !ecoState.lisboa && !ecoState.porto) {
+    ecoState[eco] = true;
+    btn.classList.add(classMap[eco]);
+    return;
+  }
+  updateAllCharts();
+}
+
+// ==========================
+// INSIGHT PANELS
+// ==========================
+function toggleInsight(btn) {
+  btn.classList.toggle('open');
+  const content = btn.nextElementSibling;
+  content.classList.toggle('open');
+}
+
+// ==========================
+// SIDEBAR
+// ==========================
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.querySelector('.hamburger').classList.toggle('open');
+}
+
+// Sidebar active tracking
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+const observerOptions = { rootMargin: '-20% 0px -60% 0px' };
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, observerOptions);
+sections.forEach(s => sectionObserver.observe(s));
+
+// Close sidebar on mobile nav click
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+      document.getElementById('sidebar').classList.remove('open');
+      document.querySelector('.hamburger').classList.remove('open');
+    }
+  });
+});
+
+// ==========================
+// CHART DEFAULTS
+// ==========================
+Chart.defaults.color = 'rgba(255,255,255,0.6)';
+Chart.defaults.borderColor = 'rgba(255,255,255,0.08)';
+Chart.defaults.font.family = "'Inter', sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.plugins.legend.labels.boxWidth = 12;
+Chart.defaults.plugins.legend.labels.padding = 12;
+Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(10,10,15,0.9)';
+Chart.defaults.plugins.tooltip.borderColor = 'rgba(255,255,255,0.1)';
+Chart.defaults.plugins.tooltip.borderWidth = 1;
+Chart.defaults.plugins.tooltip.cornerRadius = 8;
+Chart.defaults.plugins.tooltip.padding = 10;
+
+const COLORS = {
+  national: '#FFDE03',
+  lisboa: '#2C8CFF',
+  porto: '#FFB800',
+  nationalBg: 'rgba(255,222,3,0.15)',
+  lisboaBg: 'rgba(44,140,255,0.15)',
+  portoBg: 'rgba(255,184,0,0.15)'
+};
+
+// ==========================
+// CHARTS
+// ==========================
+let charts = {};
+
+function initCharts() {
+  // 2a: Lisboa VC Deals by Stage
+  charts.fundingStage = new Chart(document.getElementById('chartFundingStage'), {
+    type: 'line',
+    data: {
+      labels: DATA.lisboa_stages.years,
+      datasets: [
+        { label: 'Seed', data: DATA.lisboa_stages.seed, borderColor: '#4ADE80', backgroundColor: 'rgba(74,222,128,0.1)', tension: 0.3, fill: true },
+        { label: 'Series A', data: DATA.lisboa_stages.seriesA, borderColor: COLORS.lisboa, backgroundColor: COLORS.lisboaBg, tension: 0.3, fill: true },
+        { label: 'Series B', data: DATA.lisboa_stages.seriesB, borderColor: COLORS.porto, backgroundColor: COLORS.portoBg, tension: 0.3, fill: true },
+        { label: 'Late Stage', data: DATA.lisboa_stages.late, borderColor: '#D34035', backgroundColor: 'rgba(211,64,53,0.1)', tension: 0.3, fill: true }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { position: 'bottom' } },
+      scales: {
+        y: { beginAtZero: true, title: { display: true, text: 'Number of Deals' } }
+      }
+    }
+  });
+
+  // 2b: Lisboa Stage Doughnut
+  charts.fundingDoughnut = new Chart(document.getElementById('chartFundingDoughnut'), {
+    type: 'doughnut',
+    data: {
+      labels: DATA.lisboa_stage_pct.labels,
+      datasets: [{
+        data: DATA.lisboa_stage_pct.values,
+        backgroundColor: ['#4ADE80', COLORS.lisboa, COLORS.porto, '#D34035'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { position: 'bottom' } },
+      cutout: '55%'
+    }
+  });
+
+  // 2c: Porto Capital
+  charts.portoCapital = new Chart(document.getElementById('chartPortoCapital'), {
+    type: 'bar',
+    data: {
+      labels: DATA.porto_capital.years,
+      datasets: [{
+        label: 'Capital Raised (M EUR)',
+        data: DATA.porto_capital.amounts,
+        backgroundColor: COLORS.portoBg,
+        borderColor: COLORS.porto,
+        borderWidth: 1,
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, title: { display: true, text: 'EUR Millions' } } }
+    }
+  });
+
+  // 2d: Porto Top Deals
+  charts.portoDeals = new Chart(document.getElementById('chartPortoDeals'), {
+    type: 'bar',
+    data: {
+      labels: DATA.porto_deals.companies,
+      datasets: [{
+        label: 'Amount (M EUR)',
+        data: DATA.porto_deals.amounts,
+        backgroundColor: [COLORS.porto, 'rgba(255,184,0,0.6)', 'rgba(255,184,0,0.4)', 'rgba(255,255,255,0.1)'],
+        borderRadius: 6
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true, title: { display: true, text: 'EUR Millions' } } }
+    }
+  });
+
+  // 3a: Porto Sectors
+  charts.portoSectors = new Chart(document.getElementById('chartPortoSectors'), {
+    type: 'bar',
+    data: {
+      labels: DATA.porto_sectors.labels,
+      datasets: [{
+        label: 'Porto %',
+        data: DATA.porto_sectors.values,
+        backgroundColor: COLORS.portoBg,
+        borderColor: COLORS.porto,
+        borderWidth: 1,
+        borderRadius: 6
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true, title: { display: true, text: '% of startups' } } }
+    }
+  });
+
+  // 3b: Sector Radar
+  charts.sectorRadar = new Chart(document.getElementById('chartSectorRadar'), {
+    type: 'radar',
+    data: {
+      labels: DATA.sector_radar.axes,
+      datasets: [
+        {
+          label: 'Lisboa',
+          data: DATA.sector_radar.lisboa,
+          borderColor: COLORS.lisboa,
+          backgroundColor: COLORS.lisboaBg,
+          pointBackgroundColor: COLORS.lisboa
+        },
+        {
+          label: 'Porto',
+          data: DATA.sector_radar.porto,
+          borderColor: COLORS.porto,
+          backgroundColor: COLORS.portoBg,
+          pointBackgroundColor: COLORS.porto
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { position: 'bottom' } },
+      scales: {
+        r: {
+          beginAtZero: true, max: 10,
+          grid: { color: 'rgba(255,255,255,0.08)' },
+          angleLines: { color: 'rgba(255,255,255,0.08)' },
+          pointLabels: { font: { size: 10 } }
+        }
+      }
+    }
+  });
+
+  // 4a: Founder Profile
+  charts.founderProfile = new Chart(document.getElementById('chartFounderProfile'), {
+    type: 'bar',
+    data: {
+      labels: DATA.founder_profile.labels,
+      datasets: [{
+        label: 'Porto %',
+        data: DATA.founder_profile.values,
+        backgroundColor: DATA.founder_profile.values.map((v,i) =>
+          i === 3 ? 'rgba(74,222,128,0.4)' : i === 0 ? 'rgba(211,64,53,0.3)' : COLORS.portoBg
+        ),
+        borderColor: DATA.founder_profile.values.map((v,i) =>
+          i === 3 ? '#4ADE80' : i === 0 ? '#D34035' : COLORS.porto
+        ),
+        borderWidth: 1,
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, max: 100, title: { display: true, text: '%' } }
+      }
+    }
+  });
+
+  // 4b: Team Size Doughnut
+  charts.teamSize = new Chart(document.getElementById('chartTeamSize'), {
+    type: 'doughnut',
+    data: {
+      labels: DATA.team_size.labels,
+      datasets: [{
+        data: DATA.team_size.values,
+        backgroundColor: [COLORS.nationalBg, COLORS.lisboaBg, COLORS.portoBg, 'rgba(211,64,53,0.2)'],
+        borderColor: [COLORS.national, COLORS.lisboa, COLORS.porto, '#D34035'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { position: 'bottom' } },
+      cutout: '55%'
+    }
+  });
+
+  // 5a: Districts
+  charts.districts = new Chart(document.getElementById('chartDistricts'), {
+    type: 'bar',
+    data: {
+      labels: DATA.districts.names,
+      datasets: [{
+        label: '% Share',
+        data: DATA.districts.shares,
+        backgroundColor: DATA.districts.names.map(n =>
+          n === 'Lisboa' ? COLORS.lisboaBg : n === 'Porto' ? COLORS.portoBg : 'rgba(255,255,255,0.08)'
+        ),
+        borderColor: DATA.districts.names.map(n =>
+          n === 'Lisboa' ? COLORS.lisboa : n === 'Porto' ? COLORS.porto : 'rgba(255,255,255,0.15)'
+        ),
+        borderWidth: 1,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true, title: { display: true, text: '% of national startups' } } }
+    }
+  });
+  // Set explicit height for district chart
+  document.getElementById('chartDistricts').parentElement.style.minHeight = '450px';
+
+  // 5b: Concentration
+  charts.concentration = new Chart(document.getElementById('chartConcentration'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Lisboa', 'Porto', 'Rest of Portugal'],
+      datasets: [{
+        data: [45, 16, 39],
+        backgroundColor: [COLORS.lisboaBg, COLORS.portoBg, 'rgba(255,255,255,0.06)'],
+        borderColor: [COLORS.lisboa, COLORS.porto, 'rgba(255,255,255,0.15)'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { position: 'bottom' } },
+      cutout: '50%'
+    }
+  });
+
+  // 5c: Top Districts bar
+  charts.topDistricts = new Chart(document.getElementById('chartTopDistricts'), {
+    type: 'bar',
+    data: {
+      labels: ['Lisboa', 'Porto', 'Braga', 'Setubal', 'Aveiro'],
+      datasets: [{
+        label: '% Share',
+        data: [45, 16, 5, 5, 4],
+        backgroundColor: [COLORS.lisboaBg, COLORS.portoBg, 'rgba(255,255,255,0.08)', 'rgba(255,255,255,0.08)', 'rgba(255,255,255,0.08)'],
+        borderColor: [COLORS.lisboa, COLORS.porto, 'rgba(255,255,255,0.15)', 'rgba(255,255,255,0.15)', 'rgba(255,255,255,0.15)'],
+        borderWidth: 1,
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true } }
+    }
+  });
+
+  // 6a: Benchmark Values
+  charts.benchValue = new Chart(document.getElementById('chartBenchValue'), {
+    type: 'bar',
+    data: {
+      labels: DATA.benchmark.cities,
+      datasets: [{
+        label: 'Ecosystem Value ($B)',
+        data: DATA.benchmark.values,
+        backgroundColor: DATA.benchmark.cities.map(c =>
+          c === 'Lisboa' ? COLORS.lisboaBg : 'rgba(255,255,255,0.08)'
+        ),
+        borderColor: DATA.benchmark.cities.map(c =>
+          c === 'Lisboa' ? COLORS.lisboa : 'rgba(255,255,255,0.15)'
+        ),
+        borderWidth: 1,
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, title: { display: true, text: 'USD Billions' } } }
+    }
+  });
+
+  // 6b: Benchmark Radar
+  // Normalize metrics to 0-10 scale for radar
+  const maxVal = Math.max(...DATA.benchmark.values);
+  const maxUni = Math.max(...DATA.benchmark.unicorns);
+  const maxSeed = Math.max(...DATA.benchmark.seed_share);
+  const bestRank = Math.min(...DATA.benchmark.rank);
+  const worstRank = Math.max(...DATA.benchmark.rank);
+
+  const radarDatasets = DATA.benchmark.cities.map((city, i) => {
+    const isLisboa = city === 'Lisboa';
+    return {
+      label: city,
+      data: [
+        (DATA.benchmark.values[i] / maxVal) * 10,
+        (DATA.benchmark.unicorns[i] / maxUni) * 10,
+        (DATA.benchmark.seed_share[i] / maxSeed) * 10,
+        ((worstRank - DATA.benchmark.rank[i]) / (worstRank - bestRank)) * 10
+      ],
+      borderColor: isLisboa ? COLORS.lisboa : `hsla(${i * 60}, 50%, 60%, 0.7)`,
+      backgroundColor: isLisboa ? COLORS.lisboaBg : `hsla(${i * 60}, 50%, 60%, 0.05)`,
+      borderWidth: isLisboa ? 2.5 : 1,
+      pointRadius: isLisboa ? 4 : 2
+    };
+  });
+
+  charts.benchRadar = new Chart(document.getElementById('chartBenchRadar'), {
+    type: 'radar',
+    data: {
+      labels: ['Ecosystem Value', 'Unicorns', 'Seed Pipeline', 'Global Rank'],
+      datasets: radarDatasets
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { position: 'bottom', labels: { font: { size: 9 } } } },
+      scales: {
+        r: {
+          beginAtZero: true, max: 10,
+          grid: { color: 'rgba(255,255,255,0.08)' },
+          angleLines: { color: 'rgba(255,255,255,0.08)' },
+          pointLabels: { font: { size: 10 } },
+          ticks: { display: false }
+        }
+      }
+    }
+  });
+}
+
+// ==========================
+// UPDATE CHARTS ON PICKER CHANGE
+// ==========================
+function updateAllCharts() {
+  // Show/hide comparison table columns
+  const table = document.getElementById('compTable');
+  if (table) {
+    const rows = table.querySelectorAll('tr');
+    rows.forEach(row => {
+      const cells = row.children;
+      if (cells.length >= 4) {
+        cells[1].style.display = ecoState.national ? '' : 'none';
+        cells[2].style.display = ecoState.lisboa ? '' : 'none';
+        cells[3].style.display = ecoState.porto ? '' : 'none';
+      }
+    });
+  }
+
+  // Update sector radar datasets visibility
+  if (charts.sectorRadar) {
+    charts.sectorRadar.data.datasets[0].hidden = !ecoState.lisboa;
+    charts.sectorRadar.data.datasets[1].hidden = !ecoState.porto;
+    charts.sectorRadar.update();
+  }
+
+  // Toggle chart visibility based on ecosystem selection
+  toggleChartVisibility('chartFundingStage', ecoState.lisboa);
+  toggleChartVisibility('chartFundingDoughnut', ecoState.lisboa);
+  toggleChartVisibility('chartPortoCapital', ecoState.porto);
+  toggleChartVisibility('chartPortoDeals', ecoState.porto);
+  toggleChartVisibility('chartPortoSectors', ecoState.porto);
+}
+
+function toggleChartVisibility(canvasId, visible) {
+  const el = document.getElementById(canvasId);
+  if (el) {
+    el.closest('.chart-box').style.display = visible ? '' : 'none';
+  }
+}
+
+// ==========================
+// SCROLL ANIMATIONS
+// ==========================
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.stat-card, .chart-box, .insight-panel, .about-card').forEach(el => {
+  el.classList.add('fade-up');
+  fadeObserver.observe(el);
+});
+
+// ==========================
+// INIT
+// ==========================
+initCharts();
+</script>
+</body>
+</html>
