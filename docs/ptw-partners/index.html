@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner with Portugal Tech Week 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@300;400;600;700;800;900&display=swap');
+
+  /* ── Reset & Base ── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --deep-navy: #07071A;
+    --navy: #0F0D30;
+    --electric-blue: #283CC8;
+    --ptw-blue: #0048FF;
+    --burnt-orange: #E64126;
+    --blaze-orange: #F26419;
+    --volt-yellow: #F9E11B;
+    --sky-blue: #4D9DE0;
+    --white: #FFFFFF;
+    --white-70: rgba(255,255,255,0.7);
+    --white-50: rgba(255,255,255,0.5);
+    --white-20: rgba(255,255,255,0.2);
+    --white-10: rgba(255,255,255,0.1);
+    --section-alt: #0B0C24;
+  }
+
+  body {
+    font-family: 'Sofia Sans', sans-serif;
+    background: var(--deep-navy);
+    color: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── Section Spacing ── */
+  section {
+    padding: 80px 0;
+  }
+  section.alt {
+    background: var(--navy);
+  }
+
+  /* ── Typography ── */
+  .section-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--volt-yellow);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+  }
+
+  h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 300;
+    color: var(--white-70);
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    border-radius: 6px;
+    font-family: 'Sofia Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .btn-primary {
+    background: var(--ptw-blue);
+    color: var(--white);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white-50);
+  }
+  .btn-secondary:hover {
+    border-color: var(--white);
+  }
+  .btn-yellow {
+    background: var(--volt-yellow);
+    color: var(--deep-navy);
+  }
+
+  .btn-arrow::after {
+    content: '→';
+    font-size: 18px;
+  }
+
+  /* ═══════════════════════════════════════
+     SECTION 1 — HERO
+     ═══════════════════════════════════════ */
+  .hero {
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--deep-navy) 0%, var(--navy) 100%);
+  }
+
+  .hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-date {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--volt-yellow);
+    margin-bottom: 24px;
+    letter-spacing: 2px;
+  }
+
+  .hero h1 {
+    margin-bottom: 24px;
+  }
+  .hero h1 span {
+    display: block;
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 400;
+    text-transform: none;
+    color: var(--white-70);
+    letter-spacing: 0;
+    margin-top: 12px;
+    line-height: 1.4;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .hero-stat-card {
+    background: var(--white-10);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--white-20);
+    border-radius: 12px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  .hero-stat-card .number {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .hero-stat-card .number.yellow { color: var(--volt-yellow); }
+  .hero-stat-card .number.blue { color: var(--sky-blue); }
+  .hero-stat-card .number.orange { color: var(--blaze-orange); }
+
+  .hero-stat-card .label {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--white-70);
+  }
+
+  /* ═══════════════════════════════════════
+     SECTION 2 — SOCIAL PROOF (Logos)
+     ═══════════════════════════════════════ */
+  .social-proof {
+    padding: 60px 0;
+    border-top: 1px solid var(--white-10);
+    border-bottom: 1px solid var(--white-10);
+  }
+
+  .logos-label {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--white-50);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .logos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 52px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+  .logo-item:hover { opacity: 0.85; }
+
+  .logo-item img {
+    max-height: 20px;
+    max-width: 105px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+
+  .logo-item svg {
+    max-height: 20px;
+    max-width: 105px;
+    width: auto;
+  }
+
+  .quote-section {
+    text-align: center;
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--white-10);
+  }
+
+  .quote-text {
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white-70);
+    max-width: 640px;
+    margin: 0 auto 12px;
+  }
+
+  .quote-attribution {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--volt-yellow);
+  }
+
+  /* ═══════════════════════════════════════
+     SECTION 3 — WHY PARTNER
+     ═══════════════════════════════════════ */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 48px;
+  }
+
+  .why-card {
+    background: var(--white-10);
+    border: 1px solid var(--white-10);
+    border-radius: 12px;
+    padding: 36px 28px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .why-card:hover {
+    border-color: var(--ptw-blue);
+    transform: translateY(-4px);
+  }
+
+  .why-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .why-icon.blue { background: rgba(0,72,255,0.2); color: var(--ptw-blue); }
+  .why-icon.yellow { background: rgba(249,225,27,0.15); color: var(--volt-yellow); }
+  .why-icon.orange { background: rgba(242,100,25,0.15); color: var(--blaze-orange); }
+
+  .why-card h3 { font-size: 20px; margin-bottom: 12px; }
+
+  .why-card p {
+    font-size: 15px;
+    color: var(--white-70);
+    line-height: 1.6;
+  }
+
+  .why-card .stat-highlight {
+    display: block;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  /* ═══════════════════════════════════════
+     SECTION 4 — PARTNERSHIP PRODUCTS
+     ═══════════════════════════════════════ */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .product-card {
+    background: linear-gradient(180deg, var(--white-10) 0%, transparent 100%);
+    border: 1px solid var(--white-10);
+    border-radius: 16px;
+    padding: 36px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .product-card:hover {
+    border-color: var(--ptw-blue);
+    transform: translateY(-4px);
+  }
+
+  .product-card.featured {
+    border-color: var(--volt-yellow);
+    background: linear-gradient(180deg, rgba(249,225,27,0.08) 0%, transparent 100%);
+  }
+
+  .product-badge {
+    position: absolute;
+    top: -1px;
+    right: 24px;
+    background: var(--volt-yellow);
+    color: var(--deep-navy);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .product-tier {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--white-50);
+    margin-bottom: 8px;
+  }
+
+  .product-card h3 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+
+  .product-desc {
+    font-size: 15px;
+    color: var(--white-70);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .product-features {
+    list-style: none;
+    margin-bottom: 28px;
+    flex-grow: 1;
+  }
+
+  .product-features li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: var(--white-70);
+    line-height: 1.5;
+  }
+
+  .product-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--volt-yellow);
+    font-weight: 700;
+  }
+
+  .product-card .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+
+  /* ═══════════════════════════════════════
+     SECTION 5 — NUMBERS / IMPACT
+     ═══════════════════════════════════════ */
+  .stats-section {
+    text-align: center;
+  }
+
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    margin-top: 48px;
+  }
+
+  .stat-item {
+    text-align: center;
+    min-width: 140px;
+  }
+
+  .stat-number {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-number.yellow { color: var(--volt-yellow); }
+  .stat-number.blue { color: var(--sky-blue); }
+  .stat-number.orange { color: var(--blaze-orange); }
+  .stat-number.white { color: var(--white); }
+
+  .stat-label {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--white-50);
+  }
+
+  .award-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 48px;
+    padding: 16px 28px;
+    background: var(--white-10);
+    border: 1px solid var(--white-20);
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .award-badge .trophy { font-size: 24px; }
+
+  /* ═══════════════════════════════════════
+     SECTION 6 — VALUE PROPS (Why PTW)
+     ═══════════════════════════════════════ */
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .value-item {
+    display: flex;
+    gap: 16px;
+    padding: 24px;
+    background: var(--white-10);
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .value-item:hover {
+    border-color: var(--white-20);
+  }
+
+  .value-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(0,72,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .value-item h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .value-item p {
+    font-size: 14px;
+    color: var(--white-70);
+    line-height: 1.5;
+  }
+
+  /* ═══════════════════════════════════════
+     SECTION 7 — CTA / CONTACT
+     ═══════════════════════════════════════ */
+  .cta-section {
+    text-align: center;
+    padding: 100px 0;
+    background: linear-gradient(180deg, var(--navy) 0%, var(--deep-navy) 100%);
+    position: relative;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0,72,255,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section h2 {
+    margin-bottom: 16px;
+  }
+
+  .cta-subtitle {
+    font-size: 18px;
+    color: var(--white-70);
+    margin-bottom: 40px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .cta-contact {
+    font-size: 15px;
+    color: var(--white-50);
+  }
+  .cta-contact a {
+    color: var(--volt-yellow);
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .cta-contact a:hover { color: var(--white); }
+
+  /* ═══════════════════════════════════════
+     FORM MODAL
+     ═══════════════════════════════════════ */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(7,7,26,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+  }
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: var(--navy);
+    border: 1px solid var(--white-20);
+    border-radius: 20px;
+    padding: 36px 32px;
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--white-50);
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .modal-close:hover { color: var(--white); }
+
+  .modal h2 {
+    font-size: 24px;
+    margin-bottom: 6px;
+    text-transform: none;
+  }
+
+  .modal .subtitle {
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+
+  .form-group {
+    margin-bottom: 14px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--white-70);
+    margin-bottom: 6px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--white-10);
+    border: 1px solid var(--white-20);
+    border-radius: 8px;
+    color: var(--white);
+    font-family: 'Sofia Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--ptw-blue);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--white-50);
+  }
+
+  .form-group select option {
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 60px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-submit {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .form-note {
+    font-size: 13px;
+    color: var(--white-50);
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════ */
+  @media (max-width: 768px) {
+    section { padding: 60px 0; }
+
+    .hero { padding: 60px 0; }
+    .hero .container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .hero-stats-grid { grid-template-columns: 1fr 1fr; }
+
+    .why-grid { grid-template-columns: 1fr; }
+
+    .products-grid { grid-template-columns: 1fr; }
+
+    .stats-row { gap: 32px; }
+
+    .value-grid { grid-template-columns: 1fr; }
+
+    .form-row { grid-template-columns: 1fr; }
+
+    .hero-cta-group { flex-direction: column; }
+    .hero-cta-group .btn { width: 100%; justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-stats-grid { grid-template-columns: 1fr; }
+    .stats-row { flex-direction: column; align-items: center; }
+    .logos-grid { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     SECTION 1 — HERO
+     ═══════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-date">6 — 15 November 2026</div>
+      <h1>Partner With<br>Portugal<br>Tech Week
+        <span>Connect with 3M+ people across 20+ cities in Portugal's largest decentralized tech festival</span>
+      </h1>
+      <div class="hero-cta-group">
+        <button class="btn btn-primary btn-arrow" onclick="openModal()">Apply for Partnership</button>
+        <a href="#products" class="btn btn-secondary">Explore Packages</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-stats-grid">
+        <div class="hero-stat-card">
+          <div class="number yellow">300+</div>
+          <div class="label">Events</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="number blue">20+</div>
+          <div class="label">Cities</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="number orange">3MM+</div>
+          <div class="label">People Impacted</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="number">54</div>
+          <div class="label">Nationalities</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 2 — SOCIAL PROOF
+     ═══════════════════════════════════════ -->
+<section class="social-proof">
+  <div class="container">
+    <div class="logos-label">2025 Partners &amp; Sponsors</div>
+    <div class="logos-grid">
+      <!-- Ordered by international recognition -->
+      <span class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/hubspot.svg" alt="HubSpot"></span>
+      <span class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/hisense-1.svg" alt="Hisense"></span>
+      <span class="logo-item"><img src="https://cdn.brandfolder.io/70W92OEX/as/q0vc05-3hg50o-8p4uw5/logo-dark.png" alt="Techstars"></span>
+      <span class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/deel-1.svg" alt="Deel"></span>
+      <!-- Make: inline SVG (external sources block hotlinking) -->
+      <span class="logo-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 100" fill="white"><path d="M36.5 16.2L18.2 78.1c-.4 1.3.6 2.6 2 2.6h10.5c1 0 1.8-.7 2-1.6L51 16.2c.4-1.3-.6-2.6-2-2.6H38.5c-1 0-1.8.7-2 1.6z"/><path d="M62 16.2L43.6 78.1c-.4 1.3.6 2.6 2 2.6h10.5c1 0 1.8-.7 2-1.6L76.5 16.2c.4-1.3-.6-2.6-2-2.6H64c-1 0-1.8.7-2 1.6z" opacity=".7"/><path d="M87.4 16.2L69 78.1c-.4 1.3.6 2.6 2 2.6h10.5c1 0 1.8-.7 2-1.6L101.9 16.2c.4-1.3-.6-2.6-2-2.6H89.4c-1 0-1.8.7-2 1.6z" opacity=".45"/><path d="M141.7 13.2c-7.6 0-14.4 3-17.9 9.2-3-6.1-9.2-9.2-16.3-9.2-6.1 0-11.6 2.3-15 7v-5.3c0-.9-.7-1.6-1.6-1.6h-9.4c-.9 0-1.6.7-1.6 1.6v64.4c0 .9.7 1.6 1.6 1.6h9.4c.9 0 1.6-.7 1.6-1.6V42.5c0-10.2 5.4-16.7 13.6-16.7 7.5 0 12.2 5.6 12.2 14.7v38.8c0 .9.7 1.6 1.6 1.6h9.4c.9 0 1.6-.7 1.6-1.6V42.5c0-10.2 5.3-16.7 13.6-16.7 7.5 0 12.2 5.6 12.2 14.7v38.8c0 .9.7 1.6 1.6 1.6h9.4c.9 0 1.6-.7 1.6-1.6V38.2c0-16-9.8-25-26.1-25z"/><path d="M215.2 13.2c-5.3 0-10.7 1.6-14.5 4.9v-3.2c0-.9-.7-1.6-1.6-1.6h-9.4c-.9 0-1.6.7-1.6 1.6v64.4c0 .9.7 1.6 1.6 1.6h9.4c.9 0 1.6-.7 1.6-1.6V67.9c3.8 3 9.2 4.7 14.4 4.7 18.5 0 29.2-14.3 29.2-29.7.1-15.4-10.6-29.7-29.1-29.7zm-2.2 47.1c-9.8 0-13.4-8.2-13.4-17.4s3.6-17.4 13.4-17.4 13.4 8.2 13.4 17.4-3.6 17.4-13.4 17.4z"/><path d="M295.3 13.2c-19.3 0-31 13.6-31 29.7s11.7 29.7 31 29.7c12.4 0 22.2-5.8 27-15.3.5-1-.1-2.2-1.2-2.5l-8.8-2.8c-.8-.3-1.7.1-2.1.8-3 5.4-8.4 8.3-14.9 8.3-9.5 0-15.5-5.9-17-14.5h44.7c.8 0 1.5-.6 1.6-1.4.2-1.6.3-3.2.3-4.7-.1-14.4-11-27.3-29.6-27.3zm-17.2 24c2.1-8.2 7.8-12.7 16-12.7 8.6 0 14.6 5.6 15.8 12.7h-31.8z"/></svg></span>
+      <span class="logo-item"><img src="https://companieslogo.com/img/orig/SAN_BIG-00e2554f.svg" alt="SantanderX"></span>
+      <span class="logo-item"><img src="https://conteudos.meo.pt/Style%20Library/consumo/images/logo_meo_preto.png" alt="MEO"></span>
+      <span class="logo-item"><img src="https://www.visitportugal.com/sites/all/themes/visitportugaltheme/images/visitportugallogo.png" alt="Visit Portugal"></span>
+      <!-- SAPO: inline SVG (external sources block hotlinking) -->
+      <span class="logo-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" fill="white"><text x="4" y="32" font-family="Arial Black,Arial,sans-serif" font-size="34" font-weight="900" letter-spacing="4">SAPO</text></svg></span>
+      <span class="logo-item"><img src="https://www.carris.pt/media/q04iikx3/logosvg.svg" alt="Carris"></span>
+    </div>
+    <div class="quote-section">
+      <div class="quote-text">"Better than Web Summit in many moments"</div>
+      <div class="quote-attribution">Pedro Rocha — SageScan</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 3 — WHY PARTNER WITH PTW
+     ═══════════════════════════════════════ -->
+<section class="alt">
+  <div class="container">
+    <div class="section-label">Why Partner With Us</div>
+    <h2>The community tech festival<br>that runs alongside Web Summit</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon blue">&#9733;</div>
+        <h3>High-Intent Audience</h3>
+        <p><span class="stat-highlight" style="color:var(--volt-yellow)">40,000+</span>
+        Unique users on the PTW Platform — founders, investors, and operators from 54 nationalities. Every person in the room is building something.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon yellow">&#9830;</div>
+        <h3>20+ Cities, One Week</h3>
+        <p><span class="stat-highlight" style="color:var(--sky-blue)">Nationwide reach</span>
+        The only tech festival with decentralized events from Lisbon to Porto, Algarve to Douro. Activate your brand at the national or city level.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon orange">&#9992;</div>
+        <h3>Portugal as a Gateway</h3>
+        <p><span class="stat-highlight" style="color:var(--blaze-orange)">EU + Lusophone</span>
+        Bridge to European markets and Portuguese-speaking economies in Africa and Brazil. Runs the same week as Web Summit — dual attendance for your team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 4 — PARTNERSHIP PRODUCTS
+     ═══════════════════════════════════════ -->
+<section id="products">
+  <div class="container">
+    <div class="section-label">Partnership Packages</div>
+    <h2>Choose how you<br>want to partner</h2>
+    <p class="subtitle">From flagship visibility to regional activations — find the partnership that fits your goals. All packages are customizable.</p>
+
+    <div class="products-grid">
+      <!-- Platinum -->
+      <div class="product-card featured">
+        <div class="product-badge">Flagship</div>
+        <div class="product-tier">Platinum</div>
+        <h3>Main Stage Sponsor</h3>
+        <p class="product-desc">The flagship partnership for brands that want to lead Portugal's largest tech festival.</p>
+        <ul class="product-features">
+          <li>Keynote speaking slot at PTW Palace</li>
+          <li>Large exhibition space (3m &times; 3m)</li>
+          <li>Logo on all event materials &amp; website</li>
+          <li>20 VIP passes + attendee list access</li>
+          <li>Social media campaign (10+ posts)</li>
+          <li>Workshop or masterclass opportunity</li>
+          <li>Category exclusivity</li>
+        </ul>
+        <button class="btn btn-yellow" onclick="openModal('Main Stage Sponsor — Platinum')">Request Partnership →</button>
+      </div>
+
+      <!-- Gold -->
+      <div class="product-card">
+        <div class="product-tier">Gold</div>
+        <h3>Community Sponsor</h3>
+        <p class="product-desc">For brands committed to Portugal's startup ecosystem and community building.</p>
+        <ul class="product-features">
+          <li>Panel or speaking slot</li>
+          <li>Medium exhibition space (2m &times; 2m)</li>
+          <li>Logo on website + event signage</li>
+          <li>10 VIP passes</li>
+          <li>Social media mentions (5 posts)</li>
+          <li>Newsletter feature</li>
+        </ul>
+        <button class="btn btn-primary" onclick="openModal('Community Sponsor — Gold')">Request Partnership →</button>
+      </div>
+
+      <!-- Side Event -->
+      <div class="product-card">
+        <div class="product-tier">Experience</div>
+        <h3>Side Event Sponsor</h3>
+        <p class="product-desc">Host your own branded event under the PTW umbrella. We produce it, you own it.</p>
+        <ul class="product-features">
+          <li>Dedicated event space at PTW Palace</li>
+          <li>PTW produces venue + sends invites</li>
+          <li>Logo on event materials</li>
+          <li>5 VIP passes</li>
+          <li>Social media promotion</li>
+        </ul>
+        <button class="btn btn-primary" onclick="openModal('Side Event Sponsor')">Request Partnership →</button>
+      </div>
+
+      <!-- City Sponsor -->
+      <div class="product-card">
+        <div class="product-tier">Regional</div>
+        <h3>City Sponsor</h3>
+        <p class="product-desc">Activate your brand in one of 20+ PTW cities — from Porto to Algarve.</p>
+        <ul class="product-features">
+          <li>Tech Day naming rights for one city</li>
+          <li>Regional activation space</li>
+          <li>Logo on city event materials</li>
+          <li>5 event passes</li>
+          <li>Regional PR in local media</li>
+        </ul>
+        <button class="btn btn-primary" onclick="openModal('City Sponsor')">Request Partnership →</button>
+      </div>
+
+      <!-- Media Partner -->
+      <div class="product-card">
+        <div class="product-tier">Media</div>
+        <h3>Media Partner</h3>
+        <p class="product-desc">Amplify PTW across your platforms and join our press coverage network.</p>
+        <ul class="product-features">
+          <li>Press accreditation + event coverage</li>
+          <li>Cross-promotion on social channels</li>
+          <li>Logo on media partners section</li>
+          <li>Recognition at PTW Palace</li>
+          <li>Access to PTW media kit</li>
+        </ul>
+        <button class="btn btn-primary" onclick="openModal('Media Partner')">Apply for Media Partnership →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 5 — NUMBERS / IMPACT
+     ═══════════════════════════════════════ -->
+<section class="alt stats-section">
+  <div class="container">
+    <div class="section-label">PTW 2025 Impact</div>
+    <h2>The numbers speak<br>for themselves</h2>
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-number yellow">300+</div>
+        <div class="stat-label">Events</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number blue">20+</div>
+        <div class="stat-label">Cities</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number orange">3MM+</div>
+        <div class="stat-label">People Impacted</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number white">40,000+</div>
+        <div class="stat-label">Platform Users</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number yellow">54</div>
+        <div class="stat-label">Nationalities</div>
+      </div>
+    </div>
+    <div class="award-badge">
+      <span class="trophy">&#127942;</span>
+      EEPA 2024 — 1st Place "Promotion of Entrepreneurial Spirit" — European Commission
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 6 — COMPETITIVE POSITIONING
+     ═══════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">What Makes PTW Different</div>
+    <h2>Not another tech conference.<br>A nationwide movement.</h2>
+    <div class="value-grid">
+      <div class="value-item">
+        <div class="value-icon">&#127470;&#127479;</div>
+        <div>
+          <h4>Web Summit Adjacency</h4>
+          <p>PTW runs the same week as Web Summit in Lisbon. Your team attends both — double the exposure, one trip.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">&#127758;</div>
+        <div>
+          <h4>Lusophone Gateway</h4>
+          <p>Bridge to Portuguese-speaking markets across Europe, Brazil, and Africa — 300M+ potential consumers.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">&#127963;</div>
+        <div>
+          <h4>Decentralized Festival</h4>
+          <p>Not locked to one venue. Tech Days across 20+ cities let you activate at the national or hyper-local level.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">&#129309;</div>
+        <div>
+          <h4>Community-First</h4>
+          <p>Backed by 351 Startups — Portugal's largest startup association. Real community, not a corporate trade show.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">&#128176;</div>
+        <div>
+          <h4>Accessible Investment</h4>
+          <p>Partnership packages at a fraction of Web Summit or SXSW cost — with disproportionate community impact.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">&#127941;</div>
+        <div>
+          <h4>Award-Winning</h4>
+          <p>EEPA 2024 winner — recognized by the European Commission for promotion of entrepreneurial spirit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SECTION 7 — FINAL CTA
+     ═══════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="container">
+    <div class="section-label">Get Involved</div>
+    <h2>Ready to be part of<br>PTW 2026?</h2>
+    <p class="cta-subtitle">Join the brands shaping Portugal's tech ecosystem. Let's build something together.</p>
+    <div class="cta-buttons">
+      <button class="btn btn-yellow btn-arrow" onclick="openModal()">Apply for Partnership</button>
+      <a href="mailto:team@351.community?subject=PTW%202026%20Partnership%20Deck%20Request" class="btn btn-secondary">Request Partnership Deck</a>
+    </div>
+    <p class="cta-contact">Or email us directly at <a href="mailto:team@351.community">team@351.community</a></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CONTACT FORM MODAL
+     ═══════════════════════════════════════ -->
+<div class="modal-overlay" id="partnerModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <h2>Apply for Partnership</h2>
+    <p class="subtitle">Tell us about your brand and we'll get back to you within 48 hours.</p>
+    <form id="partnerForm" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name *</label>
+          <input type="text" id="fname" name="fname" placeholder="Maria" required>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name *</label>
+          <input type="text" id="lname" name="lname" placeholder="Silva" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Work Email *</label>
+        <input type="email" id="email" name="email" placeholder="maria@company.com" required>
+      </div>
+      <div class="form-group">
+        <label for="company">Company *</label>
+        <input type="text" id="company" name="company" placeholder="Company name" required>
+      </div>
+      <div class="form-group">
+        <label for="website">Company Website</label>
+        <input type="url" id="website" name="website" placeholder="https://...">
+      </div>
+      <div class="form-group">
+        <label for="interest">Partnership Interest</label>
+        <select id="interest" name="interest">
+          <option value="">Select a package...</option>
+          <option value="Main Stage Sponsor — Platinum">Main Stage Sponsor — Platinum</option>
+          <option value="Community Sponsor — Gold">Community Sponsor — Gold</option>
+          <option value="Side Event Sponsor">Side Event Sponsor</option>
+          <option value="City Sponsor">City Sponsor</option>
+          <option value="Media Partner">Media Partner</option>
+          <option value="Custom / Other">Custom / Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell us about your goals for PTW 2026..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-yellow form-submit">Send Application →</button>
+      <p class="form-note">We'll respond within 48 hours. No commitment required.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ── Modal ──
+  function openModal(pkg) {
+    document.getElementById('partnerModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (pkg) {
+      var sel = document.getElementById('interest');
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === pkg) { sel.selectedIndex = i; break; }
+      }
+    }
+  }
+  function closeModal() {
+    document.getElementById('partnerModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('partnerModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // ── Form handler — replace with your endpoint ──
+  function handleSubmit(e) {
+    e.preventDefault();
+    var form = e.target;
+    var data = {
+      name: form.fname.value + ' ' + form.lname.value,
+      email: form.email.value,
+      company: form.company.value,
+      website: form.website.value,
+      interest: form.interest.value,
+      message: form.message.value
+    };
+
+    // Option 1: mailto fallback
+    var subject = encodeURIComponent('PTW 2026 Partnership Application — ' + data.company);
+    var body = encodeURIComponent(
+      'Name: ' + data.name + '\n' +
+      'Email: ' + data.email + '\n' +
+      'Company: ' + data.company + '\n' +
+      'Website: ' + data.website + '\n' +
+      'Package Interest: ' + data.interest + '\n\n' +
+      'Message:\n' + data.message
+    );
+    window.location.href = 'mailto:team@351.community?subject=' + subject + '&body=' + body;
+
+    // Option 2: Replace the mailto above with a fetch() to your form backend
+    // fetch('https://your-form-endpoint.com/submit', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(data)
+    // }).then(function() {
+    //   alert('Application sent! We\'ll be in touch within 48 hours.');
+    //   closeModal();
+    //   form.reset();
+    // });
+  }
+
+  // ── Smooth scroll for anchor links ──
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
