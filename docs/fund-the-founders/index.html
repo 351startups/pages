@@ -93,12 +93,41 @@ a:hover{color:var(--orange)}
 /* REFORMS */
 .reforms{padding:100px 0}
 .reforms-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.reform-card{padding:32px;border-radius:16px;background:var(--card-bg);border:1px solid var(--card-border);transition:all .3s;position:relative;overflow:hidden}
+.reform-card{padding:32px;border-radius:16px;background:var(--card-bg);border:1px solid var(--card-border);transition:all .3s;position:relative;overflow:hidden;cursor:pointer}
 .reform-card:hover{border-color:var(--card-hover-border);transform:translateY(-2px);box-shadow:0 8px 40px rgba(44,140,255,0.1)}
 .reform-number{font-size:3rem;font-weight:700;color:var(--blue);font-family:'Space Grotesk',sans-serif;line-height:1;margin-bottom:12px;opacity:0.9}
 .reform-card h3{font-size:1.2rem;margin-bottom:8px}
 .reform-card p{color:var(--text-dim);font-size:0.95rem;line-height:1.5;margin-bottom:12px}
 .reform-institution{font-size:0.8rem;color:var(--blue);font-weight:500;text-transform:uppercase;letter-spacing:1px}
+.reform-cta{display:flex;align-items:center;gap:6px;font-size:0.8rem;color:var(--text-dim);margin-top:12px;transition:color .2s}
+.reform-card:hover .reform-cta{color:var(--blue)}
+.reform-cta svg{width:14px;height:14px;fill:currentColor;transition:transform .2s}
+.reform-card:hover .reform-cta svg{transform:translateX(3px)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.modal-overlay.open{opacity:1;pointer-events:auto}
+.modal{background:#14141a;border:1px solid var(--card-border);border-radius:16px;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;padding:2.5rem;position:relative;transform:scale(0.95) translateY(10px);transition:transform .3s ease}
+.modal-overlay.open .modal{transform:scale(1) translateY(0)}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text-dim);font-size:1.5rem;cursor:pointer;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+.modal-close:hover{background:rgba(255,255,255,0.1);color:var(--white)}
+.modal-number{font-size:4rem;font-weight:700;color:var(--blue);font-family:'Space Grotesk',sans-serif;line-height:1;margin-bottom:8px;opacity:0.7}
+.modal-institution{display:inline-block;background:rgba(44,140,255,0.12);color:var(--blue);font-size:.75rem;font-weight:600;padding:.25rem .75rem;border-radius:20px;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.5px}
+.modal-timeline{display:inline-block;background:rgba(255,184,0,0.12);color:var(--orange);font-size:.75rem;font-weight:600;padding:.25rem .75rem;border-radius:20px;margin-bottom:.75rem;margin-left:8px;text-transform:uppercase;letter-spacing:.5px}
+.modal h3{font-size:1.5rem;margin-bottom:1.25rem}
+.modal-section{margin-bottom:1.5rem}
+.modal-section-title{font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);font-weight:600;margin-bottom:.75rem;font-family:'Space Grotesk',sans-serif}
+.modal-desc{color:var(--text);font-size:.95rem;line-height:1.7}
+.modal-impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal-impact-item{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:16px}
+.modal-impact-item .label{font-size:.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.modal-impact-item .value{font-size:.95rem;color:var(--white);font-weight:500}
+.modal-quotes{display:flex;flex-direction:column;gap:.75rem}
+.modal-quote{border-left:2px solid rgba(44,140,255,0.3);padding-left:1rem;font-size:.85rem}
+.modal-quote p{color:var(--text);font-style:italic;margin-bottom:.2rem}
+.modal-quote cite{color:var(--text-dim);font-size:.8rem;font-style:normal;font-weight:600}
+.modal-benchmark{background:rgba(44,140,255,0.06);border:1px solid rgba(44,140,255,0.15);border-radius:10px;padding:16px;font-size:.9rem;color:var(--text);line-height:1.6}
+.modal-benchmark strong{color:var(--white)}
 
 /* EVIDENCE */
 .evidence{padding:100px 0;background:rgba(44,140,255,0.03)}
@@ -158,6 +187,8 @@ a:hover{color:var(--orange)}
 .navbar-links.open{display:flex}
 .hamburger{display:flex}
 .hero h1{font-size:3rem}
+.modal-impact-grid{grid-template-columns:1fr}
+.modal{padding:1.5rem}
 }
 @media(max-width:480px){
 .coalition-grid{grid-template-columns:1fr 1fr}
@@ -253,78 +284,123 @@ a:hover{color:var(--orange)}
 <section class="reforms" id="reforms">
 <div class="container">
 <h2 class="section-title reveal">7 Reforms. No New Money. New Rules.</h2>
-<div class="section-subtitle reveal">&nbsp;</div>
+<div class="section-subtitle reveal">Click any reform to learn more</div>
 <div class="reforms-grid">
-<div class="reform-card reveal">
+<div class="reform-card reveal" data-reform="1">
 <div class="reform-number">01</div>
 <h3>Angel Tax Incentive (PAITI)</h3>
 <p>40-50% deduction on investments up to EUR 200K/year. Modeled on UK SEIS.</p>
 <div class="reform-institution">Ministry of Finance</div>
+<div class="reform-cta">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
 </div>
-<div class="reform-card reveal">
+<div class="reform-card reveal" data-reform="2">
 <div class="reform-number">02</div>
 <h3>Pre-Seed Matching Fund</h3>
 <p>Government co-investment for rounds up to EUR 500K. Singapore model.</p>
-<div class="reform-institution">National Development Bank</div>
+<div class="reform-institution">Banco de Fomento</div>
+<div class="reform-cta">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
 </div>
-<div class="reform-card reveal">
+<div class="reform-card reveal" data-reform="3">
 <div class="reform-number">03</div>
-<h3>National Fund-of-Funds II</h3>
+<h3>Portugal Tech Fund II</h3>
 <p>Dedicated VC fund-of-funds. Track record required. 20-year horizon.</p>
-<div class="reform-institution">National Development Bank / EIF</div>
+<div class="reform-institution">Banco de Fomento / EIF</div>
+<div class="reform-cta">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
 </div>
-<div class="reform-card reveal">
+<div class="reform-card reveal" data-reform="4">
 <div class="reform-number">04</div>
 <h3>Pension/Insurance Pathway</h3>
 <p>Enable 1-2% portfolio allocation to domestic VC.</p>
-<div class="reform-institution">Insurance Regulator / Ministry of Finance</div>
+<div class="reform-institution">ASF / Ministry of Finance</div>
+<div class="reform-cta">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
 </div>
-<div class="reform-card reveal">
+<div class="reform-card reveal" data-reform="5">
 <div class="reform-number">05</div>
 <h3>Startup Fund Light</h3>
-<p>Simplified securities regulator vehicle. Reform R&D incentives for full lifecycle.</p>
-<div class="reform-institution">Securities Regulator / Innovation Agency</div>
+<p>Simplified CMVM vehicle. Reform SIFIDE for full lifecycle.</p>
+<div class="reform-institution">CMVM / ANI</div>
+<div class="reform-cta">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
 </div>
-<div class="reform-card reveal">
+<div class="reform-card reveal" data-reform="6">
 <div class="reform-number">06</div>
 <h3>Portugal Capital Bridge</h3>
-<p>Investor delegations, regulatory reciprocity, English-language concierge.</p>
-<div class="reform-institution">Trade Agency / Securities Regulator</div>
+<p>Investor delegations, regulatory reciprocity, CMVM English concierge.</p>
+<div class="reform-institution">AICEP / CMVM</div>
+<div class="reform-cta">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
 </div>
-<div class="reform-card reveal">
+<div class="reform-card reveal" data-reform="7">
 <div class="reform-number">07</div>
 <h3>Corporate Acquisition Incentives</h3>
-<p>R&D-style M&A deductions. Unlock the exit flywheel.</p>
+<p>SIFIDE-like M&A deductions. Unlock the exit flywheel.</p>
 <div class="reform-institution">Ministry of Finance</div>
+<div class="reform-cta">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
 </div>
 </div>
 </div>
 </section>
 
+<!-- REFORM MODAL -->
+<div class="modal-overlay" id="reformModal">
+<div class="modal">
+<button class="modal-close" id="modalClose">&times;</button>
+<div class="modal-number" id="modalNumber"></div>
+<div>
+<span class="modal-institution" id="modalInstitution"></span>
+<span class="modal-timeline" id="modalTimeline"></span>
+</div>
+<h3 id="modalTitle"></h3>
+
+<div class="modal-section">
+<div class="modal-section-title">What is it</div>
+<div class="modal-desc" id="modalWhat"></div>
+</div>
+
+<div class="modal-section">
+<div class="modal-section-title">Why it matters</div>
+<div class="modal-desc" id="modalWhy"></div>
+</div>
+
+<div class="modal-section" id="modalImpactSection">
+<div class="modal-section-title">Expected impact</div>
+<div class="modal-impact-grid" id="modalImpact"></div>
+</div>
+
+<div class="modal-section" id="modalBenchmarkSection">
+<div class="modal-section-title">International benchmark</div>
+<div class="modal-benchmark" id="modalBenchmark"></div>
+</div>
+
+<div class="modal-section" id="modalQuotesSection">
+<div class="modal-section-title">What investors say</div>
+<div class="modal-quotes" id="modalQuotes"></div>
+</div>
+</div>
+</div>
+
 <!-- EVIDENCE -->
 <section class="evidence" id="evidence">
 <div class="container">
-<h2 class="section-title reveal">What Portugal's Investors Are Saying</h2>
+<h2 class="section-title reveal">What Portugal's VCs Are Saying</h2>
 <div class="section-subtitle reveal">&nbsp;</div>
 <div class="quotes-grid">
 <div class="quote-card reveal">
-<blockquote>"After speaking to 5-6 VCs, you've exhausted the market."</blockquote>
-<cite><strong>Investor 1</strong><br>Early-stage VC Fund</cite>
+<blockquote>"After speaking to a handful of VCs, you've exhausted the market."</blockquote>
+<cite><strong>Portuguese VC Partner</strong></cite>
 </div>
 <div class="quote-card reveal">
 <blockquote>"If we want to change behavior, we must change incentives."</blockquote>
-<cite><strong>Investor 3</strong><br>Angel Investor</cite>
+<cite><strong>Portuguese Fund Manager</strong></cite>
 </div>
 <div class="quote-card reveal">
-<blockquote>"Portugal creates 10x more laws than the UK and US. We solve one problem and create three."</blockquote>
-<cite><strong>Investor 5</strong><br>VC Fund</cite>
+<blockquote>"We are champions at making laws. We solve one problem and create three."</blockquote>
+<cite><strong>Portuguese VC Partner</strong></cite>
 </div>
 <div class="quote-card reveal">
 <blockquote>"You don't need a few large angels. A network of smaller investors, properly coordinated, can mobilize significant capital."</blockquote>
-<cite><strong>Investor 6</strong><br>VC Investor</cite>
+<cite><strong>Portuguese Angel Network Leader</strong></cite>
 </div>
 </div>
-<p class="evidence-note reveal">Based on structured interviews with 6 leading Portuguese investors, February-March 2026</p>
+<p class="evidence-note reveal">Based on structured interviews with leading Portuguese investors, 2026</p>
 <div class="evidence-link reveal" style="text-align:center">
 <a href="../capital-report/" class="btn-outline">See the Full Research</a>
 </div>
@@ -337,7 +413,7 @@ a:hover{color:var(--orange)}
 <h2 class="section-title reveal">Who Stands With Us</h2>
 <p class="section-subtitle reveal">351 Portuguese Startup Association and a growing coalition of VCs, angel networks, founders, and ecosystem leaders</p>
 <div class="coalition-grid reveal">
-<div class="coalition-slot">Your Organization</div>
+<div class="coalition-slot" style="border-style:solid;border-color:rgba(44,140,255,0.3);color:var(--text)">Angel's Way</div>
 <div class="coalition-slot">Your Organization</div>
 <div class="coalition-slot">Your Organization</div>
 <div class="coalition-slot">Your Organization</div>
@@ -358,8 +434,8 @@ a:hover{color:var(--orange)}
 <section class="open-letter" id="sign">
 <div class="container">
 <h2 class="section-title reveal">Sign the Open Letter</h2>
-<p class="section-subtitle reveal">Join 351 and Portugal's leading investors in calling for these 7 reforms</p>
-<p class="reveal">We are preparing an open letter to the Portuguese Minister of Economy and the securities regulator. Add your name to show that Portugal's startup ecosystem demands change.</p>
+<p class="section-subtitle reveal">Join 351 and Portugal's leading VCs in calling for these 7 reforms</p>
+<p class="reveal">We are preparing an open letter to the Portuguese Minister of Economy and the CMVM. Add your name to show that Portugal's startup ecosystem demands change.</p>
 <a href="#sign" class="btn-large reveal">Add Your Signature</a>
 <div class="signature-count reveal"><strong>127</strong> signatures so far</div>
 </div>
@@ -402,6 +478,200 @@ Copy Link
 </footer>
 
 <script>
+// Reform data for modal popups
+const reformData = {
+  1: {
+    title: "Angel Tax Incentive (PAITI)",
+    number: "01",
+    institution: "Ministry of Finance / Tax Authority",
+    timeline: "6-12 months",
+    what: "Create a Portuguese Angel Investment Tax Incentive modeled on the UK's Seed Enterprise Investment Scheme (SEIS). Angels would receive a 40-50% income tax deduction on investments up to EUR 200,000 per year, full deductibility of losses if the startup fails, and tax exemption on capital gains reinvested into other startups.",
+    why: "Portugal offers zero meaningful tax incentive to invest in startups, while real estate enjoys superior fiscal treatment across every dimension — deductions, capital gains, loss deductibility, and government co-investment. Capital flows where incentives are. The UK's SEIS has been the single most effective angel activation policy in Europe, creating a self-sustaining ecosystem of early-stage investors. Every single investor interviewed identified this as the highest-impact, lowest-cost reform available.",
+    impact: [
+      {label: "Current angel investors", value: "< 6 real tech angels"},
+      {label: "Target", value: "100+ active angels within 3 years"},
+      {label: "Capital Semente result", value: "EUR 1M in 4 years (failed)"},
+      {label: "UK SEIS benchmark", value: "GBP 2B+ deployed since 2012"}
+    ],
+    benchmark: "<strong>UK SEIS:</strong> 50% income tax deduction, losses fully deductible, reinvested gains tax-exempt. Created thousands of active angels. <strong>Israel:</strong> Incubator program with 85% government financing. <strong>Portugal today:</strong> Nothing.",
+    quotes: [
+      {text: "If we want to change behavior, we must change incentives.", cite: "Portuguese Fund Manager"},
+      {text: "The main government angel program deployed only EUR 1M in 4 years. The fiscal authority never even implemented the mechanism.", cite: "Portuguese Angel Investor"},
+      {text: "Real estate has better fiscal treatment than startup investment. No equivalent deductions exist.", cite: "Portuguese VC Partner"}
+    ]
+  },
+  2: {
+    title: "Pre-Seed Matching Fund",
+    number: "02",
+    institution: "Banco de Fomento / IAPMEI",
+    timeline: "12-18 months",
+    what: "Create a government co-investment vehicle for pre-seed rounds up to EUR 500,000. The fund matches private investment with public capital, de-risking early bets. Design principles: the reporting burden falls on fund managers (not individual angels), no regional allocation quotas, and the incentive must work for both the investor and the operator.",
+    why: "Portugal's pre-seed capital gap is the single most universally agreed-upon bottleneck — cited by all investors interviewed. After approaching a handful of VCs, founders have exhausted the market. Past co-investment programs failed because of bureaucratic design, tiny caps (EUR 20K/year), and political discontinuity. A properly designed matching fund would multiply every private euro invested at the most critical stage.",
+    impact: [
+      {label: "Current pre-seed landscape", value: "Near-zero functioning layer"},
+      {label: "Target multiplier", value: "2x on every private EUR invested"},
+      {label: "Singapore benchmark", value: "Gov matches up to 85%"},
+      {label: "Ireland benchmark", value: "850+ companies, 14,000 jobs over 20 years"}
+    ],
+    benchmark: "<strong>Singapore:</strong> Government matches private investment up to 85%, creating one of the world's most active early-stage ecosystems. <strong>Ireland (Enterprise Ireland):</strong> 850+ companies supported, 79% success rate, 14,000 jobs over 20 years. <strong>Portugal today:</strong> The main co-investment program deployed EUR 1M in 4 years with a EUR 20K/year cap.",
+    quotes: [
+      {text: "After approaching a handful of VCs, you've exhausted the entire market.", cite: "Portuguese VC Partner"},
+      {text: "Portugal needs more investors writing 10K, 15K, 100K checks — that is where it is most difficult.", cite: "Portuguese Angel Investor"},
+      {text: "Everything about Business Angels in Portugal is artificial — most are constructions built on public program money.", cite: "Portuguese Fund Manager"}
+    ]
+  },
+  3: {
+    title: "Portugal Tech Fund II",
+    number: "03",
+    institution: "Banco de Fomento / EIF",
+    timeline: "12-24 months",
+    what: "Establish a dedicated VC fund-of-funds (not PE) with mandatory track record requirements for fund managers, VC-only allocation (private equity should not compete under the same framework), a 20-year commitment horizon to match VC fund lifecycles, and EIF or equivalent international anchor investor participation.",
+    why: "Portugal's first fund-of-funds was the country's most successful capital intervention — a EUR 200M vehicle with EIF that launched several leading domestic VC funds. A second fund never materialized. Recent public calls were won largely by PE firms, not VC. Without continuity, Portuguese VCs are forced to raise from foreign fund-of-funds, pulling their investment activity toward other ecosystems.",
+    impact: [
+      {label: "First fund-of-funds result", value: "Launched several leading PT VCs"},
+      {label: "First fund-of-funds size", value: "EUR 200M with EIF"},
+      {label: "Second fund-of-funds", value: "Never established"},
+      {label: "Current status", value: "PT VCs raising from foreign FoFs"}
+    ],
+    benchmark: "<strong>Portugal's first fund-of-funds:</strong> EUR 200M with EIF participation — instrumental in creating the domestic VC ecosystem. <strong>What happened:</strong> It was never followed up. Public recovery funds were allocated but with tight deadlines, no local matching, and no continuity. Recent calls were won by PE, not VC.",
+    quotes: [
+      {text: "The first fund-of-funds was instrumental. A second one never materialized. There is no continuity.", cite: "Portuguese VC Partner"},
+      {text: "A fund of funds is needed to sustain the good VCs. Without it, the ecosystem has a structural problem.", cite: "Portuguese Fund Manager"},
+      {text: "This should have been done years ago. Portuguese funds are already raising from foreign fund-of-funds, which pulls investment activity abroad.", cite: "Portuguese VC Partner"}
+    ]
+  },
+  4: {
+    title: "Pension/Insurance VC Pathway",
+    number: "04",
+    institution: "ASF / Ministry of Finance",
+    timeline: "12-18 months",
+    what: "Revise the regulatory framework to allow Portuguese pension funds and insurance companies to allocate 1-2% of their portfolios to domestic venture capital. Model on Dutch and Nordic practices. Support at the EU level through the Solvency Act revision to enable insurance and pension funds to treat VC as an investable asset class with appropriate risk weighting.",
+    why: "Pension funds, insurance companies, and sovereign capital are completely absent from Portugal's VC ecosystem. There is no regulatory pathway incentivizing them to invest. In the Nordics, properly structured fund-of-funds vehicles channel pension fund capital into VC with minimal constraints. In Portugal, this infrastructure simply does not exist. Replacing public money with private institutional money would create a self-sustaining capital base.",
+    impact: [
+      {label: "Current institutional LP participation", value: "Zero"},
+      {label: "Target allocation", value: "1-2% of portfolio"},
+      {label: "Nordic model", value: "Pension funds active in domestic VC"},
+      {label: "Potential unlock", value: "Billions in patient capital"}
+    ],
+    benchmark: "<strong>Nordics:</strong> Pension funds are incentivized to invest locally in VC through properly structured vehicles. <strong>Netherlands:</strong> Institutional investors actively allocate to domestic venture. <strong>Portugal today:</strong> No systematic setup for any major pension fund or insurer to invest in domestic VC.",
+    quotes: [
+      {text: "There is no systematic setup for any pension fund or insurer to invest in domestic VC.", cite: "Portuguese VC Partner"},
+      {text: "We need an EU Solvency Act revision to allow insurance and pension funds to invest in VC.", cite: "Portuguese Fund Manager"},
+      {text: "Pension funds and sovereign funds are not exposed to startups, and they should be.", cite: "Portuguese VC Partner"}
+    ]
+  },
+  5: {
+    title: "Startup Fund Light + SIFIDE Reform",
+    number: "05",
+    institution: "CMVM / ANI",
+    timeline: "6-12 months",
+    what: "Introduce a simplified VC vehicle at CMVM with reduced registration and reporting requirements for funds under EUR 100M, proportionate KYC, and a mandate requiring banks to accept VC fund unit deposits. Reform SIFIDE to allow flexible spending (including go-to-market activities) and extend BPF deployment timelines to 36-month windows. Ensure any SIFIDE successor covers the full startup lifecycle, not just R&D.",
+    why: "Portuguese regulation is complex and expensive compared to Luxembourg or the US — many domestic funds domicile abroad. Banks refuse to deposit VC fund units. KYC regulations are out of control. SIFIDE brought significant capital into the sector but restricts spending exclusively to R&D. Companies need marketing, sales, and go-to-market investment. If SIFIDE is discontinued, multiple investors warned that many funds may exit VC entirely, potentially collapsing Series B funding.",
+    impact: [
+      {label: "Funds domiciled abroad", value: "Many (Delaware, Luxembourg)"},
+      {label: "SIFIDE restriction", value: "R&D only — no sales/marketing"},
+      {label: "SIFIDE dependency risk", value: "Series B collapse if ended"},
+      {label: "Target", value: "Competitive with Luxembourg/Ireland"}
+    ],
+    benchmark: "<strong>Luxembourg:</strong> Streamlined fund registration, global standard for fund domiciliation. <strong>Ireland:</strong> Simple regulatory framework attracting international fund managers. <strong>Portugal today:</strong> Regulatory output far exceeds comparable jurisdictions. AML/anti-terrorism rules more complex than EU peers. Foreign investor onboarding extremely difficult.",
+    quotes: [
+      {text: "We are champions at making laws. We solve one problem and create three.", cite: "Portuguese VC Partner"},
+      {text: "Local regulation is complex and expensive compared to Luxembourg or the US. Many funds domicile abroad instead.", cite: "Portuguese VC Partner"},
+      {text: "They make laws and projects, but then destroy them with the regulations that follow.", cite: "Portuguese Investor Network Leader"}
+    ]
+  },
+  6: {
+    title: "Portugal Capital Bridge",
+    number: "06",
+    institution: "AICEP / CMVM",
+    timeline: "6-12 months",
+    what: "Establish annual investor delegation exchanges with the US, UK, and Israel. Create reciprocal regulatory recognition agreements for VC compliance to enable transatlantic co-investments. Set up a dedicated English-language concierge service at CMVM for international fund registrations.",
+    why: "Portugal is less connected to international capital than in the past. Major tech events no longer generate the deal flow they once did. EU-US regulatory incompatibility is growing, with American VCs increasingly refusing EU compliance. Foreign investor onboarding is extremely difficult — AML rules are more complex than EU peers. Portugal is perceived internationally as a difficult place to invest.",
+    impact: [
+      {label: "Current connectivity", value: "Declining"},
+      {label: "International perception", value: "Difficult to invest"},
+      {label: "Foreign investor onboarding", value: "Extremely complex"},
+      {label: "Target", value: "Transatlantic co-investment gateway"}
+    ],
+    benchmark: "<strong>Israel:</strong> Deep bilateral investment ties with US — Yozma program specifically structured for international co-investment. <strong>UK:</strong> Regulatory reciprocity with US enables seamless cross-border VC. <strong>Portugal today:</strong> American VCs refusing EU compliance. No English-language service for international fund registrations.",
+    quotes: [
+      {text: "I don't know how we will produce unicorns if we don't make it easy for international investors to participate.", cite: "Portuguese Fund Manager"},
+      {text: "Major tech events are no longer generating the deal flow they once did.", cite: "Portuguese VC Partner"},
+      {text: "Portugal is often seen internationally as a difficult place to invest due to structural barriers.", cite: "Portuguese Angel Network Leader"}
+    ]
+  },
+  7: {
+    title: "Corporate Acquisition Tax Incentives",
+    number: "07",
+    institution: "Ministry of Finance / Ministry of Economy",
+    timeline: "12-18 months",
+    what: "Allow Portuguese corporations to deduct the acquisition value of startup purchases from their tax obligations, using SIFIDE-like mechanisms for M&A. Focus on acquisitions in the EUR 10-50 million range. This creates exit paths for investors, recycling capital back into the ecosystem.",
+    why: "In Europe, unlike the US, the most likely exit path for startups is corporate acquisition at the EUR 10-20 million stage, not late-stage IPO. Yet Portugal offers no incentive for corporations to acquire startups. The country's major unicorns haven't yet IPO'd, so there's no wealth recycling into the ecosystem. If corporates had the incentive to acquire, it would create exit paths, give investors confidence to enter earlier, and generate the success stories the ecosystem desperately needs.",
+    impact: [
+      {label: "Portuguese unicorn IPOs", value: "Zero to date"},
+      {label: "Typical EU exit path", value: "EUR 10-20M acquisition"},
+      {label: "Current M&A incentive", value: "None"},
+      {label: "Target", value: "Self-sustaining exit flywheel"}
+    ],
+    benchmark: "<strong>Europe vs US:</strong> Europe doesn't produce winner-takes-all monopolies — the natural exit is mid-range corporate acquisition. <strong>If corporates have the incentive, the entire investment chain aligns:</strong> angels invest knowing there's an exit, VCs can show returns, and the recycled capital funds the next generation of startups.",
+    quotes: [
+      {text: "Europe should promote acquisitions, not copy the US winner-takes-all model. M&A tax deductions could create exit paths. Founders follow the money.", cite: "Portuguese Angel Investor"},
+      {text: "None of our major tech companies have IPO'd yet. Ecosystem maturity depends on exits creating second-generation founders.", cite: "Portuguese VC Partner"},
+      {text: "Without visible exits, private wealth doesn't see proof of returns. Money doesn't recycle.", cite: "Portuguese Investor Network Leader"}
+    ]
+  }
+};
+
+// Modal logic
+const modal = document.getElementById('reformModal');
+const modalClose = document.getElementById('modalClose');
+
+document.querySelectorAll('.reform-card[data-reform]').forEach(card => {
+  card.addEventListener('click', () => {
+    const id = parseInt(card.dataset.reform);
+    const data = reformData[id];
+    if (!data) return;
+
+    document.getElementById('modalNumber').textContent = data.number;
+    document.getElementById('modalInstitution').textContent = data.institution;
+    document.getElementById('modalTimeline').textContent = data.timeline;
+    document.getElementById('modalTitle').textContent = data.title;
+    document.getElementById('modalWhat').textContent = data.what;
+    document.getElementById('modalWhy').textContent = data.why;
+
+    // Impact grid
+    const impactGrid = document.getElementById('modalImpact');
+    impactGrid.innerHTML = data.impact.map(item =>
+      '<div class="modal-impact-item"><div class="label">' + item.label + '</div><div class="value">' + item.value + '</div></div>'
+    ).join('');
+
+    // Benchmark
+    document.getElementById('modalBenchmark').innerHTML = data.benchmark;
+
+    // Quotes
+    const quotesEl = document.getElementById('modalQuotes');
+    quotesEl.innerHTML = data.quotes.map(q =>
+      '<div class="modal-quote"><p>"' + q.text + '"</p><cite>' + q.cite + '</cite></div>'
+    ).join('');
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) closeModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+
+function closeModal() {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 // Scroll reveal
 const revealElements = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
