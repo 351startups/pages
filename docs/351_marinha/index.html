@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>351 Startups × Marinha Portuguesa — Proposta de Parceria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#2C8CFF;--blue-dark:#0148B0;--grey:#4A3C3C;--white:#FFF;--navy:#0A1628;--navy-mid:#132240;--gold:#C9A84C;--gold-light:#E8D5A0;--bg-light:#F4F7FB;--border:#E2E8F0;--muted:#64748B}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;color:var(--grey);line-height:1.7;background:var(--white);-webkit-font-smoothing:antialiased}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);padding:0 2rem}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{height:28px;width:auto}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-toggle{display:none;background:0;border:0;color:#fff;font-size:1.4rem;cursor:pointer}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,var(--navy),var(--navy-mid),var(--blue-dark));overflow:hidden;padding:6rem 2rem 4rem}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 30%,rgba(44,140,255,.12),transparent 70%),radial-gradient(ellipse 50% 50% at 20% 80%,rgba(201,168,76,.08),transparent 60%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,#fff,transparent);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold-light);padding:.45rem 1rem;border-radius:100px;font-size:.8rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;margin-bottom:2rem}
+.hero h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:1.5rem;max-width:800px}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero-sub{font-size:clamp(1.05rem,2vw,1.25rem);color:rgba(255,255,255,.65);max-width:620px;margin-bottom:2.5rem;line-height:1.8}
+.hero-partners{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.hero-plabel{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);font-weight:500}
+.hero-plogos{display:flex;align-items:center;gap:1.2rem}
+.hero-logo351{height:32px;width:auto;opacity:.9}
+.hero-divider{width:1px;height:32px;background:rgba(255,255,255,.2)}
+.pbox{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:.6rem 1.2rem;font-weight:600;font-size:.85rem;color:#fff}
+
+/* SECTIONS */
+.section{padding:5rem 2rem}
+.section-light{background:var(--bg-light)}
+.section-dark{background:linear-gradient(135deg,var(--navy),var(--navy-mid));color:#fff}
+.section-blue{background:linear-gradient(135deg,#0B2A5C,#0D3B7A);color:#fff}
+.section-warm{background:#F8F5F0}
+.container{max-width:1100px;margin:0 auto}
+.slabel{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin-bottom:1rem}
+.section-dark .slabel,.section-blue .slabel{color:var(--gold-light)}
+.stitle{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;line-height:1.2;margin-bottom:1rem}
+.section-dark .stitle,.section-blue .stitle{color:#fff}
+.ssub{font-size:1.05rem;color:var(--muted);max-width:680px;line-height:1.8;margin-bottom:3rem}
+.section-dark .ssub,.section-blue .ssub{color:rgba(255,255,255,.6)}
+
+/* STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:16px;overflow:hidden;margin-top:-3rem;position:relative;z-index:10;box-shadow:0 8px 40px rgba(0,0,0,.08)}
+.stat-item{background:#fff;padding:2rem 1.5rem;text-align:center}
+.stat-num{font-size:2rem;font-weight:700;color:var(--blue);line-height:1;margin-bottom:.5rem}
+.stat-lbl{font-size:.82rem;color:var(--muted);font-weight:500}
+
+/* OPP CARDS */
+.opp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.opp-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:2rem;transition:all .25s}
+.opp-card:hover{border-color:var(--blue);box-shadow:0 4px 20px rgba(44,140,255,.08);transform:translateY(-2px)}
+.opp-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.2rem;background:linear-gradient(135deg,rgba(44,140,255,.1),rgba(44,140,255,.05));color:var(--blue)}
+.opp-card h3{font-size:1.05rem;font-weight:600;margin-bottom:.6rem}
+.opp-card p{font-size:.9rem;color:var(--muted);line-height:1.7}
+
+/* PILLARS */
+.pillars-row{display:grid;gap:1.5rem;margin-bottom:1.5rem}
+.pr3{grid-template-columns:repeat(3,1fr)}
+.pr2{grid-template-columns:repeat(2,1fr);max-width:73%;margin-left:auto;margin-right:auto;margin-bottom:0}
+.pillar{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:2rem 1.5rem;transition:all .25s;cursor:pointer;display:flex;flex-direction:column}
+.pillar:hover{background:rgba(255,255,255,.07);border-color:rgba(44,140,255,.3)}
+.pi{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1rem;background:rgba(44,140,255,.15);color:var(--blue)}
+.pillar h3{font-size:1rem;font-weight:600;margin-bottom:.5rem;color:#fff}
+.pillar p{font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.7;flex:1}
+.pillar-cta{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.2rem;font-size:.8rem;font-weight:600;color:var(--blue);transition:gap .2s}
+.pillar:hover .pillar-cta{gap:.7rem}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(10,22,40,.85);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:2rem}
+.modal-overlay.active{display:flex}
+.modal{background:#fff;border-radius:20px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.3);animation:modalIn .25s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-close{position:absolute;top:1.2rem;right:1.2rem;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;color:var(--muted);transition:all .2s;z-index:5}
+.modal-close:hover{background:var(--bg-light);color:var(--grey)}
+.modal-head{padding:2rem 2.5rem 1.5rem;display:flex;align-items:flex-start;gap:1.2rem}
+.modal-hi{width:52px;height:52px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;background:linear-gradient(135deg,rgba(44,140,255,.12),rgba(44,140,255,.04));color:var(--blue)}
+.modal-head h3{font-size:1.35rem;font-weight:700;color:var(--grey)}
+.modal-head p{font-size:.9rem;color:var(--muted);margin-top:.3rem}
+.modal-body{padding:0 2.5rem 2.5rem}
+.modal-section{margin-bottom:1.8rem}
+.modal-section:last-child{margin-bottom:0}
+.modal-section h4{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.modal-body p{font-size:.9rem;color:var(--muted);line-height:1.8;margin-bottom:.8rem}
+.modal-list{list-style:none;display:grid;gap:.8rem}
+.modal-list li{font-size:.88rem;color:var(--grey);line-height:1.6;padding:1rem 1.2rem;background:var(--bg-light);border-radius:10px;border-left:3px solid var(--blue)}
+.modal-list li strong{display:block;color:var(--grey);margin-bottom:.2rem}
+.modal-list li span{color:var(--muted);font-size:.85rem}
+.modal-highlight{background:linear-gradient(135deg,#EDF5FF,#F0F7FF);border:1px solid rgba(44,140,255,.12);border-radius:12px;padding:1.2rem 1.5rem;margin-top:.5rem}
+.modal-highlight p{margin-bottom:.4rem;font-size:.88rem}
+.modal-highlight p:last-child{margin-bottom:0}
+
+/* SUMMARY SECTION */
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.summary-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1.8rem 1.5rem;cursor:pointer;transition:all .25s;text-align:center;position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.summary-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08);border-color:var(--blue)}
+.summary-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.summary-card:nth-child(1)::before{background:var(--blue)}
+.summary-card:nth-child(2)::before{background:var(--gold)}
+.summary-card:nth-child(3)::before{background:var(--blue-dark)}
+.summary-card:nth-child(4)::before{background:#22C55E}
+.summary-phase{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.6rem}
+.summary-card h3{font-size:1.1rem;font-weight:700;color:var(--grey);margin-bottom:.5rem}
+.summary-dur{font-size:.75rem;color:var(--muted);margin-bottom:1rem}
+.summary-price{font-size:1.4rem;font-weight:700;margin-bottom:.6rem}
+.summary-card:nth-child(1) .summary-price{color:var(--blue)}
+.summary-card:nth-child(2) .summary-price{color:var(--gold)}
+.summary-card:nth-child(3) .summary-price{color:var(--gold)}
+.summary-card:nth-child(4) .summary-price{color:#22C55E}
+.summary-result{font-size:.8rem;color:var(--muted);line-height:1.5}
+.summary-cta{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;font-size:.78rem;font-weight:600;color:var(--blue);transition:gap .2s}
+.summary-card:hover .summary-cta{gap:.7rem}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:3rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--blue),var(--gold),var(--blue-dark));border-radius:2px}
+.inst-wrap{background:linear-gradient(135deg,#E8F4FF,#F0F7FF);border:2px solid rgba(44,140,255,.15);border-radius:16px;padding:2.5rem 2rem;position:relative;margin-bottom:1rem}
+.inst-wrap .badge-corner{position:absolute;top:-1px;right:2rem;background:var(--blue);color:#fff;font-size:.7rem;font-weight:700;padding:.4rem 1rem;border-radius:0 0 8px 8px;text-transform:uppercase;letter-spacing:.06em}
+.phase-div{display:flex;align-items:center;gap:1.5rem;margin:3.5rem 0}
+.phase-div-line{flex:1;height:2px;background:linear-gradient(to right,var(--blue),var(--gold));border-radius:2px}
+.phase-div-lbl{display:flex;align-items:center;gap:.6rem;background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.25);padding:.6rem 1.2rem;border-radius:100px;font-size:.78rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.comm-wrap{background:#FFFDF7;border:2px solid rgba(201,168,76,.2);border-radius:16px;padding:2.5rem 2rem;position:relative}
+.comm-wrap .badge-corner{position:absolute;top:-1px;right:2rem;background:var(--gold);color:var(--navy);font-size:.7rem;font-weight:700;padding:.4rem 1rem;border-radius:0 0 8px 8px;text-transform:uppercase;letter-spacing:.06em}
+.tp{position:relative;margin-bottom:3rem;padding-bottom:.5rem}
+.tp:last-child{margin-bottom:0}
+.td{position:absolute;left:-2.95rem;top:.3rem;width:16px;height:16px;border-radius:50%;background:var(--blue);border:3px solid #fff;box-shadow:0 0 0 3px var(--blue);transform:translateX(-50%)}
+.ph{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.pn{font-size:.7rem;font-weight:700;padding:.3rem .8rem;border-radius:100px;text-transform:uppercase;letter-spacing:.08em}
+.pn-i{background:var(--blue);color:#fff}
+.pn-c{background:var(--gold);color:var(--navy)}
+.pn-g{background:#22C55E;color:#fff}
+.pt{font-size:1.3rem;font-weight:700}
+.pdur{font-size:.8rem;color:var(--muted);font-weight:500;background:rgba(0,0,0,.04);padding:.25rem .7rem;border-radius:100px}
+.pdesc{font-size:.95rem;color:var(--muted);margin-bottom:1rem;line-height:1.8}
+.pitems{list-style:none;display:grid;gap:.8rem}
+.pitems li{display:flex;align-items:flex-start;gap:.6rem;font-size:.9rem;line-height:1.6}
+.pitems li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;font-size:.65rem;color:var(--blue);margin-top:.35rem;flex-shrink:0}
+.pout{margin-top:1.2rem;padding:1rem 1.2rem;background:linear-gradient(135deg,rgba(44,140,255,.04),rgba(44,140,255,.02));border-left:3px solid var(--blue);border-radius:0 10px 10px 0;font-size:.88rem}
+.pout strong{color:var(--blue);font-weight:600}
+.price-hl{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.3);padding:.3rem .8rem;border-radius:8px;font-weight:700;font-size:.95rem;margin-right:.5rem}
+.price-hl .amt{color:var(--gold);font-size:1.05rem}
+.expand-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.2rem;background:var(--blue);color:#fff;border:0;padding:.5rem 1.2rem;border-radius:8px;font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s}
+.expand-btn:hover{background:#1a7aef;transform:translateY(-1px)}
+.expand-content{display:none;margin-top:1.5rem;display:grid;gap:1rem}
+.expand-content.hidden{display:none}
+.expand-card{padding:1.2rem 1.5rem;background:rgba(255,255,255,.8);border:1px solid rgba(44,140,255,.1);border-radius:12px}
+.expand-card h4{font-size:.88rem;font-weight:600;color:var(--grey);margin-bottom:.5rem}
+.expand-card p{font-size:.85rem;color:var(--muted);line-height:1.7;margin:0}
+.expand-card ul{list-style:none;margin-top:.5rem}
+.expand-card ul li{display:flex;align-items:flex-start;gap:.5rem;font-size:.83rem;color:var(--muted);padding:.2rem 0;line-height:1.6}
+.expand-card ul li::before{content:'\f054';font-family:'Font Awesome 6 Free';font-weight:900;font-size:.45rem;color:var(--blue);margin-top:.45rem;flex-shrink:0}
+
+/* QW */
+.qw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.qw{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.2rem;text-align:center;transition:all .25s}
+.qw:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(44,140,255,.08)}
+.qw i{font-size:1.6rem;margin-bottom:.8rem}
+.qw h4{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
+.qw p{font-size:.78rem;color:var(--muted);line-height:1.6}
+
+/* VALUE */
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.vcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:2rem;transition:all .25s}
+.vcard:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.vcard-h{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
+.vcard-i{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;background:rgba(201,168,76,.15);color:var(--gold)}
+.vcard h3{font-size:1.05rem;font-weight:600;color:#fff}
+.vcard p{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7}
+.vcard ul{list-style:none;margin-top:.8rem}
+.vcard ul li{font-size:.85rem;color:rgba(255,255,255,.55);padding:.3rem 0;display:flex;align-items:flex-start;gap:.5rem}
+.vcard ul li::before{content:'\f054';font-family:'Font Awesome 6 Free';font-weight:900;font-size:.55rem;color:var(--gold);margin-top:.35rem;flex-shrink:0}
+
+/* VISION */
+.vis-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.vis-text h3{font-size:1.3rem;font-weight:600;margin-bottom:1rem}
+.vis-text p{font-size:.95rem;color:var(--muted);line-height:1.8;margin-bottom:1.2rem}
+.vis-hls{display:grid;gap:1rem}
+.vis-hl{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;background:var(--bg-light);border-radius:12px;border-left:3px solid var(--blue);cursor:pointer;transition:all .2s}
+.vis-hl:hover{transform:translateX(4px);box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.vis-hl:nth-child(2){border-color:var(--gold)}
+.vis-hl:nth-child(3){border-color:#22C55E}
+.vis-hl i{font-size:1.1rem;color:var(--blue);margin-top:.15rem}
+.vis-hl:nth-child(2) i{color:var(--gold)}
+.vis-hl:nth-child(3) i{color:#22C55E}
+.vis-hl h4{font-size:.95rem;font-weight:600;margin-bottom:.3rem}
+.vis-hl p{font-size:.85rem;color:var(--muted);line-height:1.6;margin:0}
+
+/* PARTNERS */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.pcard{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 1.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px}
+.pcard i{font-size:1rem;color:var(--gold);margin-top:.25rem}
+.pcard h4{font-size:.9rem;font-weight:600;color:#fff;margin-bottom:.2rem}
+.pcard p{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.5}
+
+/* CTA */
+.cta{text-align:center;padding:6rem 2rem;background:linear-gradient(135deg,var(--navy),var(--blue-dark));position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(44,140,255,.1),transparent 70%)}
+.cta-inner{position:relative;z-index:2}
+.cta h2{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:#fff;margin-bottom:1rem}
+.cta p{font-size:1.05rem;color:rgba(255,255,255,.6);max-width:560px;margin:0 auto 2.5rem;line-height:1.8}
+.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 2rem;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:600;text-decoration:none;transition:all .25s;border:0;cursor:pointer}
+.btn-p{background:var(--blue);color:#fff}
+.btn-p:hover{background:#1a7aef;transform:translateY(-2px);box-shadow:0 8px 24px rgba(44,140,255,.3)}
+.btn-s{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn-s:hover{background:rgba(255,255,255,.15);transform:translateY(-2px)}
+
+/* FOOTER */
+.footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding:3rem 2rem;text-align:center}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-logo{height:24px;width:auto;opacity:.5;margin-bottom:1.5rem}
+.footer p{font-size:.8rem;color:rgba(255,255,255,.3);line-height:1.8}
+.footer a{color:rgba(255,255,255,.5);text-decoration:none}
+.footer a:hover{color:#fff}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .vgrid,.vis-grid{grid-template-columns:1fr}
+  .opp-grid{grid-template-columns:repeat(2,1fr)}
+  .pr3{grid-template-columns:repeat(2,1fr)}
+  .pr2{grid-template-columns:1fr;max-width:100%}
+  .qw-grid{grid-template-columns:repeat(2,1fr)}
+  .pgrid{grid-template-columns:repeat(2,1fr)}
+  .summary-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(10,22,40,.98);padding:1.5rem 2rem;gap:1rem}
+  .nav-toggle{display:block}
+  .stats-bar{grid-template-columns:1fr 1fr;margin-top:-2rem}
+  .section{padding:3.5rem 1.2rem}
+  .hero{padding:7rem 1.2rem 3rem;min-height:auto}
+  .opp-grid,.pr3,.pgrid{grid-template-columns:1fr}
+  .qw-grid{grid-template-columns:repeat(2,1fr)}
+  .timeline{padding-left:2rem}
+  .td{left:-1.95rem}
+  .inst-wrap,.comm-wrap{padding:1.5rem 1rem}
+  .summary-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#"><img class="nav-logo" src="../351_white.png" alt="351 Startups"></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#oportunidade">Oportunidade</a></li>
+      <li><a href="#parceria">Como Funciona</a></li>
+      <li><a href="#resumo">Resumo</a></li>
+      <li><a href="#visao">Visão</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><i class="fas fa-handshake"></i> Proposta de Parceria Estratégica</div>
+    <h1>Ligar a Marinha ao ecossistema de <em>inovação</em></h1>
+    <p class="hero-sub">A 351 Startups propõe-se ser o parceiro de ligação entre a Marinha Portuguesa e o ecossistema de startups — filtrando o que é relevante, mapeando tendências e gerando resultados concretos, sem consumir tempo interno.</p>
+    <div class="hero-partners">
+      <span class="hero-plabel">Uma parceria entre</span>
+      <div class="hero-plogos">
+        <img class="hero-logo351" src="../351_white.png" alt="351 Startups">
+        <div class="hero-divider"></div>
+        <div class="pbox">Marinha Portuguesa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section" style="padding-top:0;padding-bottom:3rem">
+  <div class="container">
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-num">3.000+</div><div class="stat-lbl">Membros na comunidade 351</div></div>
+      <div class="stat-item"><div class="stat-num">4.000+</div><div class="stat-lbl">Startups nos programas</div></div>
+      <div class="stat-item"><div class="stat-num">31K+</div><div class="stat-lbl">Pessoas impactadas no ano passado</div></div>
+      <div class="stat-item"><div class="stat-num">160+</div><div class="stat-lbl">Iniciativas em 2024</div></div>
+    </div>
+  </div>
+</div>
+
+<section class="section section-light" id="oportunidade">
+  <div class="container">
+    <div class="slabel"><i class="fas fa-compass"></i> A Oportunidade</div>
+    <h2 class="stitle">A Marinha tem potencial de inovação por explorar</h2>
+    <p class="ssub">Casos como a Tekever, a Oceanscan e a Adyta provam que a relação com startups funciona. Mas existem barreiras estruturais que impedem escalar estes sucessos.</p>
+    <div class="opp-grid">
+      <div class="opp-card"><div class="opp-icon"><i class="fas fa-door-open"></i></div><h3>Porta de entrada dispersa</h3><p>Demasiados pontos de contacto com entidades externas, sem filtro. A Marinha precisa de um broker que traga apenas o que é relevante.</p></div>
+      <div class="opp-card"><div class="opp-icon"><i class="fas fa-satellite-dish"></i></div><h3>Falta de mapeamento tecnológico</h3><p>Sem uma ligação sistemática entre tendências globais e necessidades da organização, oportunidades estratégicas ficam por identificar.</p></div>
+      <div class="opp-card"><div class="opp-icon"><i class="fas fa-gears"></i></div><h3>80% das oportunidades são não-militares</h3><p>Manutenção, logística, energia, RH, gestão de resíduos — são áreas onde startups podem gerar impacto imediato.</p></div>
+      <div class="opp-card"><div class="opp-icon"><i class="fas fa-clock"></i></div><h3>Ciclos de decisão lentos</h3><p>A Lei de Programação Militar opera em ciclos de 4 anos. Startups precisam de caminhos mais ágeis para validar e entregar soluções.</p></div>
+      <div class="opp-card"><div class="opp-icon"><i class="fas fa-lightbulb"></i></div><h3>Potencial de spin-offs inexplorado</h3><p>Ideias internas com potencial comercial que ficam por executar por falta de apoio legal, de IP e de acompanhamento.</p></div>
+      <div class="opp-card"><div class="opp-icon"><i class="fas fa-bolt"></i></div><h3>Necessidade de quick wins</h3><p>A Marinha precisa de resultados concretos e rápidos para validar o modelo antes de escalar a parceria.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" id="parceria">
+  <div class="container">
+    <div class="slabel"><i class="fas fa-puzzle-piece"></i> Como Funciona a Parceria</div>
+    <h2 class="stitle">Cinco pilares de atuação</h2>
+    <p class="ssub">A 351 Startups atua como parceiro qualificado, complementando a capacidade interna da Marinha em cinco áreas-chave. Clique para saber mais.</p>
+    <div class="pillars-row pr3">
+      <div class="pillar" onclick="openModal('m1')"><div class="pi"><i class="fas fa-globe"></i></div><h3>Visibilidade Internacional</h3><p>Projeção internacional da Marinha no ecossistema de startups, com eventos de alcance global.</p><span class="pillar-cta">Saiba mais <i class="fas fa-arrow-right"></i></span></div>
+      <div class="pillar" onclick="openModal('m2')"><div class="pi"><i class="fas fa-satellite-dish"></i></div><h3>Tech Radar</h3><p>Relatórios trimestrais de inteligência tecnológica e mapeamento de programas internacionais.</p><span class="pillar-cta">Saiba mais <i class="fas fa-arrow-right"></i></span></div>
+      <div class="pillar" onclick="openModal('m3')"><div class="pi"><i class="fas fa-filter"></i></div><h3>Porta de Entrada Qualificada</h3><p>Triagem e qualificação de startups. Apenas as relevantes chegam ao Núcleo de Inovação.</p><span class="pillar-cta">Saiba mais <i class="fas fa-arrow-right"></i></span></div>
+    </div>
+    <div class="pillars-row pr2">
+      <div class="pillar" onclick="openModal('m4')"><div class="pi"><i class="fas fa-rocket"></i></div><h3>Inovação Interna e Spin-offs</h3><p>Programa de spin-off assistido com apoio legal e de IP, hackathons e formação.</p><span class="pillar-cta">Saiba mais <i class="fas fa-arrow-right"></i></span></div>
+      <div class="pillar" onclick="openModal('m5')"><div class="pi"><i class="fas fa-chart-line"></i></div><h3>Aceleração</h3><p>Na fase madura: aceleração com centro de experimentação, selo "Navy Tested" e ligação ao IDD.</p><span class="pillar-cta">Saiba mais <i class="fas fa-arrow-right"></i></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="m1" onclick="closeModal(event)"><div class="modal" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(event,true)"><i class="fas fa-xmark"></i></button><div class="modal-head"><div class="modal-hi"><i class="fas fa-globe"></i></div><div><h3>Visibilidade Internacional</h3><p>Projeção da Marinha no ecossistema global de startups</p></div></div><div class="modal-body">
+  <div class="modal-section"><h4>O que inclui</h4><ul class="modal-list">
+    <li><strong>Conferência IDEIA 2027</strong><span>Co-organização com eventos satélite mais abertos ao ecossistema e atração de ecossistemas internacionais</span></li>
+    <li><strong>Roadshow de Inovação</strong><span>Inclusão de startups (atualmente só academia e centros de I&D)</span></li>
+    <li><strong>Defense Tech Day @ PTW</strong><span>Dia dedicado à defense tech durante a Portugal Tech Week (Web Summit)</span></li>
+    <li><strong>Defense Tech Hub</strong><span>Espaço físico com material da Marinha e parceiros de defesa</span></li>
+    <li><strong>REP(MUS)</strong><span>Eventos satélite e matchmaking startups-Marinha durante exercícios</span></li>
+  </ul></div>
+  <div class="modal-section"><h4>Exemplos para a PTW 2026</h4><div class="modal-highlight">
+    <p><strong>Portugal Tech Week on the Sky</strong> — Demonstração de drones da Marinha</p>
+    <p><strong>Tech Ship</strong> — Navio tecnológico com palco a bordo, inspirado na Marinha Brasileira</p>
+    <p><strong>Navy Industry Day</strong> — Dia aberto para indústria e startups</p>
+  </div></div>
+</div></div></div>
+
+<div class="modal-overlay" id="m2" onclick="closeModal(event)"><div class="modal" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(event,true)"><i class="fas fa-xmark"></i></button><div class="modal-head"><div class="modal-hi"><i class="fas fa-satellite-dish"></i></div><div><h3>Tech Radar</h3><p>Mapeamento contínuo de tecnologias e tendências globais</p></div></div><div class="modal-body">
+  <div class="modal-section"><p>Área de maior interesse estratégico identificada pela Marinha — um tech radar que mapeia continuamente onde o mundo está a investir.</p></div>
+  <div class="modal-section"><h4>Entregáveis</h4><ul class="modal-list">
+    <li><strong>Relatório Trimestral de Inteligência Tecnológica</strong><span>Foco em energia, saúde, manutenção preditiva, USVs e sistemas de lançamento/recolha. Inclui mapeamento dual use e benchmarking com outras marinhas.</span></li>
+    <li><strong>Base de dados de startups relevantes</strong><span>Acesso a PitchBook, Crunchbase, Dealroom (+5M startups), filtrada por taxonomia definida com a Marinha. Atualização contínua.</span></li>
+    <li><strong>Mapeamento de hubs e programas</strong><span>Programas NATO (DIANA), aceleradoras defense/dual use, centros de I&D internacionais.</span></li>
+  </ul></div>
+</div></div></div>
+
+<div class="modal-overlay" id="m3" onclick="closeModal(event)"><div class="modal" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(event,true)"><i class="fas fa-xmark"></i></button><div class="modal-head"><div class="modal-hi"><i class="fas fa-filter"></i></div><div><h3>Porta de Entrada Qualificada</h3><p>Um único ponto de contacto entre startups e a Marinha</p></div></div><div class="modal-body">
+  <div class="modal-section"><p>A Marinha tem tido demasiados pontos de contacto sem foco. A 351 atua como broker qualificado, poupando tempo ao Núcleo de Inovação.</p></div>
+  <div class="modal-section"><h4>Modelo proposto</h4><ul class="modal-list">
+    <li><strong>351 como broker</strong><span>Todas as startups que queiram trabalhar com a Marinha passam primeiro pela 351</span></li>
+    <li><strong>Triagem e qualificação</strong><span>Avaliação de relevância, maturidade (TRL) e alinhamento com necessidades</span></li>
+    <li><strong>Encaminhamento focado</strong><span>Apenas startups qualificadas são apresentadas ao Núcleo de Inovação</span></li>
+    <li><strong>Softlanding para defesa</strong><span>Apoio a startups civis na adoção de mentalidade dual use</span></li>
+    <li><strong>Navegação do procurement</strong><span>Parcerias públicas de inovação, compras públicas de inovação</span></li>
+    <li><strong>Centro de experimentação em Tróia</strong><span>Acesso para PoC e validação em ambiente real</span></li>
+  </ul></div>
+  <div class="modal-section"><h4>Modelos de referência</h4><div class="modal-highlight">
+    <p><strong>Free Electrons</strong> — Open innovation do setor energia, liga utilities globais a startups</p>
+    <p><strong>Protechting</strong> — Programa de inovação do setor segurador</p>
+  </div></div>
+</div></div></div>
+
+<div class="modal-overlay" id="m4" onclick="closeModal(event)"><div class="modal" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(event,true)"><i class="fas fa-xmark"></i></button><div class="modal-head"><div class="modal-hi"><i class="fas fa-rocket"></i></div><div><h3>Inovação Interna e Spin-offs</h3><p>Transformar ideias internas em empresas</p></div></div><div class="modal-body">
+  <div class="modal-section"><p>A Marinha tem uma unidade de experimentação que gera ideias com potencial de spin-off, mas não tem cultura nem recursos para as implementar.</p></div>
+  <div class="modal-section"><h4>Proposta</h4><ul class="modal-list">
+    <li><strong>Programa de spin-off assistido</strong><span>Em parceria com o Founder Institute — preparação legal, IP e burocrática</span></li>
+    <li><strong>Community Leaders Academy para defesa</strong><span>Versão adaptada, formando líderes de inovação dentro da Marinha</span></li>
+    <li><strong>Portal interno de desafios</strong><span>Plataforma para gestores internos submeterem dores, anonimizadas e encaminhadas ao ecossistema</span></li>
+    <li><strong>Hackathons internos</strong><span>Com ferramentas como Claude Code e Lovable, para lançar produtos internos rapidamente</span></li>
+  </ul></div>
+</div></div></div>
+
+<div class="modal-overlay" id="m5" onclick="closeModal(event)"><div class="modal" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(event,true)"><i class="fas fa-xmark"></i></button><div class="modal-head"><div class="modal-hi"><i class="fas fa-chart-line"></i></div><div><h3>Aceleração</h3><p>Último passo — validar e escalar tecnologias</p></div></div><div class="modal-body">
+  <div class="modal-section"><p>A aceleração é o último passo — só faz sentido depois de ter mapeamento, porta de entrada e quick wins comprovados.</p></div>
+  <div class="modal-section"><h4>Componentes</h4><ul class="modal-list">
+    <li><strong>Marcas de qualificação</strong><span>TRL baixos (investigação), médios (prototipagem) e altos (validação/escala)</span></li>
+    <li><strong>Centro de experimentação em Tróia</strong><span>PoC e validação em ambiente controlado e real</span></li>
+    <li><strong>Programa IDD</strong><span>Candidatura formal, teste pela Marinha, selo "Navy Tested" para uso comercial</span></li>
+    <li><strong>Escalabilidade internacional</strong><span>Os problemas da Marinha Portuguesa são semelhantes aos de outras marinhas — as soluções escalam</span></li>
+  </ul></div>
+</div></div></div>
+
+<section class="section" id="quickwins">
+  <div class="container">
+    <div class="slabel"><i class="fas fa-bolt"></i> Resultados Imediatos</div>
+    <h2 class="stitle">Quick wins em áreas não-militares</h2>
+    <p class="ssub">Para gerar confiança e resultados rápidos, o foco inicial recai sobre as dores diárias da Marinha que não são de natureza militar.</p>
+    <div class="qw-grid">
+      <div class="qw"><i class="fas fa-wrench" style="color:var(--blue)"></i><h4>Manutenção</h4><p>Manutenção preditiva de equipamentos e embarcações</p></div>
+      <div class="qw"><i class="fas fa-truck-fast" style="color:var(--gold)"></i><h4>Logística</h4><p>Gestão de estoques e otimização de cadeias de abastecimento</p></div>
+      <div class="qw"><i class="fas fa-leaf" style="color:#22C55E"></i><h4>Ambiente</h4><p>Gestão de resíduos e compliance ambiental</p></div>
+      <div class="qw"><i class="fas fa-users" style="color:#8B5CF6"></i><h4>Recursos Humanos</h4><p>Retenção, formação e bem-estar dos efetivos</p></div>
+      <div class="qw"><i class="fas fa-bolt" style="color:#F59E0B"></i><h4>Energia</h4><p>Infraestrutura energética para tecnologias do futuro</p></div>
+      <div class="qw"><i class="fas fa-file-lines" style="color:#EC4899"></i><h4>Processos</h4><p>Digitalização e otimização de processos administrativos</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SUMMARY SECTION -->
+<section class="section section-warm" id="resumo">
+  <div class="container">
+    <div class="slabel"><i class="fas fa-route"></i> Faseamento</div>
+    <h2 class="stitle">Quatro fases, um caminho claro</h2>
+    <p class="ssub">O modelo avança de forma progressiva: começa sem investimento e escala com base em resultados. Clique em cada fase para ver os detalhes.</p>
+    <div class="summary-grid">
+      <div class="summary-card" onclick="openModal('ms1')">
+        <div class="summary-phase">Fase 1 — Institucional</div>
+        <h3>Quick Wins e Visibilidade</h3>
+        <div class="summary-dur">1 ano</div>
+        <div class="summary-price">Grátis</div>
+        <div class="summary-result">Visibilidade imediata no ecossistema, primeiros casos de sucesso</div>
+        <span class="summary-cta">Ver detalhes <i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="summary-card" onclick="openModal('ms2')">
+        <div class="summary-phase">Fase 2 — Comercial</div>
+        <h3>Estruturação</h3>
+        <div class="summary-dur">6 meses</div>
+        <div class="summary-price">€10K – €70K</div>
+        <div class="summary-result">Porta de entrada única, roadmap de adoção tecnológica</div>
+        <span class="summary-cta">Ver detalhes <i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="summary-card" onclick="openModal('ms3')">
+        <div class="summary-phase">Fase 3 — Comercial</div>
+        <h3>Escala</h3>
+        <div class="summary-dur">12+ meses</div>
+        <div class="summary-price">A partir de €70K</div>
+        <div class="summary-result">Ecossistema de inovação estruturado, pipeline de tecnologias maduras</div>
+        <span class="summary-cta">Ver detalhes <i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="summary-card" onclick="openModal('ms4')">
+        <div class="summary-phase">Fase 4</div>
+        <h3>Internacionalização</h3>
+        <div class="summary-dur">2027+</div>
+        <div class="summary-price">A definir</div>
+        <div class="summary-result">Marinha na vanguarda tecnológica global</div>
+        <span class="summary-cta">Ver detalhes <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Summary modals -->
+<div class="modal-overlay" id="ms1" onclick="closeModal(event)"><div class="modal" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(event,true)"><i class="fas fa-xmark"></i></button><div class="modal-head"><div class="modal-hi"><i class="fas fa-handshake"></i></div><div><h3>Fase 1 — Quick Wins e Visibilidade</h3><p>1 ano | Parceria Institucional | Investimento: Zero</p></div></div><div class="modal-body">
+  <div class="modal-section"><p>A Fase 1 é uma parceria institucional sem custos para nenhuma das partes. A 351 oferece o seu reach e capacidade de execução; a Marinha oferece acesso, marca e cobertura mediática.</p></div>
+  <div class="modal-section"><h4>O que inclui</h4><ul class="modal-list">
+    <li><strong>Promoção nos canais 351</strong><span>Promoção dos eventos da Marinha na newsletter, Slack e redes sociais da 351 (3.000+ membros, 31.000+ pessoas impactadas)</span></li>
+    <li><strong>Co-organização de eventos</strong><span>Convite para speakers em eventos da 351, Coworking Thursdays com a Marinha como anfitriã, talks temáticos</span></li>
+    <li><strong>Defense Tech Day @ PTW 2026</strong><span>Cocriação de um dia dedicado à defense tech na Portugal Tech Week (durante a Web Summit)</span></li>
+  </ul></div>
+  <div class="modal-section"><h4>Exemplos de iniciativas</h4><div class="modal-highlight">
+    <p><strong>Coworking Thursdays</strong> — Marinha como anfitriã, gerando exposição na mídia</p>
+    <p><strong>Talks temáticos</strong> — Dual use, carreiras na Marinha, inovação em defesa</p>
+    <p><strong>Tech Ship @ PTW</strong> — Navio tecnológico com palco a bordo, inspirado na Marinha Brasileira</p>
+  </div></div>
+  <div class="modal-section"><h4>Resultado esperado</h4><div class="modal-highlight"><p>Visibilidade imediata no ecossistema de startups. Posicionamento da Marinha como entidade inovadora. Casos de sucesso que validam a parceria para as fases seguintes — tudo com zero investimento.</p></div></div>
+</div></div></div>
+
+<div class="modal-overlay" id="ms2" onclick="closeModal(event)"><div class="modal" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(event,true)"><i class="fas fa-xmark"></i></button><div class="modal-head"><div class="modal-hi" style="background:rgba(201,168,76,.12);color:var(--gold)"><i class="fas fa-layer-group"></i></div><div><h3>Fase 2 — Estruturação</h3><p>6 meses | €10K – €70K</p></div></div><div class="modal-body">
+  <div class="modal-section"><h4>O que inclui</h4><ul class="modal-list">
+    <li><strong>Softlanding operacional — €10.000</strong><span>Processo de triagem e encaminhamento de startups definido e operacional</span></li>
+    <li><strong>Tech Radar trimestral — €10.000</strong><span>Relatórios de inteligência tecnológica em produção contínua</span></li>
+    <li><strong>Mapeamento de desafios — €20.000</strong><span>Mapeamento dos desafios operacionais da Marinha e estruturação de programa para os não-militares</span></li>
+    <li><strong>Licença PitchBook — €10.000</strong><span>Acesso à maior plataforma de mapeamento de startups do mundo (+5M startups)</span></li>
+  </ul></div>
+  <div class="modal-section"><h4>Resultado esperado</h4><div class="modal-highlight"><p>Porta de entrada única com processos definidos. A Marinha recebe o mapeamento de tecnologias dual use, permitindo definir o roadmap de adoção tecnológica para os próximos anos.</p></div></div>
+</div></div></div>
+
+<div class="modal-overlay" id="ms3" onclick="closeModal(event)"><div class="modal" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(event,true)"><i class="fas fa-xmark"></i></button><div class="modal-head"><div class="modal-hi" style="background:rgba(201,168,76,.12);color:var(--gold)"><i class="fas fa-expand"></i></div><div><h3>Fase 3 — Escala</h3><p>12+ meses | A partir de €70K</p></div></div><div class="modal-body">
+  <div class="modal-section"><h4>O que inclui</h4><ul class="modal-list">
+    <li><strong>Programa de spin-offs assistido — €60.000/ano</strong><span>Program manager dedicado à Marinha full time (5K/mês em regime freelance). Apoio legal, IP e burocracia.</span></li>
+    <li><strong>Community Leaders Academy para defesa — €10.000</strong><span>Formação de líderes internos para mapeamento de gargalos operacionais e fomento de soluções internas</span></li>
+    <li><strong>Community Fund para defesa</strong><span>Fundo para pilotos e investimento que encurtem o prazo da LPM de 4 anos para 1 mês. Valor a definir em conjunto.</span></li>
+  </ul></div>
+  <div class="modal-section"><h4>Resultado esperado</h4><div class="modal-highlight"><p>Ecossistema de inovação estruturado. Spin-offs a partir de ideias internas. Pipeline de tecnologias maduras pronto para o próximo ciclo de procurement.</p></div></div>
+</div></div></div>
+
+<div class="modal-overlay" id="ms4" onclick="closeModal(event)"><div class="modal" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeModal(event,true)"><i class="fas fa-xmark"></i></button><div class="modal-head"><div class="modal-hi" style="background:rgba(34,197,94,.12);color:#22C55E"><i class="fas fa-earth-europe"></i></div><div><h3>Fase 4 — Internacionalização</h3><p>2027+ | A definir</p></div></div><div class="modal-body">
+  <div class="modal-section"><h4>O que inclui</h4><ul class="modal-list">
+    <li><strong>Co-organização de eventos da Marinha</strong><span>Conferência IDEIA e Roadshow com organização profissional, promoção internacional e scouting de startups</span></li>
+    <li><strong>Eventos satélite</strong><span>Criação de eventos complementares que atraiam ecossistemas internacionais</span></li>
+    <li><strong>Scouting global</strong><span>Atração das melhores tecnologias do mundo para os desafios da Marinha</span></li>
+  </ul></div>
+  <div class="modal-section"><h4>Resultado esperado</h4><div class="modal-highlight"><p>A Marinha Portuguesa posiciona-se como a primeira marinha a adotar certas tecnologias, criando uma vantagem competitiva perante as demais marinhas a nível global.</p></div></div>
+</div></div></div>
+
+<section class="section section-blue" id="valor">
+  <div class="container">
+    <div class="slabel"><i class="fas fa-gem"></i> Valor em Cada Fase</div>
+    <h2 class="stitle">O que a Marinha ganha em cada etapa</h2>
+    <p class="ssub">Cada fase é desenhada para gerar resultados concretos e construir confiança antes de avançar para a seguinte.</p>
+    <div class="vgrid">
+      <div class="vcard"><div class="vcard-h"><div class="vcard-i"><i class="fas fa-eye"></i></div><h3>Visibilidade Imediata</h3></div><p>Sem investimento, a Marinha ganha presença no ecossistema de startups e acesso a uma rede de 3.000+ membros e 31.000+ pessoas impactadas.</p><ul><li>Promoção em canais com alcance nacional</li><li>Posicionamento como entidade inovadora</li><li>Zero consumo de tempo interno</li></ul></div>
+      <div class="vcard"><div class="vcard-h"><div class="vcard-i"><i class="fas fa-crosshairs"></i></div><h3>Foco e Eficiência</h3></div><p>Um único ponto de contacto qualificado que filtra e apresenta apenas startups relevantes, poupando tempo ao Núcleo de Inovação.</p><ul><li>Triagem por relevância e maturidade (TRL)</li><li>Encaminhamento focado e qualificado</li><li>Softlanding para startups civis em dual use</li></ul></div>
+      <div class="vcard"><div class="vcard-h"><div class="vcard-i"><i class="fas fa-brain"></i></div><h3>Inteligência Tecnológica</h3></div><p>Mapeamento contínuo de onde o mundo está a investir, com foco em energia, saúde, manutenção preditiva e tecnologias dual use.</p><ul><li>Relatórios trimestrais de tendências</li><li>Base de dados de +5M startups filtrada</li><li>Benchmarking com outras marinhas</li></ul></div>
+      <div class="vcard"><div class="vcard-h"><div class="vcard-i"><i class="fas fa-seedling"></i></div><h3>Ecossistema de Inovação Próprio</h3></div><p>A longo prazo: spin-offs, pipeline de tecnologias, e selo "Navy Tested" reconhecido internacionalmente.</p><ul><li>Programa de spin-offs com apoio legal e IP</li><li>Líderes internos formados em inovação</li><li>Pipeline maduro para ciclos de procurement</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="visao">
+  <div class="container">
+    <div class="slabel"><i class="fas fa-binoculars"></i> Visão de Longo Prazo</div>
+    <h2 class="stitle">De parceria pontual a pilar estratégico</h2>
+    <p class="ssub">Esta parceria foi desenhada para evoluir organicamente — começando pelo que é simples e escalando com base em confiança mútua.</p>
+    <div class="vis-grid">
+      <div class="vis-text">
+        <h3>A Marinha como referência em inovação na defesa</h3>
+        <p>Os problemas da Marinha Portuguesa são semelhantes aos de outras marinhas. As soluções validadas aqui podem escalar internacionalmente — posicionando Portugal como referência em inovação no setor da defesa.</p>
+        <p>O modelo de relação é claro: a Marinha oferece acesso, validação e marca institucional; a 351 oferece o reach ao ecossistema, execução e mapeamento.</p>
+      </div>
+      <div class="vis-hls">
+        <div class="vis-hl" onclick="openModal('m5')"><i class="fas fa-shield-halved"></i><div><h4>Selo "Navy Tested"</h4><p>Startups validadas pela Marinha ganham uma marca de qualidade reconhecida internacionalmente.</p></div></div>
+        <div class="vis-hl" onclick="openModal('ms4')"><i class="fas fa-globe"></i><div><h4>Escalabilidade Internacional</h4><p>Soluções para a Marinha Portuguesa podem ser adaptadas para outras marinhas.</p></div></div>
+        <div class="vis-hl"><i class="fas fa-handshake"></i><div><h4>Rede de Parceiros Estratégicos</h4><p>Ligação ao IDD, AED, NATO DIANA, Força Aérea e Startup Portugal.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" id="parceiros">
+  <div class="container">
+    <div class="slabel"><i class="fas fa-circle-nodes"></i> Parceiros Estratégicos</div>
+    <h2 class="stitle">Um ecossistema de parceiros complementares</h2>
+    <p class="ssub">A 351 posiciona-se como complementar — trazendo o reach ao ecossistema startup — e não como substituto das parcerias existentes.</p>
+    <div class="pgrid">
+      <div class="pcard"><i class="fas fa-building-columns"></i><div><h4>IDD</h4><p>Financiamento, marca de qualificação e operacionalização de projetos de inovação.</p></div></div>
+      <div class="pcard"><i class="fas fa-industry"></i><div><h4>AED</h4><p>Ligação à indústria de defesa e empresas de maior maturidade.</p></div></div>
+      <div class="pcard"><i class="fas fa-jet-fighter"></i><div><h4>Força Aérea</h4><p>Potencial extensão multi-ramo para o Defense Tech Day.</p></div></div>
+      <div class="pcard"><i class="fas fa-star"></i><div><h4>Estado-Maior das FA</h4><p>Programa de inovação transversal aos ramos.</p></div></div>
+      <div class="pcard"><i class="fas fa-shield-halved"></i><div><h4>DIANA — NATO</h4><p>Programa de aceleração NATO para defense/dual use.</p></div></div>
+      <div class="pcard"><i class="fas fa-flag"></i><div><h4>Startup Portugal</h4><p>Eventos nacionais e ligação ao ecossistema.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <div class="cta-inner">
+    <h2>Vamos dar o primeiro passo?</h2>
+    <p>A Fase 1 não exige investimento — apenas abertura para colaborar. Propomos uma reunião para alinhar prioridades e desenhar os primeiros quick wins em conjunto.</p>
+    <div class="cta-btns">
+      <a href="mailto:team@351startups.com" class="btn btn-p"><i class="fas fa-envelope"></i> Agendar Reunião</a>
+      <a href="#resumo" class="btn btn-s"><i class="fas fa-arrow-up"></i> Rever Faseamento</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="../351_white.png" alt="351 Startups">
+    <p><strong style="color:rgba(255,255,255,.6)">351 Associação Portuguesa de Startups</strong><br>Fernando Jardim — Presidente &nbsp;|&nbsp; Nuno Moreno — Diretor de Eventos &nbsp;|&nbsp; Filinto Osório — Assessor para Defesa<br><br><strong style="color:rgba(255,255,255,.6)">Marinha Portuguesa — Núcleo de Inovação</strong><br>Capitão Tenente Guilherme Pereira Rosinha &nbsp;|&nbsp; 2.ª Tenente Madalena Barros</p>
+    <p style="margin-top:1.5rem"><a href="https://351startups.com">351startups.com</a> &nbsp;·&nbsp; Made for Founders &nbsp;·&nbsp; 2026</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.nav-links a').forEach(l=>l.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+window.addEventListener('scroll',()=>{document.querySelector('.nav').style.background=scrollY>50?'rgba(10,22,40,.98)':'rgba(10,22,40,.95)'});
+
+function openModal(id){document.getElementById(id).classList.add('active');document.body.style.overflow='hidden'}
+function closeModal(e,f){if(f||e.target.classList.contains('modal-overlay')){document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active'));document.body.style.overflow=''}}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal(e,true)});
+
+function toggleExpand(btn){
+  const c=btn.nextElementSibling;
+  c.classList.toggle('hidden');
+  btn.innerHTML=c.classList.contains('hidden')?'<i class="fas fa-plus"></i> Saber mais sobre a Fase 1':'<i class="fas fa-minus"></i> Fechar detalhes';
+}
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}})},{threshold:.1});
+document.querySelectorAll('.opp-card,.pillar,.tp,.vcard,.qw,.vis-hl,.pcard,.summary-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .5s ease,transform .5s ease';obs.observe(el)});
+</script>
+</body>
+</html>
