@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portugal's Startup Capital Opportunity | 351 CLA Capital Report</title>
+<meta name="description" content="Portugal built a globally relevant startup ecosystem despite operating below global capital best practices. Targeted reforms could redirect €1B+ of existing domestic wealth toward founders.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0A0A0F;--blue:#2C8CFF;--white:#FFFFFF;--text:rgba(255,255,255,0.8);
+--text-dim:rgba(255,255,255,0.5);--card-bg:rgba(255,255,255,0.05);
+--card-border:rgba(255,255,255,0.1);--glow:rgba(44,140,255,0.15);
+--red:#D34035;--orange:#FFB800;--blue-dark:#0148B0;--green:#22C55E;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4,h5,h6{font-family:'Space Grotesk',sans-serif;color:var(--white);font-weight:700;line-height:1.2}
+a{color:var(--blue);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.8}
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.source-tag{font-size:.72rem;color:var(--text-dim);font-weight:400;font-style:italic;display:block;margin-top:.25rem}
+
+/* NAVBAR */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-logo img{height:32px}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{color:var(--text-dim);font-size:.875rem;font-family:'Space Grotesk',sans-serif;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--white);opacity:1}
+.nav-cta{background:var(--blue);color:var(--white)!important;padding:.5rem 1.25rem;border-radius:6px;font-size:.875rem;font-weight:600}
+.nav-cta:hover{background:#1a7ae6;opacity:1!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white)}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(10,10,15,0.97);backdrop-filter:blur(20px);padding:1.5rem 2rem;flex-direction:column;gap:1rem;border-bottom:1px solid var(--card-border)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--text);font-size:1rem;font-family:'Space Grotesk',sans-serif}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,var(--glow) 0%,transparent 70%);pointer-events:none}
+.hero-tag{display:inline-block;background:rgba(44,140,255,0.12);border:1px solid rgba(44,140,255,0.3);color:var(--blue);font-size:.78rem;font-weight:600;padding:.35rem 1rem;border-radius:20px;margin-bottom:1.5rem;font-family:'Space Grotesk',sans-serif;letter-spacing:.06em;text-transform:uppercase;position:relative}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);max-width:860px;margin-bottom:1rem;position:relative;letter-spacing:-.5px}
+.hero .subtitle{font-size:clamp(1rem,2vw,1.3rem);color:var(--text);margin-bottom:1.25rem;font-family:'Space Grotesk',sans-serif;font-weight:500;max-width:700px}
+.hero .subtext{font-size:1rem;color:var(--text-dim);max-width:660px;margin:0 auto 2rem;line-height:1.75}
+.hero-quote{max-width:720px;margin:0 auto;padding:1.25rem 1.75rem;background:rgba(44,140,255,0.07);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;font-size:1.05rem;color:var(--white);font-family:'Space Grotesk',sans-serif;font-weight:500;font-style:italic;line-height:1.6;text-align:left}
+
+/* STATS BAR */
+.stats-bar{padding:4rem 2rem;max-width:1100px;margin:0 auto}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.stat-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:1.5rem;text-align:center;transition:border-color .3s}
+.stat-card:hover{border-color:var(--blue)}
+.stat-number{font-family:'Space Grotesk',sans-serif;font-size:2.5rem;font-weight:700;color:var(--blue);line-height:1}
+.stat-card.green .stat-number{color:var(--green)}
+.stat-card.orange .stat-number{color:var(--orange)}
+.stat-label{font-size:.9rem;color:var(--white);margin-top:.5rem;font-weight:600}
+.stat-sublabel{font-size:.72rem;color:var(--text-dim);margin-top:.3rem;line-height:1.4}
+
+/* THESIS SECTION */
+.thesis-section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
+.section-title{font-size:clamp(1.75rem,4vw,2.75rem);margin-bottom:.5rem;letter-spacing:-.5px}
+.section-subtitle{color:var(--text-dim);margin-bottom:3rem;font-size:1rem;max-width:700px;line-height:1.7}
+.thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:3rem}
+.thesis-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:2rem}
+.thesis-card.proof{border-top:3px solid var(--green)}
+.thesis-card.unlock{border-top:3px solid var(--blue)}
+.thesis-card h3{font-size:1.1rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
+.thesis-card.proof h3{color:var(--green)}
+.thesis-card.unlock h3{color:var(--blue)}
+.thesis-item{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.875rem;font-size:.9rem;line-height:1.5}
+.thesis-item:last-child{margin-bottom:0}
+.thesis-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:.45rem}
+.thesis-card.proof .thesis-dot{background:var(--green)}
+.thesis-card.unlock .thesis-dot{background:var(--blue)}
+.thesis-item .src{font-size:.7rem;color:var(--text-dim);font-style:italic;display:block;margin-top:.1rem}
+
+/* FLOW DIAGRAM */
+.flow-section{padding:2rem 2rem 4rem;max-width:1100px;margin:0 auto}
+.flow-title{font-size:.8rem;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;text-align:center;margin-bottom:1.25rem}
+.thesis-flow{display:flex;align-items:center;justify-content:center;gap:.75rem;flex-wrap:wrap}
+.flow-box{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:.875rem 1.25rem;text-align:center;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.9rem;color:var(--white);min-width:140px}
+.flow-box span{display:block;font-size:1.3rem;font-weight:700;margin-bottom:.15rem}
+.flow-box span.blue{color:var(--blue)}
+.flow-box span.green{color:var(--green)}
+.flow-box span.orange{color:var(--orange)}
+.flow-arrow{color:var(--blue);font-size:1.4rem;opacity:.6;flex-shrink:0}
+.flow-note{text-align:center;font-size:.8rem;color:var(--text-dim);margin-top:1rem;font-style:italic}
+
+/* THEMES SECTION */
+.themes-section{padding:5rem 2rem;max-width:1000px;margin:0 auto}
+.theme-card{background:var(--card-bg);border:1px solid var(--card-border);border-left:4px solid var(--blue);border-radius:8px;margin-bottom:1rem;overflow:hidden;transition:border-color .3s}
+.theme-card:hover{border-color:rgba(255,255,255,0.18)}
+.theme-header{padding:1.25rem 1.5rem;cursor:pointer;display:flex;align-items:flex-start;gap:1rem;user-select:none}
+.theme-header:hover{background:rgba(255,255,255,0.02)}
+.theme-icon{width:36px;height:36px;min-width:36px;border-radius:8px;background:rgba(44,140,255,0.15);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--blue);font-size:.85rem;margin-top:.15rem}
+.theme-content{flex:1}
+.theme-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.05rem;color:var(--white);margin-bottom:.3rem}
+.theme-summary{font-size:.9rem;color:var(--text-dim);line-height:1.5}
+.theme-toggle{color:var(--text-dim);font-size:1.5rem;transition:transform .3s;flex-shrink:0;margin-top:.15rem}
+.theme-card.open .theme-toggle{transform:rotate(45deg)}
+.theme-detail{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.theme-card.open .theme-detail{max-height:800px}
+.theme-body{padding:.5rem 1.5rem 1.5rem 5.25rem}
+.theme-body p{font-size:.9rem;color:var(--text);line-height:1.75;margin-bottom:.75rem}
+.theme-body p:last-of-type{margin-bottom:0}
+.theme-reform{display:inline-flex;align-items:center;gap:.5rem;margin-top:.875rem;background:rgba(44,140,255,0.08);border:1px solid rgba(44,140,255,0.2);border-radius:8px;padding:.6rem 1rem;font-size:.83rem;color:var(--blue)}
+.theme-reform strong{font-family:'Space Grotesk',sans-serif}
+.theme-note{display:block;font-size:.75rem;color:var(--text-dim);font-style:italic;margin-top:.6rem;line-height:1.5}
+
+/* WEALTH SECTION */
+.wealth-section{padding:5rem 2rem;max-width:1000px;margin:0 auto}
+.wealth-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem}
+.wealth-card{padding:2rem;border-radius:16px;background:var(--card-bg);border:1px solid var(--card-border)}
+.wealth-card.highlight{border-color:rgba(44,140,255,0.3);background:rgba(44,140,255,0.05)}
+.wealth-card.highlight h3{color:var(--blue)}
+.wealth-figure{font-family:'Space Grotesk',sans-serif;font-size:3rem;font-weight:700;color:var(--white);line-height:1;margin-bottom:.5rem}
+.wealth-figure span{color:var(--blue)}
+.wealth-sub{font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.wealth-note{font-size:.78rem;color:var(--text-dim);margin-top:2rem;padding-top:1rem;border-top:1px solid var(--card-border);font-style:italic}
+
+/* BENCHMARK */
+.benchmark-section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
+.bench-intro{color:var(--text);font-size:1rem;line-height:1.75;margin-bottom:2rem;max-width:760px}
+.bench-table{width:100%;border-collapse:collapse;font-size:.83rem}
+.bench-table th{background:rgba(44,140,255,0.15);color:var(--blue);font-family:'Space Grotesk',sans-serif;font-weight:600;padding:.75rem 1rem;text-align:left;border-bottom:2px solid rgba(44,140,255,0.3)}
+.bench-table td{padding:.75rem 1rem;border-bottom:1px solid var(--card-border);color:var(--text);vertical-align:top}
+.bench-table tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
+.bench-table td:first-child{font-weight:600;color:var(--white);font-family:'Space Grotesk',sans-serif}
+.bench-table .gap{color:var(--orange);font-weight:600}
+.bench-table .best{color:var(--green);font-weight:600}
+.bench-table .portugal{color:var(--blue);font-weight:600}
+.bench-src{font-size:.68rem;color:var(--text-dim);font-style:italic;font-weight:400;display:block;margin-top:.2rem}
+.bench-caption{font-size:.78rem;color:var(--text-dim);margin-top:1rem;font-style:italic}
+
+/* REFORMS */
+.recs-section{padding:5rem 2rem;max-width:1000px;margin:0 auto}
+.recs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.rec-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:1.5rem;display:flex;gap:1.25rem;align-items:flex-start;transition:border-color .3s,transform .2s;cursor:pointer}
+.rec-card:hover{border-color:var(--blue);transform:translateY(-2px)}
+.rec-icon{font-size:1.75rem;min-width:2.5rem;text-align:center;line-height:1}
+.rec-num{font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem}
+.rec-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.95rem;color:var(--white);margin-bottom:.3rem}
+.rec-desc{font-size:.83rem;color:var(--text-dim);line-height:1.5;margin-bottom:.4rem}
+.rec-owner{font-size:.72rem;color:var(--blue);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.rec-hint{font-size:.72rem;color:var(--text-dim);margin-top:.35rem;opacity:.6;transition:opacity .2s}
+.rec-card:hover .rec-hint{opacity:1}
+
+/* FINAL CTA */
+.final-cta{padding:120px 2rem;text-align:center;position:relative;background:rgba(44,140,255,0.04);border-top:1px solid rgba(44,140,255,0.12)}
+.final-cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(44,140,255,0.08) 0%,transparent 70%);pointer-events:none}
+.final-cta .container{position:relative;z-index:1;max-width:800px;margin:0 auto}
+.cta-tag{display:inline-block;background:rgba(44,140,255,0.12);border:1px solid rgba(44,140,255,0.3);color:var(--blue);font-size:.78rem;font-weight:600;padding:.35rem 1rem;border-radius:20px;margin-bottom:1.5rem;font-family:'Space Grotesk',sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.cta-figure{font-family:'Space Grotesk',sans-serif;font-size:clamp(4rem,10vw,7rem);font-weight:700;color:var(--white);line-height:1;margin-bottom:.5rem}
+.cta-figure span{color:var(--blue)}
+.cta-heading{font-size:clamp(1.5rem,3vw,2.25rem);color:var(--white);margin-bottom:1.5rem;font-weight:600;letter-spacing:-.5px}
+.cta-body{font-size:1.05rem;color:var(--text);max-width:640px;margin:0 auto 2.5rem;line-height:1.75}
+.cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-cta-primary{background:var(--orange);color:#0A0A0F!important;padding:16px 40px;border-radius:10px;font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:all .2s;font-family:'Space Grotesk',sans-serif;display:inline-block}
+.btn-cta-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,184,0,0.3);color:#0A0A0F!important}
+.btn-cta-outline{border:2px solid var(--blue);color:var(--blue)!important;padding:16px 40px;border-radius:10px;font-weight:600;font-size:1rem;cursor:pointer;transition:all .2s;font-family:'Space Grotesk',sans-serif;display:inline-block;background:transparent}
+.btn-cta-outline:hover{background:var(--blue);color:var(--white)!important}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.modal-overlay.open{opacity:1;pointer-events:auto}
+.modal{background:#14141a;border:1px solid var(--card-border);border-radius:16px;max-width:640px;width:100%;max-height:80vh;overflow-y:auto;padding:2rem;position:relative;transform:scale(0.95) translateY(10px);transition:transform .3s ease}
+.modal-overlay.open .modal{transform:scale(1) translateY(0)}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text-dim);font-size:1.5rem;cursor:pointer;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+.modal-close:hover{background:rgba(255,255,255,0.1);color:var(--white)}
+.modal-badge{display:inline-block;background:rgba(44,140,255,0.15);color:var(--blue);font-size:.75rem;font-weight:600;padding:.2rem .7rem;border-radius:20px;margin-bottom:.75rem}
+.modal h3{font-size:1.3rem;margin-bottom:1rem}
+.modal-desc{color:var(--text);font-size:.95rem;line-height:1.7;margin-bottom:1.25rem}
+.reform-section{margin-bottom:1.25rem}
+.reform-section-label{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.78rem;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
+.reform-section-text{font-size:.88rem;color:var(--text);line-height:1.7}
+.reform-meta{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1.25rem}
+.reform-meta-item{background:rgba(255,255,255,0.03);border:1px solid var(--card-border);border-radius:8px;padding:.75rem}
+.reform-meta-label{font-size:.68rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.25rem;font-weight:600}
+.reform-meta-value{font-family:'Space Grotesk',sans-serif;font-size:.9rem;color:var(--white);font-weight:600}
+.reform-benchmark{background:rgba(44,140,255,0.08);border:1px solid rgba(44,140,255,0.2);border-radius:8px;padding:1rem;margin-top:.5rem}
+.reform-benchmark-label{font-size:.68rem;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem;font-weight:600}
+.reform-benchmark-text{font-size:.83rem;color:var(--text);line-height:1.6}
+
+/* METHODOLOGY */
+.method-section{padding:5rem 2rem;max-width:800px;margin:0 auto}
+.method-section p{color:var(--text-dim);margin-bottom:1rem;font-size:.9rem;line-height:1.75}
+.method-list{list-style:none;padding:0}
+.method-list li{padding:.5rem 0;border-bottom:1px solid var(--card-border);color:var(--text);font-size:.9rem}
+.method-list li::before{content:'—';color:var(--blue);margin-right:.5rem}
+
+/* FOOTER */
+.footer{padding:4rem 2rem;text-align:center;border-top:1px solid var(--card-border);margin-top:3rem}
+.footer img{height:36px;margin-bottom:1.5rem;opacity:.7}
+.footer p{color:var(--text-dim);font-size:.85rem;margin-bottom:.5rem}
+.footer-links{display:flex;gap:2rem;justify-content:center;margin:1.5rem 0;flex-wrap:wrap}
+.footer-links a{color:var(--blue);font-size:.85rem;font-weight:500}
+.footer .tagline{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text-dim);margin-top:1.5rem;font-size:1rem;letter-spacing:.05em}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+.stats-grid{grid-template-columns:repeat(2,1fr)}
+.thesis-grid{grid-template-columns:1fr}
+.wealth-grid{grid-template-columns:1fr}
+.recs-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+.nav-links{display:none}
+.hamburger{display:flex}
+.bench-table{font-size:.72rem}
+.bench-table th,.bench-table td{padding:.5rem .6rem}
+}
+@media(max-width:480px){
+.stats-grid{grid-template-columns:1fr 1fr}
+.rec-card{flex-direction:column;gap:.75rem}
+.reform-meta{grid-template-columns:1fr}
+.cta-buttons{flex-direction:column;align-items:center}
+.thesis-flow{flex-direction:column}
+.flow-arrow{transform:rotate(90deg)}
+}
+/* Economic impact layer */
+.hero-impact{font-size:.88rem;color:var(--text);margin-top:1rem;padding:.9rem 1.25rem;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:9px;text-align:left;max-width:660px;margin-left:auto;margin-right:auto;line-height:1.65}
+.hero-impact strong{color:var(--green)}
+.reform-impact{margin-top:.75rem;padding:.6rem .75rem;background:rgba(34,197,94,0.05);border-left:2px solid var(--green);border-radius:0 6px 6px 0;font-size:.8rem;color:var(--green);line-height:1.5}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+<a href="#" class="nav-logo">
+<img src="../351_white.png" alt="351 Portuguese Startup Association">
+</a>
+<div class="nav-links">
+<a href="#thesis">The Thesis</a>
+<a href="#themes">Policy Themes</a>
+<a href="#benchmarks">Benchmarks</a>
+<a href="#reforms">Reforms</a>
+<a href="../fund-the-founders/v2.html" class="nav-cta">Join #FundTheFounders</a>
+</div>
+<button class="hamburger" aria-label="Menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+<span></span><span></span><span></span>
+</button>
+</nav>
+<div class="mobile-menu">
+<a href="#thesis" onclick="this.parentElement.classList.remove('open')">The Thesis</a>
+<a href="#themes" onclick="this.parentElement.classList.remove('open')">Policy Themes</a>
+<a href="#benchmarks" onclick="this.parentElement.classList.remove('open')">Benchmarks</a>
+<a href="#reforms" onclick="this.parentElement.classList.remove('open')">Reforms</a>
+<a href="../fund-the-founders/v2.html">Join #FundTheFounders</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="overview">
+<div class="hero-tag">351 CLA Capital Taskforce &mdash; 2026</div>
+<h1 class="fade-in">Portugal's Startup Capital Opportunity</h1>
+<p class="subtitle fade-in">€855 billion in household wealth. A proven startup ecosystem.<br>The missing link is policy alignment.</p>
+<p class="subtext fade-in">Portuguese household net wealth reached approximately €855B in 2023, with housing as the dominant store of value. At the same time, Portugal has built a globally significant startup ecosystem — 6 unicorns, 26,000 tech jobs, and the fastest-growing ecosystem in Europe. Redirecting even €1B of existing domestic wealth through targeted policy reform could reshape founder outcomes for the next decade.</p>
+<div class="hero-quote fade-in">
+"If Portugal reached today's ecosystem scale under current constraints, aligning policy and capital incentives with European best practices could unlock disproportionately larger outcomes."
+</div>
+<div class="hero-impact fade-in">
+<strong>Quantified scenario:</strong> Today's ecosystem baseline — 5,091 startups generating €2.856B in annual turnover and 28,000 jobs (Startup Portugal 2025) — implies ~€561K turnover and ~5.5 jobs per startup. Redirecting €1B of domestic wealth at a ~€500K average first ticket could support <strong>~2,000 additional startup financings</strong>, potentially unlocking <strong>~11,000 new high-skilled jobs</strong> and <strong>€1.1B+ in additional annual startup revenue</strong>. Using current ecosystem productivity as a benchmark; scenario framing only — not a forecast.
+</div>
+</section>
+
+<!-- STATS BAR -->
+<section class="stats-bar fade-in" id="stats">
+<div class="stats-grid">
+<div class="stat-card green">
+<div class="stat-number" data-target="26.7" data-suffix="x" data-decimals="1">0x</div>
+<div class="stat-label">Ecosystem Growth</div>
+<div class="stat-sublabel">8 years — fastest in Europe<br><em>Source: Startup Genome</em></div>
+</div>
+<div class="stat-card">
+<div class="stat-number" data-prefix="€" data-target="855" data-suffix="B" data-decimals="0">€0B</div>
+<div class="stat-label">Household Net Wealth</div>
+<div class="stat-sublabel">Portugal, 2023 — largely in housing<br><em>Source: CaixaBank Research</em></div>
+</div>
+<div class="stat-card green">
+<div class="stat-number" data-prefix="€" data-target="1" data-suffix="B+" data-decimals="0">€0B+</div>
+<div class="stat-label">Reform Potential</div>
+<div class="stat-sublabel">Domestic capital realignment via better policy<br><em>Source: CLA Capital Taskforce, 2026</em></div>
+</div>
+<div class="stat-card orange">
+<div class="stat-number" data-target="59" data-suffix="%" data-decimals="0">0%</div>
+<div class="stat-label">Faster Ecosystem Growth</div>
+<div class="stat-sublabel">Ecosystems with aligned capital strategies<br><em>Source: Startup Genome, Rise &amp; Scale 2026</em></div>
+</div>
+</div>
+</section>
+
+<!-- THESIS SECTION -->
+<section class="thesis-section fade-in" id="thesis">
+<h2 class="section-title">What Portugal Has Built. What It Could Unlock.</h2>
+<p class="section-subtitle">Portugal's startup success story is already exceptional. The data below shows what was built under conditions that are below global capital best practices — and what becomes possible with targeted reform.</p>
+
+<div class="thesis-grid">
+<div class="thesis-card proof fade-in">
+<h3>&#x2714; Proof of Potential</h3>
+<div class="thesis-item">
+<div class="thesis-dot"></div>
+<div><strong>26.7x ecosystem growth</strong> in 8 years — the fastest in Europe
+<span class="src">Source: Startup Genome</span></div>
+</div>
+<div class="thesis-item">
+<div class="thesis-dot"></div>
+<div><strong>6 unicorns created</strong> — Farfetch (~$20B peak), OutSystems (~$9.5B), Talkdesk (~$10B), Feedzai (~$1.5B), Sword Health (~$2B+), Tekever. Combined peak valuations exceed $40B
+<span class="src">Source: publicly reported valuations; Startup Portugal 2025</span></div>
+</div>
+<div class="thesis-item">
+<div class="thesis-dot"></div>
+<div><strong>Southern Europe's #1 ecosystem</strong> for total startup exit value
+<span class="src">Source: Startup Genome Global Ecosystem Report</span></div>
+</div>
+<div class="thesis-item">
+<div class="thesis-dot"></div>
+<div><strong>26,000 tech jobs</strong> created; tech sector = 8% of GDP
+<span class="src">Source: Startup Portugal 2025</span></div>
+</div>
+<div class="thesis-item">
+<div class="thesis-dot"></div>
+<div><strong>4,000+ startups</strong> active in the ecosystem pipeline
+<span class="src">Source: Startup Portugal 2025</span></div>
+</div>
+<div class="thesis-item">
+<div class="thesis-dot"></div>
+<div>All of the above built while operating <strong>below global capital best practices</strong></div>
+</div>
+</div>
+
+<div class="thesis-card unlock fade-in">
+<h3>&#x1F511; The Unlock</h3>
+<div class="thesis-item">
+<div class="thesis-dot"></div>
+<div>Portuguese household net wealth reached approximately <strong>€855B in 2023</strong>, with housing as the dominant store of value
+<span class="src">Source: CaixaBank Research, 2023; Banco de Portugal Financial Stability Report, May 2024</span></div>
+</div>
+<div class="thesis-item">
+<div class="thesis-dot"></div>
+<div>Every <strong>0.1% redirected</strong> from housing toward startup investment = €855M in new capital — without requiring new public spending</div>
+</div>
+<div class="thesis-item">
+<div class="thesis-dot"></div>
+<div>With fund-of-funds leverage and institutional LP participation, the <strong>realistic addressable pool exceeds €1B</strong> per investment cycle</div>
+</div>
+<div class="thesis-item">
+<div class="thesis-dot"></div>
+<div>Ecosystems with aligned capital strategies grow <strong>59% faster</strong> and produce $1.4B/year more in ecosystem value
+<span class="src">Source: Startup Genome, Rise &amp; Scale 2026</span></div>
+</div>
+<div class="thesis-item">
+<div class="thesis-dot"></div>
+<div>Ireland (half the population) has tech at <strong>16% of GDP</strong> — vs Portugal's 8%. The gap is capital infrastructure, not talent
+<span class="src">Source: IDA Ireland; Startup Portugal 2025</span></div>
+</div>
+<div class="thesis-item">
+<div class="thesis-dot"></div>
+<div>Using current ecosystem productivity as a benchmark: €1B redirected → <strong>~2,000 new startup financings</strong>, ~11,000 additional direct jobs, and €1.1B+ in future annual startup revenue
+<span class="src">Derived from Startup Portugal 2025: 5,091 startups / €2.856B turnover / 28,000 jobs. Scenario framing; not a forecast.</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FLOW DIAGRAM -->
+<section class="flow-section fade-in">
+<div class="flow-title">Capital Reform Logic</div>
+<div class="thesis-flow">
+<div class="flow-box">
+<span class="blue">€855B</span>
+Household Wealth
+</div>
+<div class="flow-arrow">→</div>
+<div class="flow-box">
+<span class="orange">Policy</span>
+Reform
+</div>
+<div class="flow-arrow">→</div>
+<div class="flow-box">
+<span class="green">€1B+</span>
+Startup Capital
+</div>
+<div class="flow-arrow">→</div>
+<div class="flow-box">
+<span class="green">&#x2197;</span>
+~11K Jobs<br>€1B+ Revenue
+</div>
+</div>
+<div class="flow-note">Scenario using current ecosystem productivity: 5,091 startups → €2.856B turnover → 28,000 jobs (Startup Portugal 2025). No new wealth creation required — only better rules.</div>
+</section>
+
+<!-- 7 POLICY THEMES -->
+<section class="themes-section" id="themes">
+<h2 class="section-title fade-in">7 Capital Policy Priorities</h2>
+<p class="section-subtitle fade-in">These are the highest-leverage areas where reform can unlock the most capital — presented as constructive upgrade opportunities, not criticisms of past effort.</p>
+
+<!-- THEME 1 -->
+<div class="theme-card fade-in" onclick="this.classList.toggle('open')">
+<div class="theme-header">
+<div class="theme-icon">01</div>
+<div class="theme-content">
+<div class="theme-title">Expand the Fund-of-Funds Momentum</div>
+<div class="theme-summary">Banco Português de Fomento has demonstrated that institutional capital can seed world-class VC funds. The priority now is continuity — and a GP-friendly structure that keeps strategic capital decisions in Portugal.</div>
+</div>
+<div class="theme-toggle">+</div>
+</div>
+<div class="theme-detail">
+<div class="theme-body">
+<p>Portugal's first fund-of-funds initiative proved transformative — it seeded several of the country's most successful VC funds, producing firms that have since achieved international recognition. The momentum built by Banco Português de Fomento creates a strong foundation for a second cycle with improved design.</p>
+<p>A key design principle for any successor program: local Portuguese VC general partners must be able to raise from it through a <strong>founder-friendly, GP-friendly structure with limited administrative burden</strong>. Excessive conditions, reporting requirements, or regional allocation quotas can unintentionally push GPs toward foreign LP bases — reducing Portugal's strategic influence over where capital is deployed and what ecosystem priorities are funded.</p>
+<p>A well-designed Portugal Tech Fund II — with a 20-year horizon, EIF co-structure, and track record requirements — would anchor the LP ecosystem with patient, long-term capital that private and institutional investors can co-invest alongside.</p>
+<div class="reform-impact">&#x1F4CA; Economic impact pathway: A GP-friendly FoF is the primary conduit for the €1B redirect — using current ecosystem productivity, this could support ~2,000 additional startup financings and the jobs and revenue that follow. Scenario basis; not a forecast.</div>
+<div class="theme-reform"><strong>Reform pathway:</strong> Portugal Tech Fund II — 20yr horizon, EIF co-structure, track record gated, no regional quotas</div>
+<span class="theme-note">Reference: British Business Bank (UK), ISIF (Ireland), EIF Portugal Tech I precedent</span>
+</div>
+</div>
+</div>
+
+<!-- THEME 2 -->
+<div class="theme-card fade-in" onclick="this.classList.toggle('open')">
+<div class="theme-header">
+<div class="theme-icon">02</div>
+<div class="theme-content">
+<div class="theme-title">Unlock More Smart Angel Capital</div>
+<div class="theme-summary">Portugal's early-stage investment layer has limited participation relative to ecosystem size. Expanding the angel and pre-seed layer — including through aggregation models — is the highest-leverage single intervention available.</div>
+</div>
+<div class="theme-toggle">+</div>
+</div>
+<div class="theme-detail">
+<div class="theme-body">
+<p>The pre-seed and angel investment market in Portugal is in an early stage of development relative to the size and maturity of its startup ecosystem. The number of active, well-capitalized technology investors at the earliest stages remains limited — creating a structural bottleneck that affects not just capital volume, but the quality of early-stage support available to founders.</p>
+<p>Angel aggregation platforms offer a significant and underutilized model for expanding effective pre-seed capital without requiring large individual check writers. When networks of smaller investors write coordinated tickets through structured platforms, the collective deployment can match or exceed the output of traditional large-check angel models — with broader participation, better deal flow diversity, and lower dependency on a small number of individuals.</p>
+<p>Government co-investment matching alongside qualified angel investors further de-risks early bets, catalyzes angel market formation, and creates positive feedback loops that strengthen the ecosystem over time.</p>
+<div class="theme-reform"><strong>Reform pathway:</strong> Pre-seed matching fund (Banco de Fomento, up to €500K/round) + angel aggregation framework</div>
+<span class="theme-note">Reference: Singapore ESVF (85% government match), Israel Yozma co-investment model</span>
+</div>
+</div>
+</div>
+
+<!-- THEME 3 -->
+<div class="theme-card fade-in" onclick="this.classList.toggle('open')">
+<div class="theme-header">
+<div class="theme-icon">03</div>
+<div class="theme-content">
+<div class="theme-title">Create Better Incentives for Qualified Angel Deployment</div>
+<div class="theme-summary">Portugal's fiscal framework for startup investment is below European best practices. Aligning it would redirect a meaningful share of €855B in household wealth toward innovation — without new public spending.</div>
+</div>
+<div class="theme-toggle">+</div>
+</div>
+<div class="theme-detail">
+<div class="theme-body">
+<p>Capital flows where incentives are strongest. Real estate currently enjoys a significantly more favorable fiscal framework than startup investment across multiple dimensions — deductibility, capital gains treatment, loss offset, and government co-investment programs. This is a structural policy design choice, not an economic inevitability, and it can be corrected.</p>
+<p>Existing fiscal incentive programs for startup investment have operated at limited scale. The Capital Semente program — designed as a government co-investment initiative — deployed approximately €1 million over four years, well below potential. This reflects design constraints (investment thresholds misaligned with market practice, implementation gaps in the fiscal mechanism) rather than a lack of investor interest.</p>
+<p>Leading European ecosystems offer 40–50% income tax deductions on qualifying angel investments, with loss deductibility and capital gains relief on reinvested proceeds. These mechanisms are behavioral redirects — they do not require new public spending, only a rebalancing of which asset classes are fiscally incentivized.</p>
+<div class="theme-reform"><strong>Reform pathway:</strong> Angel Tax Incentive (PAITI) — 40–50% deduction, up to €200K/year, loss deductibility, CGT relief on reinvestment</div>
+<span class="theme-note">Reference: UK SEIS/EIS (50% deduction + loss relief), France IR-PME, Ireland EIIS</span>
+</div>
+</div>
+</div>
+
+<!-- THEME 4 -->
+<div class="theme-card fade-in" onclick="this.classList.toggle('open')">
+<div class="theme-header">
+<div class="theme-icon">04</div>
+<div class="theme-content">
+<div class="theme-title">Increase Institutional LP Readiness and Participation</div>
+<div class="theme-summary">Pension funds and insurance companies represent the largest untapped source of patient capital for the VC ecosystem. Their participation in domestic VC remains limited — a structural gap with a clear policy solution.</div>
+</div>
+<div class="theme-toggle">+</div>
+</div>
+<div class="theme-detail">
+<div class="theme-body">
+<p>Large institutional capital pools in Portugal — including pension funds and insurance companies — have limited exposure to the VC asset class. This is partly a regulatory constraint (EU Solvency II rules currently make VC allocation difficult for insurance entities) and partly a market infrastructure gap (institutional investors need a credible, professionally managed intermediary to de-risk their first allocation).</p>
+<p>A Portugal Tech Fund II acting as that intermediary — with an established track record requirement and EIF co-structure — would give institutional LPs a safe entry point. A national regulatory clarification on Solvency II interpretation, aligned with advocacy at EU level, would unlock the legal pathway.</p>
+<p>Even a 1–2% domestic VC allocation from Portugal's major institutional pools would represent a structural expansion of the LP base — replacing dependence on shorter-term public program cycles with durable private institutional commitment that outlasts any single government.</p>
+<div class="reform-impact">&#x1F4CA; Economic impact pathway: Even a 1–2% institutional VC allocation creates durable follow-on capital that helps startups scale from Series A to B+, expanding the base of companies that contribute to the 28,000-job ecosystem and beyond.</div>
+<div class="theme-reform"><strong>Reform pathway:</strong> 1–2% institutional VC allocation pathway + Solvency II interpretation reform</div>
+<span class="theme-note">Reference: France Tibi program (€6B mobilized), Nordic pension fund VC mandates (Sweden, Denmark, Finland)<br>Source: European Investment Fund, France Direction Générale du Trésor</span>
+</div>
+</div>
+</div>
+
+<!-- THEME 5 -->
+<div class="theme-card fade-in" onclick="this.classList.toggle('open')">
+<div class="theme-header">
+<div class="theme-icon">05</div>
+<div class="theme-content">
+<div class="theme-title">Align Fund Regulation with European Best Practices</div>
+<div class="theme-summary">Portugal's regulatory framework for VC funds is above the EU average in complexity. Simplification would reduce cost, keep capital structures onshore, and make Portugal more accessible to international investors.</div>
+</div>
+<div class="theme-toggle">+</div>
+</div>
+<div class="theme-detail">
+<div class="theme-body">
+<p>Portugal's implementation of EU fund regulation contains requirements that exceed EU directive minimums — sometimes called "gold-plating." This adds cost and complexity that affects smaller funds disproportionately, makes foreign investor onboarding more friction-intensive, and contributes to a perception challenge in international capital markets.</p>
+<p>Key areas for modernization:</p>
+<p><strong>Lighter treatment for sub-€500M funds</strong> — simplified CMVM registration and streamlined reporting for emerging fund managers, aligned with European best-in-class standards for smaller vehicles.</p>
+<p><strong>Harmonize notary and special judicial processes with emerging EU Inc standards</strong> — the EU is developing standardized company formation and fund structuring frameworks; early adoption would position Portugal as a forward-looking jurisdiction.</p>
+<p><strong>Streamline AML/KYC to EU baseline</strong> — removing implementation layers that exceed EU directives reduces cost and speeds up international investor onboarding without weakening compliance standards.</p>
+<p><strong>Improve compatibility with global capital systems</strong> — simplifying cross-border investor onboarding processes (including for US-based and non-EU investors) through a dedicated CMVM English-language concierge would systematically address access barriers.</p>
+<div class="theme-reform"><strong>Reform pathway:</strong> Startup Fund Light (simplified CMVM vehicle for sub-€500M funds) + EU-baseline AML/KYC harmonization</div>
+<span class="theme-note">Reference: European best-in-class fund regulation standards; EU Inc framework (in development)</span>
+</div>
+</div>
+</div>
+
+<!-- THEME 6 -->
+<div class="theme-card fade-in" onclick="this.classList.toggle('open')">
+<div class="theme-header">
+<div class="theme-icon">06</div>
+<div class="theme-content">
+<div class="theme-title">Redesign Public Programs Around Better Incentives — Including SIFIDE</div>
+<div class="theme-summary">Past government programs created valuable foundations. Improving their incentive design and continuity — particularly for SIFIDE — would dramatically increase their ecosystem impact.</div>
+</div>
+<div class="theme-toggle">+</div>
+</div>
+<div class="theme-detail">
+<div class="theme-body">
+<p>Portugal has created several public programs that were intended to catalyze startup investment. These programs created real value — Capital Semente established co-investment norms, SIFIDE brought institutional attention to VC as an asset class. The priority now is improving their design so that impact scales with the maturity of the ecosystem.</p>
+<p>A key design lesson: programs that were designed with the wrong incentive structures — thresholds too low, co-investment requirements too bureaucratic, eligibility too narrow — consistently underperformed their potential. The solution is not to abandon these instruments but to redesign them around market-aligned incentives.</p>
+<p><strong>SIFIDE Reform (as a standalone priority):</strong> SIFIDE should be relaunched with significantly broader eligible expenses. Currently restricted to R&D spending, it excludes the sales, marketing, talent acquisition, and international market expansion that high-growth startups need most. A relaunched SIFIDE should cover the full growth lifecycle — not just research. Additionally, a minimum 30–50% private non-SIFIDE capital requirement should be embedded in any redesigned program, to avoid dependency cycles where funds or companies disappear when the incentive changes. Growth capital eligibility should extend explicitly beyond the pure R&D phase.</p>
+<div class="theme-reform"><strong>Reform pathway:</strong> SIFIDE relaunch — broader eligible expenses, growth capital eligibility, 30–50% private co-capital requirement</div>
+<span class="theme-note">Reference: UK EIS (broad activity eligibility), France CIR reform, Israel Incubator Program design<br>Source: ANI (Agência Nacional de Inovação); European Commission innovation incentive benchmarks</span>
+</div>
+</div>
+</div>
+
+<!-- THEME 7 -->
+<div class="theme-card fade-in" onclick="this.classList.toggle('open')">
+<div class="theme-header">
+<div class="theme-icon">07</div>
+<div class="theme-content">
+<div class="theme-title">Build Long-Term Cross-Party Alignment on Startup Capital</div>
+<div class="theme-summary">Portugal would benefit from a stable, long-term consensus that harmonizes startup capital tactics across political cycles — similar to the models that have sustained the world's most resilient innovation ecosystems.</div>
+</div>
+<div class="theme-toggle">+</div>
+</div>
+<div class="theme-detail">
+<div class="theme-body">
+<p>Startup capital ecosystems compound over decades. The most successful national ecosystems share one structural feature beyond policy design: <strong>continuity</strong>. Incentive programs that change with every government cycle cannot be planned around. Funds built on 10-year horizons cannot be raised if the LP base assumes the rules will shift every 4 years.</p>
+<p>Portugal would benefit from a stable long-term consensus that harmonizes startup capital tactics across political cycles — not because any single approach is ideologically correct, but because predictability is itself a form of capital. Investors allocate to ecosystems where they trust the rules will still apply when their fund matures.</p>
+<p>The British Business Bank has survived multiple government changes and remained a consistent feature of UK VC infrastructure. Israel maintained its technology investment strategy through political cycles and even during periods of significant instability. A cross-party working group — with a mandate to define a 10–15 year national startup capital strategy — would deliver Portugal the same structural advantage.</p>
+<p>A public dashboard tracking key ecosystem capital KPIs (angel investment volume, fund-of-funds deployment, institutional LP participation, SIFIDE uptake) would create transparency and accountability across political transitions.</p>
+<div class="theme-reform"><strong>Reform pathway:</strong> National Startup Capital Strategy (10–15yr) + cross-party working group + public KPI dashboard</div>
+<span class="theme-note">Reference: British Business Bank (UK, est. 2012, survived 3+ governments), Israel Innovation Authority (cross-party mandate)<br>Source: OCDE Science, Technology and Innovation Outlook 2023</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- BENCHMARK -->
+<section class="benchmark-section fade-in" id="benchmarks">
+<h2 class="section-title">How Portugal Compares</h2>
+<p class="section-subtitle">European and international capital ecosystem benchmarks</p>
+<p class="bench-intro">Portugal's startup ecosystem outperforms on growth rate and founder quality. The structural gaps are concentrated in the capital infrastructure layer — incentive design, institutional participation, and program continuity — where peer ecosystems have established clear playbooks Portugal can adapt and adopt.</p>
+<div style="overflow-x:auto">
+<table class="bench-table">
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Current State</th>
+<th>Portugal Target</th>
+<th>European Best Practice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Angel Tax Incentive
+<span class="bench-src">Source: Ministry of Finance; European Commission state aid database</span></td>
+<td class="gap">Below European best practice — fiscal incentives limited in scope and scale</td>
+<td class="portugal">40–50% deduction, up to €200K/yr + loss deductibility</td>
+<td class="best">UK SEIS: 50% deduction + full loss relief + CGT exemption</td>
+</tr>
+<tr>
+<td>Fund-of-Funds
+<span class="bench-src">Source: Banco de Fomento; EIF Annual Report 2024</span></td>
+<td class="gap">Portugal Tech I concluded — no successor program in place</td>
+<td class="portugal">Portugal Tech II — 20yr horizon, track record required</td>
+<td class="best">British Business Bank &amp; EIF maintain active, continuous fund-of-funds cycles</td>
+</tr>
+<tr>
+<td>Institutional LP Participation
+<span class="bench-src">Source: EIOPA Solvency II data; France Direction Générale du Trésor</span></td>
+<td class="gap">Limited — pension/insurance companies have minimal VC exposure</td>
+<td class="portugal">1–2% domestic VC allocation pathway enabled</td>
+<td class="best">France Tibi: €6B mobilized; Nordic pension fund VC mandates established</td>
+</tr>
+<tr>
+<td>Pre-Seed Co-Investment
+<span class="bench-src">Source: ANI; Startup Genome; Singapore EDB</span></td>
+<td class="gap">Underscaled — Capital Semente deployed ~€1M over 4 years due to design constraints</td>
+<td class="portugal">Matching fund up to €500K/round, quality-gated</td>
+<td class="best">Singapore ESVF: up to 85% government match; Israel Yozma co-investment</td>
+</tr>
+<tr>
+<td>VC Fund Regulation Complexity
+<span class="bench-src">Source: CMVM; European Commission AIFMD review 2023</span></td>
+<td class="gap">Above EU average — implementation exceeds EU directive minimums in several areas</td>
+<td class="portugal">Startup Fund Light for sub-€500M + EU-baseline AML/KYC</td>
+<td class="best">European best-in-class: EU directive minimums, no gold-plating, simplified AIF vehicles</td>
+</tr>
+<tr>
+<td>SIFIDE Scope
+<span class="bench-src">Source: ANI; UK HMRC EIS statistics; European Commission</span></td>
+<td class="gap">R&D eligible expenses only — excludes sales, marketing, talent, international expansion</td>
+<td class="portugal">Relaunch with full growth lifecycle eligibility + 30–50% private co-capital requirement</td>
+<td class="best">UK EIS: broad business activity eligibility including market development &amp; talent</td>
+</tr>
+<tr>
+<td>Tech Sector Share of GDP
+<span class="bench-src">Source: Startup Portugal 2025; IDA Ireland Economic Impact Report 2024</span></td>
+<td class="gap">8% (26,000 tech jobs)</td>
+<td class="portugal">12–14% over 10 years — with aligned capital infrastructure</td>
+<td class="best">Ireland: 16% of GDP, 270,000 tech jobs (population half of Portugal's)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="bench-caption">Sources: Startup Genome Global Ecosystem Report; European Investment Fund Annual Report 2024; CaixaBank Research 2023; Banco de Portugal Financial Stability Report May 2024; ANI; CMVM; IDA Ireland; France Direction Générale du Trésor; Singapore EDB; UK HMRC. "European Best Practice" refers to documented, replicated models across multiple EU ecosystems.</p>
+</section>
+
+<!-- 8 REFORMS -->
+<section class="recs-section fade-in" id="reforms">
+<h2 class="section-title">8 Reforms to Unlock Portugal's Capital Potential</h2>
+<p class="section-subtitle">High-alignment upgrades. Proven in peer ecosystems. No new public spending required — only better-designed rules.</p>
+<div class="recs-grid">
+
+<div class="rec-card" data-reform="1">
+<div class="rec-icon">&#x1F4B0;</div>
+<div>
+<div class="rec-num">Reform 01</div>
+<div class="rec-title">Angel Tax Incentive (PAITI)</div>
+<div class="rec-desc">40–50% income tax deduction on angel investments up to €200K/year. Fiscally align startup investment with European best practice.</div>
+<div class="rec-owner">Ministry of Finance</div>
+<div class="rec-hint">Click for details →</div>
+</div>
+</div>
+
+<div class="rec-card" data-reform="2">
+<div class="rec-icon">&#x1F91D;</div>
+<div>
+<div class="rec-num">Reform 02</div>
+<div class="rec-title">Pre-Seed Matching Fund</div>
+<div class="rec-desc">Government co-investment for pre-seed rounds up to €500K. Quality-gated, fast deployment, no R&D-only restrictions.</div>
+<div class="rec-owner">Banco de Fomento</div>
+<div class="rec-hint">Click for details →</div>
+</div>
+</div>
+
+<div class="rec-card" data-reform="3">
+<div class="rec-icon">&#x1F3E6;</div>
+<div>
+<div class="rec-num">Reform 03</div>
+<div class="rec-title">Portugal Tech Fund II</div>
+<div class="rec-desc">Continuous VC fund-of-funds — 20-year horizon, track record required, EIF co-structure, no regional quotas. GP-friendly by design.</div>
+<div class="rec-owner">Banco de Fomento / EIF</div>
+<div class="rec-hint">Click for details →</div>
+</div>
+</div>
+
+<div class="rec-card" data-reform="4">
+<div class="rec-icon">&#x1F4CA;</div>
+<div>
+<div class="rec-num">Reform 04</div>
+<div class="rec-title">Pension &amp; Insurance VC Pathway</div>
+<div class="rec-desc">Enable 1–2% allocation to domestic VC for pension and insurance capital pools. Requires Solvency II regulatory clarification.</div>
+<div class="rec-owner">ASF / Ministry of Finance</div>
+<div class="rec-hint">Click for details →</div>
+</div>
+</div>
+
+<div class="rec-card" data-reform="5">
+<div class="rec-icon">&#x1F4DC;</div>
+<div>
+<div class="rec-num">Reform 05</div>
+<div class="rec-title">Startup Fund Light</div>
+<div class="rec-desc">Simplified CMVM vehicle for sub-€500M funds. Streamline AML/KYC to EU baseline. Harmonize with emerging EU Inc standards.</div>
+<div class="rec-owner">CMVM</div>
+<div class="rec-hint">Click for details →</div>
+</div>
+</div>
+
+<div class="rec-card" data-reform="6">
+<div class="rec-icon">&#x1F9EA;</div>
+<div>
+<div class="rec-num">Reform 06</div>
+<div class="rec-title">SIFIDE Relaunch</div>
+<div class="rec-desc">Expand eligible expenses beyond R&D to full growth lifecycle. Require minimum 30–50% private non-SIFIDE co-capital. Extend to growth-stage companies.</div>
+<div class="rec-owner">ANI / Ministry of Economy</div>
+<div class="rec-hint">Click for details →</div>
+</div>
+</div>
+
+<div class="rec-card" data-reform="7">
+<div class="rec-icon">&#x1F30D;</div>
+<div>
+<div class="rec-num">Reform 07</div>
+<div class="rec-title">Portugal Capital Bridge</div>
+<div class="rec-desc">Structured investor delegations, regulatory reciprocity, and CMVM English-language concierge for international fund onboarding.</div>
+<div class="rec-owner">AICEP / CMVM</div>
+<div class="rec-hint">Click for details →</div>
+</div>
+</div>
+
+<div class="rec-card" data-reform="8">
+<div class="rec-icon">&#x1F3AF;</div>
+<div>
+<div class="rec-num">Reform 08</div>
+<div class="rec-title">Corporate Acquisition Incentives</div>
+<div class="rec-desc">SIFIDE-style M&amp;A deductions for corporate acquisitions of Portuguese startups. Create exit pathways that recycle capital back into the ecosystem.</div>
+<div class="rec-owner">Ministry of Finance</div>
+<div class="rec-hint">Click for details →</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="cta">
+<div class="container">
+<div class="cta-tag fade-in">The Movement</div>
+<div class="cta-figure fade-in">€<span>1</span>B</div>
+<h2 class="cta-heading fade-in">The €1B Redirect</h2>
+<p class="cta-body fade-in">Portugal does not need entirely new wealth creation. Redirecting even the next <strong>€1B from existing domestic wealth pools</strong> into startup capital — through better policy incentives — could reshape founder outcomes for the next decade. The wealth is here. The founders are here. The ecosystem has proven itself. What comes next is a political choice.</p>
+<p class="cta-body fade-in" style="font-size:.9rem;margin-top:.75rem;color:rgba(255,255,255,0.6)">Using current ecosystem productivity as a benchmark (Startup Portugal 2025: 5,091 startups → €2.856B turnover → 28,000 jobs): unlocking even €1B from existing domestic wealth pools could add another <strong style="color:var(--green)">€1B+ annual startup revenue layer</strong> and <strong style="color:var(--green)">~11,000 new jobs</strong> to the Portuguese economy. Scenario framing; not a forecast.</p>
+<div class="cta-buttons fade-in">
+<a href="../fund-the-founders/v2.html" class="btn-cta-primary">Join #FundTheFounders</a>
+<a href="index.html" class="btn-cta-outline">Previous Version</a>
+</div>
+</div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="method-section fade-in" id="methodology">
+<h2 class="section-title">About This Research</h2>
+<div>
+<p>This report is produced by the 351 Community Leaders Academy Capital Taskforce as part of a structured effort to map Portugal's startup capital ecosystem, identify systemic upgrade opportunities, and develop actionable policy recommendations.</p>
+<p>Primary research was conducted through in-depth consultations with leading Portuguese startup investors across venture capital, angel networks, and institutional investment platforms. Findings were cross-referenced with European Investment Fund data, Startup Genome benchmarks, Banco de Portugal Financial Stability Reports, CaixaBank Research macroeconomic data, and published academic research on ecosystem capital dynamics.</p>
+<p style="font-weight:600;color:var(--white);margin-top:1.5rem;margin-bottom:.75rem">Research Scope</p>
+<ul class="method-list">
+<li>In-depth consultations with VC fund managers, angel network leaders, and institutional investors</li>
+<li>Coverage of seed, Series A, growth-stage, and institutional LP perspectives</li>
+<li>Both traditional VC models and technology-driven investment aggregation platforms</li>
+<li>Cross-referenced with Startup Genome, EIF, Banco de Portugal, and World Bank ecosystem data</li>
+<li>Policy benchmarks from UK, Ireland, Israel, Singapore, France, and Nordic ecosystems</li>
+</ul>
+<p style="margin-top:1.5rem">Findings are presented in the spirit of ecosystem upgrading — not criticism. Every priority identified reflects a recognized opportunity for Portugal to align with international best practices that have already demonstrated impact in peer ecosystems.</p>
+</div>
+</section>
+
+<!-- REFORM MODAL -->
+<div class="modal-overlay" id="reformModal">
+<div class="modal">
+<button class="modal-close" id="reformModalClose">&times;</button>
+<div class="modal-badge" id="reformModalBadge"></div>
+<h3 id="reformModalTitle"></h3>
+<div id="reformModalBody"></div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+<img src="../351_white.png" alt="351">
+<p>A research initiative by 351 Portuguese Startup Association</p>
+<div class="footer-links">
+<a href="../fund-the-founders/v2.html">#FundTheFounders Movement</a>
+<a href="index.html">Previous Version</a>
+<a href="https://351startups.com" target="_blank">351startups.com</a>
+</div>
+<div class="tagline">Made for Founders</div>
+</footer>
+
+<script>
+// Fade-in observer
+const fadeEls = document.querySelectorAll('.fade-in');
+const fadeObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+fadeEls.forEach(el => fadeObs.observe(el));
+
+// Theme card toggle
+document.querySelectorAll('.theme-card').forEach(card => {
+  card.addEventListener('click', () => card.classList.toggle('open'));
+});
+
+// Counter animation
+let countersAnimated = false;
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !countersAnimated) {
+      countersAnimated = true;
+      animateCounters();
+    }
+  });
+}, { threshold: 0.3 });
+const statsBar = document.querySelector('.stats-bar');
+if (statsBar) counterObs.observe(statsBar);
+
+function animateCounters() {
+  document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+    const target = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimals || 0);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = 2000;
+    const start = performance.now();
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = (eased * target).toFixed(decimals);
+      el.textContent = prefix + current + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+// Reform modal data
+const reformData = {
+  1: {
+    title: "Angel Tax Incentive (PAITI)",
+    badge: "Reform 01 — Ministry of Finance",
+    body: `
+      <div class="reform-section">
+        <div class="reform-section-label">The Opportunity</div>
+        <div class="reform-section-text">Startup investment is currently taxed like any other income, while real estate enjoys a significantly more favorable fiscal framework. A targeted angel investment deduction would redirect private capital toward innovation without increasing public expenditure. Source: European Commission state aid database; Ministry of Finance budget documentation.</div>
+      </div>
+      <div class="reform-section">
+        <div class="reform-section-label">Proposed Design</div>
+        <div class="reform-section-text">40–50% income tax deduction on qualifying angel investments up to €200K/year. Loss deductibility on failed investments. Capital gains relief on reinvested proceeds. Applicable to certified early-stage companies meeting defined criteria.</div>
+      </div>
+      <div class="reform-benchmark">
+        <div class="reform-benchmark-label">European Benchmark</div>
+        <div class="reform-benchmark-text">UK SEIS/EIS: 50% deduction, full loss relief, CGT exemption. France IR-PME: 25% income tax reduction. Ireland EIIS: income tax relief on qualifying investments. All three programs demonstrably expanded angel ecosystems in their markets. Source: UK HMRC EIS Statistics 2024; France DGFiP; Revenue Ireland.</div>
+      </div>
+      <div class="reform-section">
+        <div class="reform-section-label">Economic Impact Pathway</div>
+        <div class="reform-section-text">More first checks in the system means more companies reach sustainability. Using current ecosystem productivity as a benchmark (~€561K turnover, ~5.5 jobs per startup), every 100 additional startups financed at the angel stage represents the potential for €56M in future annual turnover and ~550 jobs. Capital recycling — exits reinvesting into new startups — compounds this effect over successive cycles. Source: Startup Portugal 2025. Scenario framing; not a forecast.</div>
+      </div>
+      <div class="reform-meta">
+        <div class="reform-meta-item"><div class="reform-meta-label">Owner</div><div class="reform-meta-value">Ministry of Finance</div></div>
+        <div class="reform-meta-item"><div class="reform-meta-label">Fiscal Cost</div><div class="reform-meta-value">Low — behavioral redirect, not new spending</div></div>
+      </div>`
+  },
+  2: {
+    title: "Pre-Seed Matching Fund",
+    badge: "Reform 02 — Banco de Fomento",
+    body: `
+      <div class="reform-section">
+        <div class="reform-section-label">The Opportunity</div>
+        <div class="reform-section-text">Pre-seed rounds lack sufficient capital supply relative to the size of Portugal's startup pipeline. Government co-investment alongside qualified angel investors can de-risk early bets, expand effective capital, and catalyze angel market formation. Source: ANI; Startup Portugal 2025.</div>
+      </div>
+      <div class="reform-section">
+        <div class="reform-section-label">Proposed Design</div>
+        <div class="reform-section-text">1:1 co-investment match for rounds up to €500K. Quality-gated: requires lead investor certification. Light-touch reporting. No R&D-only restrictions. Fast deployment timelines aligned with commercial VC practice.</div>
+      </div>
+      <div class="reform-benchmark">
+        <div class="reform-benchmark-label">International Benchmark</div>
+        <div class="reform-benchmark-text">Singapore's ESVF: up to 85% government match, with minimal bureaucracy. Israel's Yozma program (1993): structured co-investment that seeded the world's most VC-dense non-US ecosystem. Both programs prioritize speed and simplicity. Source: Singapore EDB; Israel Innovation Authority.</div>
+      </div>
+      <div class="reform-meta">
+        <div class="reform-meta-item"><div class="reform-meta-label">Owner</div><div class="reform-meta-value">Banco de Fomento</div></div>
+        <div class="reform-meta-item"><div class="reform-meta-label">Model</div><div class="reform-meta-value">Singapore ESVF / Israel Yozma</div></div>
+      </div>
+      <div class="reform-section">
+        <div class="reform-section-label">Economic Impact Pathway</div>
+        <div class="reform-section-text">A 1:1 matching fund at the pre-seed stage directly expands the number of startups that reach institutional viability. Using today's ecosystem productivity (Startup Portugal 2025: 5,091 startups → €2.856B turnover → 28,000 jobs), each cohort of 500 additional pre-seed financings has the potential to generate €280M+ in annual turnover and ~2,750 direct jobs at maturity. Scenario framing; not a forecast.</div>
+      </div>`
+  },
+  3: {
+    title: "Portugal Tech Fund II",
+    badge: "Reform 03 — Banco de Fomento / EIF",
+    body: `
+      <div class="reform-section">
+        <div class="reform-section-label">The Opportunity</div>
+        <div class="reform-section-text">Portugal's first fund-of-funds initiative catalyzed multiple world-class VC firms. Continuing this architecture with improved design — stronger track record requirements, longer horizons, GP-friendly structure, no regional distortions — would sustain and expand Portugal's VC infrastructure. Source: Banco de Fomento; EIF Annual Report 2024.</div>
+      </div>
+      <div class="reform-section">
+        <div class="reform-section-label">Proposed Design</div>
+        <div class="reform-section-text">Dedicated fund-of-funds, minimum 20-year horizon. Track record required for fund selection. No regional allocation quotas. Co-structure with EIF to leverage EU capital. GP-friendly: minimal bureaucratic burden, fast decision timelines, no excessive conditions that push GPs toward foreign LP bases. Managed by an independent professional entity.</div>
+      </div>
+      <div class="reform-benchmark">
+        <div class="reform-benchmark-label">European Benchmark</div>
+        <div class="reform-benchmark-text">British Business Bank: multiple fund-of-funds programs, survived 3+ government changes. Ireland's ISIF: explicit innovation mandate. Nordic sovereign structures actively allocate to domestic VC. Source: British Business Bank Annual Report 2024; ISIF Annual Report 2023.</div>
+      </div>
+      <div class="reform-meta">
+        <div class="reform-meta-item"><div class="reform-meta-label">Owner</div><div class="reform-meta-value">Banco de Fomento / EIF</div></div>
+        <div class="reform-meta-item"><div class="reform-meta-label">Horizon</div><div class="reform-meta-value">20-year commitment minimum</div></div>
+      </div>
+      <div class="reform-section">
+        <div class="reform-section-label">Economic Impact Pathway</div>
+        <div class="reform-section-text">A Portugal Tech Fund II is the primary vehicle for the €1B redirect thesis. At a ~€500K average first institutional ticket, €1B deployed supports ~2,000 additional startup financings — which, at current ecosystem productivity, could unlock ~11,000 new direct jobs and €1.1B+ in additional annual startup turnover. This is the highest-leverage single reform in the roadmap. Source: Startup Portugal 2025. Scenario framing; not a forecast.</div>
+      </div>`
+  },
+  4: {
+    title: "Pension & Insurance VC Pathway",
+    badge: "Reform 04 — ASF / Ministry of Finance",
+    body: `
+      <div class="reform-section">
+        <div class="reform-section-label">The Opportunity</div>
+        <div class="reform-section-text">Large institutional capital pools in Portugal have limited exposure to the VC asset class. Enabling a small allocation (1–2%) would create a stable, patient LP base that reduces dependence on public program cycles. Source: EIOPA Solvency II data; ASF annual reports.</div>
+      </div>
+      <div class="reform-section">
+        <div class="reform-section-label">Proposed Design</div>
+        <div class="reform-section-text">1–2% portfolio allocation pathway for qualified domestic VC funds. Requires Solvency II interpretation adjustment at EU level, supported by national regulatory clarification. Banco de Fomento fund-of-funds acts as the de-risking intermediary for institutions new to the asset class.</div>
+      </div>
+      <div class="reform-benchmark">
+        <div class="reform-benchmark-label">European Benchmark</div>
+        <div class="reform-benchmark-text">France's Tibi program: mobilized €6B in institutional capital toward tech and VC without public subsidies — only regulatory clarity and a coordination mechanism. Nordic countries: pension fund VC mandates established in Sweden, Denmark, Finland. Source: France Direction Générale du Trésor; Nordic Council of Ministers.</div>
+      </div>
+      <div class="reform-meta">
+        <div class="reform-meta-item"><div class="reform-meta-label">Owner</div><div class="reform-meta-value">ASF + Ministry of Finance</div></div>
+        <div class="reform-meta-item"><div class="reform-meta-label">EU Coordination</div><div class="reform-meta-value">Solvency II revision needed</div></div>
+      </div>
+      <div class="reform-section">
+        <div class="reform-section-label">Economic Impact Pathway</div>
+        <div class="reform-section-text">Institutional LP participation is the key to unlocking follow-on capital at Series A and beyond. Without it, Portuguese startups that survive seed stage routinely seek later-stage capital from foreign funds — exporting ownership and economic value. A domestic institutional LP base keeps capital recycling within the Portuguese economy and supports the scaleup layer that produces the highest per-job economic returns. Source: EIF; Startup Portugal 2025. Scenario framing; not a forecast.</div>
+      </div>`
+  },
+  5: {
+    title: "Startup Fund Light",
+    badge: "Reform 05 — CMVM",
+    body: `
+      <div class="reform-section">
+        <div class="reform-section-label">The Opportunity</div>
+        <div class="reform-section-text">Portugal's VC regulatory framework contains requirements that exceed EU directive minimums, creating disproportionate cost and complexity — particularly for smaller, emerging fund managers. This affects international investor onboarding and contributes to a perception challenge in global capital markets. Source: CMVM; European Commission AIFMD review 2023.</div>
+      </div>
+      <div class="reform-section">
+        <div class="reform-section-label">Proposed Design</div>
+        <div class="reform-section-text">Simplified CMVM registration for funds under €500M. Streamline AML/KYC to EU baseline — removing gold-plated requirements that exceed EU directives without weakening compliance. Harmonize notary and special judicial processes with emerging EU Inc standards. Improve compatibility with global capital systems through a dedicated CMVM English-language investor concierge.</div>
+      </div>
+      <div class="reform-benchmark">
+        <div class="reform-benchmark-label">European Benchmark</div>
+        <div class="reform-benchmark-text">European best-in-class fund regulation: EU directive minimums, no gold-plating, simplified AIFMD-lite vehicles for sub-threshold funds. EU Inc framework (in development) will standardize company formation across member states. Source: European Commission; ESMA.</div>
+      </div>
+      <div class="reform-meta">
+        <div class="reform-meta-item"><div class="reform-meta-label">Owner</div><div class="reform-meta-value">CMVM</div></div>
+        <div class="reform-meta-item"><div class="reform-meta-label">Complexity</div><div class="reform-meta-value">Regulatory — no fiscal cost</div></div>
+      </div>`
+  },
+  6: {
+    title: "SIFIDE Relaunch",
+    badge: "Reform 06 — ANI / Ministry of Economy",
+    body: `
+      <div class="reform-section">
+        <div class="reform-section-label">The Opportunity</div>
+        <div class="reform-section-text">SIFIDE has brought meaningful institutional attention to VC as an asset class and created real value for R&D-intensive companies. Expanding its scope to the full startup growth lifecycle — and embedding a private co-capital requirement — would dramatically increase its ecosystem impact and reduce dependency cycles. Source: ANI; Startup Portugal 2025.</div>
+      </div>
+      <div class="reform-section">
+        <div class="reform-section-label">Proposed Design</div>
+        <div class="reform-section-text">Relaunch SIFIDE with broader eligible expenses: beyond R&D to include sales, marketing, talent acquisition, and international market expansion. Add a minimum 30–50% private non-SIFIDE capital requirement in any fund or company accessing the instrument — to prevent dependency cycles where investment disappears when the incentive changes. Extend growth capital eligibility explicitly beyond the pure R&D phase.</div>
+      </div>
+      <div class="reform-benchmark">
+        <div class="reform-benchmark-label">European Benchmark</div>
+        <div class="reform-benchmark-text">UK EIS covers a broad range of business activities — not limited to R&D. France's CIR (Crédit Impôt Recherche) pairs with broader innovation credits. Germany's ZIM program allows R&D credits to be combined with commercial market development grants. Source: UK HMRC; France Ministère de l'Économie; Germany BMWK.</div>
+      </div>
+      <div class="reform-meta">
+        <div class="reform-meta-item"><div class="reform-meta-label">Owner</div><div class="reform-meta-value">ANI / Ministry of Economy</div></div>
+        <div class="reform-meta-item"><div class="reform-meta-label">Key design rule</div><div class="reform-meta-value">30–50% private co-capital requirement</div></div>
+      </div>`
+  },
+  7: {
+    title: "Portugal Capital Bridge",
+    badge: "Reform 07 — AICEP / CMVM",
+    body: `
+      <div class="reform-section">
+        <div class="reform-section-label">The Opportunity</div>
+        <div class="reform-section-text">Portugal's international capital connectivity has room to grow. Foreign investors — particularly non-EU — face administrative barriers and perception challenges that reduce deal flow. A systematic approach to attracting and retaining international capital would amplify all other reforms. Source: AICEP; CMVM; Startup Genome Global Connectivity Index.</div>
+      </div>
+      <div class="reform-section">
+        <div class="reform-section-label">Proposed Design</div>
+        <div class="reform-section-text">Annual investor delegation program targeting key European and US VC markets. CMVM English-language concierge for foreign fund onboarding. Regulatory reciprocity frameworks negotiated via AICEP. Cross-border acquisition guidance for non-EU buyers navigating Portuguese regulatory requirements.</div>
+      </div>
+      <div class="reform-benchmark">
+        <div class="reform-benchmark-label">European Benchmark</div>
+        <div class="reform-benchmark-text">Enterprise Ireland operates dedicated international investor attraction programs with measurable deal flow outcomes. Singapore's EDB provides white-glove onboarding for international funds. Estonia's e-Residency reduced foreign investor friction to near zero for digital-first structures. Source: Enterprise Ireland Annual Report 2024; Singapore EDB; Enterprise Estonia.</div>
+      </div>
+      <div class="reform-meta">
+        <div class="reform-meta-item"><div class="reform-meta-label">Owner</div><div class="reform-meta-value">AICEP + CMVM</div></div>
+        <div class="reform-meta-item"><div class="reform-meta-label">Impact</div><div class="reform-meta-value">Multiplies all other reforms</div></div>
+      </div>`
+  },
+  8: {
+    title: "Corporate Acquisition Incentives",
+    badge: "Reform 08 — Ministry of Finance",
+    body: `
+      <div class="reform-section">
+        <div class="reform-section-label">The Opportunity</div>
+        <div class="reform-section-text">Portugal's large corporates have limited fiscal incentive to acquire startups at early-exit valuations (€10–20M). Creating a domestic M&A pathway would generate the exit events that recycle capital and experience back into the ecosystem — and attract more founders to build in Portugal rather than relocating for exits. Source: Startup Portugal 2025; European Commission startup M&A data.</div>
+      </div>
+      <div class="reform-section">
+        <div class="reform-section-label">Proposed Design</div>
+        <div class="reform-section-text">SIFIDE-style tax deduction for qualifying corporate acquisitions of Portuguese startups under a defined valuation threshold. Promotes a European acquisition culture at manageable exit sizes — creating liquidity events that recycle founder experience and capital without requiring unicorn-scale outcomes first.</div>
+      </div>
+      <div class="reform-benchmark">
+        <div class="reform-benchmark-label">European Benchmark</div>
+        <div class="reform-benchmark-text">France's Tibi program explicitly promotes corporate-startup M&A as a scale pathway alongside VC. Germany's High-Tech Gründerfonds creates corporate co-investment that leads to natural acquisition pathways. UK Enterprise Investment Scheme includes qualifying acquisition structures. Source: France DGFiP; Germany BMWK; UK HMRC.</div>
+      </div>
+      <div class="reform-meta">
+        <div class="reform-meta-item"><div class="reform-meta-label">Owner</div><div class="reform-meta-value">Ministry of Finance</div></div>
+        <div class="reform-meta-item"><div class="reform-meta-label">Effect</div><div class="reform-meta-value">Activates wealth recycling cycle</div></div>
+      </div>`
+  }
+};
+
+// Reform card click
+document.querySelectorAll('.rec-card[data-reform]').forEach(card => {
+  card.addEventListener('click', () => {
+    const id = parseInt(card.dataset.reform);
+    const data = reformData[id];
+    if (!data) return;
+    document.getElementById('reformModalBadge').textContent = data.badge;
+    document.getElementById('reformModalTitle').textContent = data.title;
+    document.getElementById('reformModalBody').innerHTML = data.body;
+    document.getElementById('reformModal').classList.add('open');
+  });
+});
+document.getElementById('reformModalClose').addEventListener('click', () => {
+  document.getElementById('reformModal').classList.remove('open');
+});
+document.getElementById('reformModal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('reformModal')) {
+    document.getElementById('reformModal').classList.remove('open');
+  }
+});
+
+// Mobile menu
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+  link.addEventListener('click', () => document.querySelector('.mobile-menu').classList.remove('open'));
+});
+</script>
+</body>
+</html>
