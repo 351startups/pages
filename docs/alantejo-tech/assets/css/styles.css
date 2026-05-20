@@ -361,22 +361,26 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   background: color-mix(in srgb, var(--fy-vcolor, var(--fy-accent)) 16%, transparent);
 }
 
-/* Filter pills */
+/* Filter pills — lightweight by default so the filter block reads as a quiet
+   navigation aid, not a competing UI surface. Inactive pills carry no border
+   (just a softly tinted background) so a dense row stays calm; selected pills
+   are the only thing that pops. */
 .fy-pills {
-  display: flex; flex-wrap: wrap; gap: 8px;
+  display: flex; flex-wrap: wrap; gap: 6px;
   align-items: center;
 }
 .fy-pill {
-  padding: 8px 14px;
-  font-size: 13px; font-weight: 500;
-  border: 1px solid var(--fy-line);
+  padding: 6px 12px;
+  font-size: 12px; font-weight: 500;
+  border: 1px solid transparent;
   border-radius: 999px;
   color: var(--fy-muted);
-  background: transparent;
+  background: rgba(244,236,219,0.04);
   transition: all .12s ease;
   display: inline-flex; align-items: center; gap: 6px;
+  line-height: 1.4;
 }
-.fy-pill:hover { color: var(--fy-ink); border-color: var(--fy-line-2); }
+.fy-pill:hover { color: var(--fy-ink); background: rgba(244,236,219,0.08); }
 .fy-pill.is-active {
   color: var(--fy-on-accent); background: var(--fy-accent); border-color: var(--fy-accent);
   font-weight: 600;
@@ -385,22 +389,23 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 
 .fy-pillrow {
   display: flex; gap: 16px; flex-wrap: wrap;
-  margin-bottom: 14px; align-items: center;
+  margin-bottom: 20px; align-items: center;
 }
 /* Wide-row variant: when the chip group wraps onto multiple lines,
    align the label to the top so it doesn't visually orphan above the chips. */
-.fy-pillrow--wrap { align-items: flex-start; margin-top: 4px; }
-.fy-pillrow--wrap .fy-pillrow__label { padding-top: 10px; }
-.fy-pillrow--wrap .fy-clear { margin-top: 10px; }
+.fy-pillrow--wrap { align-items: flex-start; }
+.fy-pillrow--wrap .fy-pillrow__label { padding-top: 7px; }
+.fy-pillrow--wrap .fy-clear { margin-top: 7px; }
 .fy-pillrow__label {
-  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--fy-muted); font-weight: 600; min-width: 88px;
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--fy-muted); font-weight: 600; min-width: 80px;
+  opacity: 0.7;
 }
-.fy-clear { font-size: 13px; color: var(--fy-accent); font-weight: 600; }
+.fy-clear { font-size: 12px; color: var(--fy-accent); font-weight: 600; }
 .fy-results-count {
   font-size: 13px; color: var(--fy-muted);
-  margin: 40px 0 24px;
-  padding-top: 24px;
+  margin: 72px 0 28px;
+  padding-top: 32px;
   border-top: 1px solid var(--fy-line);
 }
 
