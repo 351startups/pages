@@ -1,12 +1,23 @@
 /* Finder filter logic. URL-state driven so filters are shareable.
    ?type=all|events|perks|programs|mentors|partners|incubators|rd_centers|anchors|startups
    &vertical=datacenter|energy|agritech|...
+   &city=Sines|Évora|Beja|...
    &stage=idea|preseed|seed|growth|scale
 */
 (async function () {
   const data = await FY.loadData();
   const { verticals, stages } = data;
   const { vertLabel, formatDate, findPlace } = FY.helpers;
+
+  // Build the unique sorted city list from all place arrays.
+  const PLACE_TYPES_FOR_CITIES = ['anchors', 'incubators', 'rd_centers', 'startups'];
+  const cityOpts = (() => {
+    const set = new Set();
+    PLACE_TYPES_FOR_CITIES.forEach(t => (data[t] || []).forEach(e => { if (e.city) set.add(e.city); }));
+    return [{ id: '', label: 'All' }].concat(
+      [...set].sort((a, b) => a.localeCompare(b)).map(c => ({ id: c, label: c }))
+    );
+  })();
 
   const TYPES = [
     { id: 'all',         label: 'All' },
@@ -27,6 +38,7 @@
   const state = {
     type: FY.helpers.qs('type', 'all'),
     vertical: FY.helpers.qs('vertical', null),
+    city: FY.helpers.qs('city', null),
     stage: FY.helpers.qs('stage', null),
   };
 
@@ -65,6 +77,12 @@
     { vert: true }
   );
 
+  buildPills(
+    root.querySelector('[data-pills-city]'),
+    cityOpts, c => c.id, state.city || '',
+    (id) => { state.city = id || null; sync(); render(); }
+  );
+
   const stageOpts = [{ id: '', label: 'All' }, ...stages];
   buildPills(
     root.querySelector('[data-pills-stage]'),
@@ -73,7 +91,7 @@
   );
 
   root.querySelector('[data-clear]').addEventListener('click', () => {
-    state.vertical = null; state.stage = null;
+    state.vertical = null; state.city = null; state.stage = null;
     sync(); refreshActive(); render();
   });
 
@@ -84,6 +102,8 @@
       p.classList.toggle('is-active', p.dataset.pill === state.type));
     root.querySelectorAll('[data-pills-vertical] [data-pill]').forEach(p =>
       p.classList.toggle('is-active', p.dataset.pill === (state.vertical || '')));
+    root.querySelectorAll('[data-pills-city] [data-pill]').forEach(p =>
+      p.classList.toggle('is-active', p.dataset.pill === (state.city || '')));
     root.querySelectorAll('[data-pills-stage] [data-pill]').forEach(p =>
       p.classList.toggle('is-active', p.dataset.pill === (state.stage || '')));
   }
@@ -98,6 +118,18 @@
   function matchesStage(item) {
     if (!state.stage) return true;
     if (Array.isArray(item.stages)) return item.stages.includes(state.stage);
+    return true;
+  }
+  // Places have `city` directly. Events have a `location_id` → resolve to place city.
+  // Items with no city info (programs/perks/mentors/partners) are region-wide,
+  // so they always pass — they're available to anyone in any Alentejo city.
+  function matchesCity(item) {
+    if (!state.city) return true;
+    if (item.city) return item.city === state.city;
+    if (item.location_id) {
+      const place = findPlace(data, item.location_id);
+      return !!place && place.city === state.city;
+    }
     return true;
   }
 
@@ -216,7 +248,7 @@
   function renderAll() {
     const sections = SECTION_TYPES.map(t => {
       const pool = data[t] || [];
-      const filtered = pool.filter(i => !i.placeholder && matchesVertical(i) && matchesStage(i));
+      const filtered = pool.filter(i => !i.placeholder && matchesVertical(i) && matchesStage(i) && matchesCity(i));
       return { type: t, items: filtered };
     }).filter(s => s.items.length > 0);
 
@@ -224,6 +256,7 @@
     countEl.textContent = `${total} results across ${sections.length} categories`;
 
     const vParam = state.vertical ? `&vertical=${state.vertical}` : '';
+    const cParam = state.city ? `&city=${encodeURIComponent(state.city)}` : '';
     const sParam = state.stage ? `&stage=${state.stage}` : '';
 
     grid.className = 'fy-all-sections';
@@ -231,7 +264,7 @@
       <div class="fy-all-section">
         <div class="fy-all-section__head">
           <h3 class="fy-all-section__title">${labelFor(s.type)}</h3>
-          <a class="fy-all-section__more" href="finder.html?type=${s.type}${vParam}${sParam}">See all ${s.items.length} ${labelFor(s.type)} →</a>
+          <a class="fy-all-section__more" href="finder.html?type=${s.type}${vParam}${cParam}${sParam}">See all ${s.items.length} ${labelFor(s.type)} →</a>
         </div>
         <div class="${isPlace(s.type) ? 'fy-ecogrid' : 'fy-grid'}">
           ${s.items.slice(0, 4).map(TPL[s.type]).join('')}
@@ -260,7 +293,7 @@
     if (state.type === 'all') { renderAll(); return; }
 
     const pool = data[state.type] || [];
-    const filtered = pool.filter(i => matchesVertical(i) && matchesStage(i));
+    const filtered = pool.filter(i => matchesVertical(i) && matchesStage(i) && matchesCity(i));
 
     grid.className = isPlace(state.type) ? 'fy-ecogrid' : 'fy-grid';
     grid.innerHTML = filtered.length
@@ -272,6 +305,7 @@
   window.addEventListener('popstate', () => {
     state.type = FY.helpers.qs('type', 'all');
     state.vertical = FY.helpers.qs('vertical', null);
+    state.city = FY.helpers.qs('city', null);
     state.stage = FY.helpers.qs('stage', null);
     refreshActive(); render();
   });
