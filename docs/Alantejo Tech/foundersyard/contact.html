@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Join — Alentejo Tech</title>
+  <meta name="description" content="Join Alentejo Tech — Portugal's next gigawatt tech region. For founders, partners and press." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <style>
+    .fy-form-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 16px; }
+    .fy-input, .fy-select, .fy-textarea {
+      width:100%; padding:14px 16px; background: var(--fy-surface);
+      border: 1px solid var(--fy-line-2); border-radius: 12px;
+      color: var(--fy-ink); font: inherit;
+    }
+    .fy-input:focus, .fy-select:focus, .fy-textarea:focus { outline: none; border-color: var(--fy-accent); }
+    .fy-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fy-muted); margin-bottom: 8px; display:block; font-weight: 600; }
+    .fy-form-card { padding: 32px; background: var(--fy-surface); border: 1px solid var(--fy-line); border-radius: var(--fy-radius); }
+  </style>
+</head>
+<body>
+  <div data-include="header"></div>
+
+  <section class="fy-pagehead">
+    <div class="fy-wrap">
+      <p class="fy-eyebrow">Join</p>
+      <h1 class="fy-h1">Three ways in.</h1>
+      <p class="fy-lead">For founders moving into the Alentejo, partners looking to back the region, or press covering Portugal's next gigawatt tech story.</p>
+    </div>
+  </section>
+
+  <section class="fy-section">
+    <div class="fy-wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;">
+
+      <!-- Founder -->
+      <div class="fy-form-card" id="founder">
+        <p class="fy-eyebrow">Founders</p>
+        <h2 class="fy-h2">Join the community.</h2>
+        <p class="fy-meta" style="margin-bottom:24px;">Tell us about your startup. We'll route you to the right venue, program, and mentors.</p>
+        <form onsubmit="event.preventDefault(); this.querySelector('button[type=submit]').textContent='Sent ✓';">
+          <div class="fy-form-grid">
+            <div>
+              <label class="fy-label">Founder name</label>
+              <input class="fy-input" required name="name" />
+            </div>
+            <div>
+              <label class="fy-label">Email</label>
+              <input class="fy-input" required type="email" name="email" />
+            </div>
+            <div>
+              <label class="fy-label">Startup</label>
+              <input class="fy-input" name="startup" />
+            </div>
+            <div>
+              <label class="fy-label">Stage</label>
+              <select class="fy-select" name="stage">
+                <option>Idea</option><option>Pre-seed</option><option>Seed</option><option>Growth</option><option>Scale</option>
+              </select>
+            </div>
+            <div>
+              <label class="fy-label">Vertical</label>
+              <select class="fy-select" name="vertical">
+                <option>Data Centre &amp; AI Infra</option><option>Energy &amp; Hydrogen</option><option>Agritech</option><option>Aerospace &amp; Industrial</option><option>Deep Tech</option><option>CleanTech</option><option>AI &amp; Software</option><option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="fy-label">Preferred base</label>
+              <select class="fy-select" name="city">
+                <option>Sines</option><option>Évora</option><option>Beja</option><option>Portalegre</option><option>No preference</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-top:16px;">
+            <label class="fy-label">What are you looking for?</label>
+            <textarea class="fy-textarea" rows="4" placeholder="Cowork, program, mentors, intros…"></textarea>
+          </div>
+          <button class="fy-btn fy-btn--primary" type="submit" style="margin-top:20px;">Send application</button>
+        </form>
+      </div>
+
+      <!-- Partner -->
+      <div class="fy-form-card" id="partner">
+        <p class="fy-eyebrow">Partners</p>
+        <h2 class="fy-h2">Partner with us.</h2>
+        <p class="fy-meta" style="margin-bottom:24px;">Corporate, VC, public, or program partner — we'll get back within 5 business days.</p>
+        <form onsubmit="event.preventDefault(); this.querySelector('button[type=submit]').textContent='Sent ✓';">
+          <div class="fy-form-grid">
+            <div>
+              <label class="fy-label">Your name</label>
+              <input class="fy-input" required name="name" />
+            </div>
+            <div>
+              <label class="fy-label">Work email</label>
+              <input class="fy-input" required type="email" name="email" />
+            </div>
+            <div>
+              <label class="fy-label">Organisation</label>
+              <input class="fy-input" required name="org" />
+            </div>
+            <div>
+              <label class="fy-label">Partnership type</label>
+              <select class="fy-select" name="ptype">
+                <option>Corporate sponsor</option>
+                <option>VC partner</option>
+                <option>Program partner</option>
+                <option>Public / institutional</option>
+                <option>Perk partner</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-top:16px;">
+            <label class="fy-label">Briefly: what would you like to do together?</label>
+            <textarea class="fy-textarea" rows="4"></textarea>
+          </div>
+          <button class="fy-btn fy-btn--primary" type="submit" style="margin-top:20px;">Reach out</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Quick contact strip -->
+  <section class="fy-section--tight">
+    <div class="fy-wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+      <div class="fy-form-card"><p class="fy-eyebrow">Press</p><h3 class="fy-h3">press@alentejotech.pt</h3><p class="fy-meta">Logos, photos, region briefings.</p></div>
+      <div class="fy-form-card"><p class="fy-eyebrow">General</p><h3 class="fy-h3">hello@alentejotech.pt</h3><p class="fy-meta">Anything else.</p></div>
+      <div class="fy-form-card"><p class="fy-eyebrow">Visit</p><h3 class="fy-h3">PACT — Évora</h3><p class="fy-meta">Parque do Alentejo de Ciência e Tecnologia. Meet us there.</p></div>
+    </div>
+  </section>
+
+  <div data-include="footer"></div>
+
+  <script src="assets/js/data-loader.js"></script>
+  <script src="assets/js/include.js"></script>
+</body>
+</html>

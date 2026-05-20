@@ -1,0 +1,203 @@
+/* Alentejo Tech — embed-mode CSS. All rules scoped to .fy-embed.
+   Safe to drop into Elementor / WordPress HTML widgets.
+   No body{}, html{}, or unscoped element selectors. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+.fy-embed {
+  --fy-bg:        #15182A;
+  --fy-bg-2:      #1B1E32;
+  --fy-surface:   #232742;
+  --fy-surface-2: #2E334F;
+  --fy-line:      rgba(244,236,219,0.08);
+  --fy-line-2:    rgba(244,236,219,0.16);
+  --fy-ink:       #F4ECDB;
+  --fy-muted:     #A8A092;
+  --fy-accent:    #C9764D;
+  --fy-accent-2:  #E5A04C;
+  --fy-on-accent: #15182A;
+  --fy-radius:    14px;
+
+  --fy-datacenter: #E5A04C;
+  --fy-energy:     #7A8A4E;
+  --fy-agritech:   #B58A3F;
+  --fy-aerospace:  #8B5A3C;
+  --fy-deeptech:   #5C7A8C;
+  --fy-cleantech:  #5A8A6E;
+  --fy-ai:         #C9764D;
+  --fy-other:      #A89788;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--fy-bg);
+  color: var(--fy-ink);
+  padding: 32px;
+  border-radius: var(--fy-radius);
+  font-size: 16px;
+  line-height: 1.55;
+}
+.fy-embed *, .fy-embed *::before, .fy-embed *::after { box-sizing: border-box; }
+.fy-embed [data-vert="datacenter"] { --fy-vcolor: var(--fy-datacenter); }
+.fy-embed [data-vert="energy"]     { --fy-vcolor: var(--fy-energy); }
+.fy-embed [data-vert="agritech"]   { --fy-vcolor: var(--fy-agritech); }
+.fy-embed [data-vert="aerospace"]  { --fy-vcolor: var(--fy-aerospace); }
+.fy-embed [data-vert="deeptech"]   { --fy-vcolor: var(--fy-deeptech); }
+.fy-embed [data-vert="cleantech"]  { --fy-vcolor: var(--fy-cleantech); }
+.fy-embed [data-vert="ai"]         { --fy-vcolor: var(--fy-ai); }
+.fy-embed [data-vert="other"]      { --fy-vcolor: var(--fy-other); }
+
+.fy-embed a { color: inherit; text-decoration: none; }
+.fy-embed button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; padding: 0; }
+
+.fy-embed .fy-h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.1; font-weight: 700; margin: 0 0 12px;
+  letter-spacing: -0.015em;
+}
+.fy-embed .fy-eyebrow {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fy-accent); font-weight: 600; margin: 0 0 12px;
+}
+.fy-embed .fy-meta { color: var(--fy-muted); font-size: 13px; }
+
+.fy-embed .fy-pillrow {
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+  margin-bottom: 12px;
+}
+.fy-embed .fy-pillrow__label {
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fy-muted); font-weight: 600; min-width: 72px;
+}
+.fy-embed .fy-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.fy-embed .fy-pill {
+  padding: 7px 13px; font-size: 13px; font-weight: 500;
+  border: 1px solid var(--fy-line); border-radius: 999px;
+  color: var(--fy-muted); background: transparent;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color .12s ease, background .12s ease, border-color .12s ease;
+}
+.fy-embed .fy-pill:hover { color: var(--fy-ink); border-color: var(--fy-line-2); }
+.fy-embed .fy-pill.is-active {
+  color: var(--fy-on-accent); background: var(--fy-accent); border-color: var(--fy-accent);
+  font-weight: 600;
+}
+.fy-embed .fy-pill--vert.is-active {
+  background: var(--fy-vcolor, var(--fy-accent));
+  border-color: var(--fy-vcolor, var(--fy-accent));
+}
+.fy-embed .fy-clear { font-size: 13px; color: var(--fy-accent); font-weight: 600; }
+.fy-embed .fy-results-count { font-size: 13px; color: var(--fy-muted); margin: 12px 0 18px; }
+
+.fy-embed .fy-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px;
+}
+.fy-embed .fy-ecogrid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;
+}
+.fy-embed .fy-locgrid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px;
+}
+.fy-embed .fy-card {
+  background: var(--fy-surface);
+  border: 1px solid var(--fy-line);
+  border-radius: var(--fy-radius);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform .15s ease, border-color .15s ease;
+}
+.fy-embed .fy-card:hover { transform: translateY(-2px); border-color: var(--fy-line-2); }
+.fy-embed .fy-card__img {
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, rgba(229,160,76,0.22), rgba(122,138,78,0.14)), var(--fy-surface-2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px;
+  color: rgba(244,236,219,0.6); letter-spacing: 0.06em; text-transform: uppercase;
+}
+.fy-embed .fy-card__body { padding: 18px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.fy-embed .fy-card__title { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; line-height: 1.25; margin: 0; }
+.fy-embed .fy-card__blurb { color: var(--fy-muted); font-size: 13px; }
+.fy-embed .fy-card__meta { color: var(--fy-muted); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+.fy-embed .fy-card__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 8px; }
+
+.fy-embed .fy-tag {
+  font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 999px;
+  background: rgba(244,236,219,0.06);
+  border: 1px solid var(--fy-line); font-weight: 600;
+}
+.fy-embed .fy-tag--vert {
+  background: color-mix(in srgb, var(--fy-vcolor, var(--fy-accent)) 16%, transparent);
+  color: var(--fy-vcolor, var(--fy-accent));
+  border-color: transparent;
+}
+
+/* Ecosystem entity card (anchors / incubators / R&D / startups) */
+.fy-embed .fy-ecocard {
+  display: flex; flex-direction: column; gap: 10px;
+  background: var(--fy-surface);
+  border: 1px solid var(--fy-line);
+  border-radius: var(--fy-radius);
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .15s ease, border-color .15s ease;
+}
+.fy-embed .fy-ecocard::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: var(--fy-vcolor, var(--fy-accent));
+  opacity: 0.85;
+}
+.fy-embed .fy-ecocard:hover { transform: translateY(-2px); border-color: var(--fy-line-2); }
+.fy-embed .fy-ecocard__name {
+  font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700;
+  line-height: 1.25; color: var(--fy-ink); padding-left: 12px;
+}
+.fy-embed .fy-ecocard__city {
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--fy-vcolor, var(--fy-accent)); font-weight: 600; padding-left: 12px;
+}
+.fy-embed .fy-ecocard__blurb { color: var(--fy-muted); font-size: 13px; line-height: 1.5; padding-left: 12px; }
+.fy-embed .fy-ecocard--lg .fy-ecocard__name { font-size: 18px; }
+.fy-embed .fy-ecocard--lg .fy-card__tags { padding-left: 12px; margin-top: auto; }
+
+.fy-embed .fy-flagship-pill {
+  display: inline-block;
+  background: var(--fy-accent-2);
+  color: var(--fy-on-accent);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.18em;
+  padding: 3px 8px; border-radius: 999px;
+  vertical-align: middle; margin-left: 6px;
+}
+
+.fy-embed .fy-stats__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 20px; }
+.fy-embed .fy-stat__num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px,3vw,36px); font-weight: 700; color: var(--fy-accent-2);
+  line-height: 1; letter-spacing: -0.02em;
+}
+.fy-embed .fy-stat__label {
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--fy-muted); margin-top: 8px;
+}
+
+.fy-embed .fy-partner-wall {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1px; background: var(--fy-line); border: 1px solid var(--fy-line);
+  border-radius: var(--fy-radius); overflow: hidden;
+}
+.fy-embed .fy-partner {
+  background: var(--fy-surface); padding: 22px;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 70px;
+  font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+  color: var(--fy-muted); font-size: 13px; letter-spacing: 0.04em;
+}
+.fy-embed .fy-empty {
+  padding: 40px 20px; text-align: center;
+  border: 1px dashed var(--fy-line-2); border-radius: var(--fy-radius);
+  color: var(--fy-muted);
+}

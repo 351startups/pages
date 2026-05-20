@@ -1,0 +1,210 @@
+<!-- ALENTEJO TECH — UNIFIED FINDER EMBED
+     Paste the entire block below into an Elementor HTML widget (or any CMS).
+     Set data-base to the URL where you host data.json (no trailing slash).
+     Self-contained: no external scripts, no anchor jumps, no global state. -->
+
+<link rel="stylesheet" href="https://YOUR-GITHUB-PAGES/alentejotech/assets/css/embed.css" />
+
+<div class="fy-embed" data-fy-finder data-base="https://YOUR-GITHUB-PAGES/alentejotech">
+  <p class="fy-eyebrow">Alentejo Tech finder</p>
+  <h2 class="fy-h2">Anchors, incubators, R&amp;D, startups, events, programs, perks, mentors, partners.</h2>
+  <p class="fy-meta" style="margin: 0 0 22px;">Filter by content type, vertical and stage. All filters are AND.</p>
+
+  <div class="fy-pillrow">
+    <span class="fy-pillrow__label">Type</span>
+    <div class="fy-pills" data-pills-type></div>
+  </div>
+  <div class="fy-pillrow">
+    <span class="fy-pillrow__label">Vertical</span>
+    <div class="fy-pills" data-pills-vertical></div>
+  </div>
+  <div class="fy-pillrow">
+    <span class="fy-pillrow__label">Stage</span>
+    <div class="fy-pills" data-pills-stage></div>
+    <button class="fy-clear" data-clear>Clear filters</button>
+  </div>
+
+  <div class="fy-results-count"><span data-count>—</span></div>
+  <div data-grid class="fy-grid"></div>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('[data-fy-finder]:not([data-init])');
+  if (!root) return;
+  root.setAttribute('data-init', '1');
+
+  var BASE = root.getAttribute('data-base') || '';
+  var TYPES = [
+    { id: 'anchors',     label: 'Anchor Cos' },
+    { id: 'incubators',  label: 'Incubators' },
+    { id: 'rd_centers',  label: 'R&D' },
+    { id: 'startups',    label: 'Startups' },
+    { id: 'programs',    label: 'Programs' },
+    { id: 'events',      label: 'Events' },
+    { id: 'perks',       label: 'Perks' },
+    { id: 'mentors',     label: 'Mentors' },
+    { id: 'partners',    label: 'Partners' }
+  ];
+  var PLACE_TYPES = ['anchors','incubators','rd_centers','startups'];
+  var state = { type: 'anchors', vertical: null, stage: null };
+  var data = null;
+
+  fetch(BASE + '/assets/data/data.json')
+    .then(function (r) { return r.json(); })
+    .then(function (d) { data = d; init(); });
+
+  function init() {
+    buildPills(root.querySelector('[data-pills-type]'), TYPES, state.type, function (id) {
+      state.type = id; refresh();
+    });
+    var vertOpts = [{ id: '', label: 'All' }].concat(data.verticals);
+    buildPills(root.querySelector('[data-pills-vertical]'), vertOpts, '', function (id) {
+      state.vertical = id || null; refresh();
+    }, true);
+    var stageOpts = [{ id: '', label: 'All' }].concat(data.stages);
+    buildPills(root.querySelector('[data-pills-stage]'), stageOpts, '', function (id) {
+      state.stage = id || null; refresh();
+    });
+    root.querySelector('[data-clear]').addEventListener('click', function () {
+      state.vertical = null; state.stage = null; refreshActive(); render();
+    });
+    render();
+  }
+
+  function buildPills(slot, items, current, onClick, vert) {
+    slot.innerHTML = items.map(function (it) {
+      var cls = 'fy-pill' + (vert ? ' fy-pill--vert' : '') + (it.id === current ? ' is-active' : '');
+      var dv = vert ? ' data-vert="' + it.id + '"' : '';
+      return '<button class="' + cls + '"' + dv + ' data-pill="' + it.id + '">' + it.label + '</button>';
+    }).join('');
+    [].forEach.call(slot.querySelectorAll('[data-pill]'), function (b) {
+      b.addEventListener('click', function () { onClick(b.getAttribute('data-pill')); refreshActive(); });
+    });
+  }
+
+  function refresh() { refreshActive(); render(); }
+  function refreshActive() {
+    setActive('[data-pills-type]', state.type);
+    setActive('[data-pills-vertical]', state.vertical || '');
+    setActive('[data-pills-stage]', state.stage || '');
+  }
+  function setActive(sel, id) {
+    [].forEach.call(root.querySelectorAll(sel + ' [data-pill]'), function (p) {
+      p.classList.toggle('is-active', p.getAttribute('data-pill') === id);
+    });
+  }
+
+  function vertLabel(id) {
+    var v = data.verticals.find(function (x) { return x.id === id; });
+    return v ? v.label : id;
+  }
+  function findPlace(id) {
+    for (var i = 0; i < PLACE_TYPES.length; i++) {
+      var arr = data[PLACE_TYPES[i]] || [];
+      var hit = arr.find(function (x) { return x.id === id; });
+      if (hit) return hit;
+    }
+    return null;
+  }
+  function fmtDate(iso) {
+    var d = new Date(iso);
+    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  }
+  function matchesV(it) {
+    if (!state.vertical) return true;
+    if (Array.isArray(it.vertical)) return it.vertical.indexOf(state.vertical) > -1;
+    if (Array.isArray(it.vertical_focus)) return it.vertical_focus.indexOf(state.vertical) > -1;
+    return it.vertical === state.vertical;
+  }
+  function matchesS(it) {
+    if (!state.stage) return true;
+    return Array.isArray(it.stages) ? it.stages.indexOf(state.stage) > -1 : true;
+  }
+
+  function tplEvent(e) {
+    var loc = (findPlace(e.location_id) || {}).name || '';
+    return cardLink(e.rsvp_url, e.vertical,
+      meta(fmtDate(e.date_iso) + ' · ' + loc) +
+      title(e.title) + blurb(e.blurb) +
+      tags([{v:e.vertical}].concat((e.stages||[]).slice(0,2).map(function(s){return {label:s};})))
+    );
+  }
+  function tplProgram(p) {
+    return cardLink(p.url, p.vertical,
+      img(p.name.split(' ')[0]) +
+      '<div class="fy-card__body">' +
+        meta(p.duration) + title(p.name) + blurb(p.blurb) +
+        tags([{v:p.vertical}].concat((p.stages||[]).slice(0,2).map(function(s){return {label:s};}))) +
+      '</div>'
+    , true);
+  }
+  function tplPerk(p) {
+    var v = (p.vertical||[])[0] || 'other';
+    return cardLink(p.cta_url, v,
+      meta(p.partner) + title(p.value) + blurb(p.blurb) +
+      tags((p.vertical||[]).slice(0,3).map(function(vid){return {v:vid};}))
+    );
+  }
+  function tplMentor(m) {
+    var v = (m.vertical||[])[0] || 'other';
+    return cardLink(m.linkedin, v,
+      meta(m.role + ' · ' + m.company) + title(m.name) + blurb(m.blurb) +
+      tags((m.vertical||[]).slice(0,3).map(function(vid){return {v:vid};}))
+    );
+  }
+  function tplPartner(p) {
+    var v = (p.vertical||[])[0] || 'other';
+    var tier = ({founding:'Founding Partner',vc:'VC / Programme',corporate:'Corporate',gov:'Public / Institutional'})[p.tier] || '';
+    return cardLink(p.url, v,
+      meta(tier) + title(p.name) +
+      tags((p.vertical||[]).slice(0,3).map(function(vid){return {v:vid};}))
+    );
+  }
+  function tplPlace(l) {
+    var verts = l.vertical_focus || l.vertical || [];
+    var v = verts[0] || 'other';
+    var flagship = l.flagship ? ' <span class="fy-flagship-pill">FLAGSHIP</span>' : '';
+    return '<a class="fy-ecocard fy-ecocard--lg" href="' + (l.url || '#') + '" target="_blank" rel="noopener" data-vert="' + v + '">' +
+      '<div class="fy-ecocard__name">' + esc(l.name) + flagship + '</div>' +
+      '<div class="fy-ecocard__city">' + esc(l.city || '') + '</div>' +
+      (l.blurb ? '<p class="fy-ecocard__blurb">' + esc(l.blurb) + '</p>' : '') +
+      tags(verts.slice(0,3).map(function(vid){return {v:vid};})) +
+    '</a>';
+  }
+  function cardLink(href, vert, body, withImg) {
+    return '<a class="fy-card" href="' + (href || '#') + '" target="_blank" rel="noopener" data-vert="' + (vert||'other') + '">' +
+      (withImg ? body : '<div class="fy-card__body">' + body + '</div>') +
+    '</a>';
+  }
+  function img(t) { return '<div class="fy-card__img">' + esc(t) + '</div>'; }
+  function meta(t) { return t ? '<div class="fy-card__meta">' + esc(t) + '</div>' : ''; }
+  function title(t) { return '<h3 class="fy-card__title">' + esc(t) + '</h3>'; }
+  function blurb(t) { return t ? '<p class="fy-card__blurb">' + esc(t) + '</p>' : ''; }
+  function tags(arr) {
+    if (!arr || !arr.length) return '';
+    return '<div class="fy-card__tags">' + arr.map(function (t) {
+      if (t.v) return '<span class="fy-tag fy-tag--vert" data-vert="' + t.v + '">' + esc(vertLabel(t.v)) + '</span>';
+      return '<span class="fy-tag">' + esc(t.label) + '</span>';
+    }).join('') + '</div>';
+  }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];
+  }); }
+
+  var TPL = {
+    anchors: tplPlace, incubators: tplPlace, rd_centers: tplPlace, startups: tplPlace,
+    events: tplEvent, programs: tplProgram, perks: tplPerk, mentors: tplMentor, partners: tplPartner
+  };
+
+  function render() {
+    var grid = root.querySelector('[data-grid]');
+    var pool = data[state.type] || [];
+    var filt = pool.filter(function (i) { return matchesV(i) && matchesS(i); });
+    grid.className = PLACE_TYPES.indexOf(state.type) > -1 ? 'fy-ecogrid' : 'fy-grid';
+    grid.innerHTML = filt.length ? filt.map(TPL[state.type]).join('') :
+      '<div class="fy-empty">No ' + state.type + ' match these filters yet.</div>';
+    root.querySelector('[data-count]').textContent = filt.length + ' ' + state.type;
+  }
+})();
+</script>

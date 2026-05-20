@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 300" role="img" aria-label="Founders Yard">
+  <!-- Fan icon: 16 spokes radiating from focal point at right-centre of circle.
+       Angles sweep from ~195° to 345° (top-left fan), colours blue→magenta. -->
+  <g transform="translate(140,130)">
+    <!-- spoke 1  195° → 207°  #00C8FF -->
+    <polygon points="0,0 -97,-26 -86,-50" fill="#00C8FF"/>
+    <!-- spoke 2  207° → 219°  #1BB8FF -->
+    <polygon points="0,0 -86,-50 -70,-71" fill="#1BB8FF"/>
+    <!-- spoke 3  219° → 231°  #36A8FF -->
+    <polygon points="0,0 -70,-71 -50,-87" fill="#36A8FF"/>
+    <!-- spoke 4  231° → 243°  #5196FF -->
+    <polygon points="0,0 -50,-87 -26,-97" fill="#5196FF"/>
+    <!-- spoke 5  243° → 255°  #6682FF -->
+    <polygon points="0,0 -26,-97  0,-100" fill="#6682FF"/>
+    <!-- spoke 6  255° → 267°  #7B6EFF -->
+    <polygon points="0,0  0,-100  26,-97" fill="#7B6EFF"/>
+    <!-- spoke 7  267° → 279°  #9058FF -->
+    <polygon points="0,0  26,-97  50,-87" fill="#9058FF"/>
+    <!-- spoke 8  279° → 291°  #A044FF -->
+    <polygon points="0,0  50,-87  70,-71" fill="#A044FF"/>
+    <!-- spoke 9  291° → 303°  #B530FF -->
+    <polygon points="0,0  70,-71  87,-50" fill="#B530FF"/>
+    <!-- spoke 10 303° → 315°  #C81EEE -->
+    <polygon points="0,0  87,-50  97,-26" fill="#C81EEE"/>
+    <!-- spoke 11 315° → 327°  #DA0EDD -->
+    <polygon points="0,0  97,-26 100,  0" fill="#DA0EDD"/>
+    <!-- spoke 12 327° → 339°  #EE00CC -->
+    <polygon points="0,0 100,  0  97, 26" fill="#EE00CC"/>
+    <!-- spoke 13 339° → 345°  #FF00BB -->
+    <polygon points="0,0  97, 26  87, 50" fill="#FF00BB"/>
+    <!-- small gap / trim circle to make it a proper half-disc -->
+    <circle cx="0" cy="0" r="100" fill="none"/>
+  </g>
+  <!-- Clip everything outside the circle -->
+  <defs>
+    <clipPath id="circle-clip">
+      <circle cx="140" cy="130" r="100"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#circle-clip)" transform="translate(140,130)">
+    <polygon points="0,0 -97,-26 -86,-50" fill="#00C8FF"/>
+    <polygon points="0,0 -86,-50 -70,-71" fill="#1BB8FF"/>
+    <polygon points="0,0 -70,-71 -50,-87" fill="#36A8FF"/>
+    <polygon points="0,0 -50,-87 -26,-97" fill="#5196FF"/>
+    <polygon points="0,0 -26,-97  0,-100" fill="#6682FF"/>
+    <polygon points="0,0  0,-100  26,-97" fill="#7B6EFF"/>
+    <polygon points="0,0  26,-97  50,-87" fill="#9058FF"/>
+    <polygon points="0,0  50,-87  70,-71" fill="#A044FF"/>
+    <polygon points="0,0  70,-71  87,-50" fill="#B530FF"/>
+    <polygon points="0,0  87,-50  97,-26" fill="#C81EEE"/>
+    <polygon points="0,0  97,-26 100,  0" fill="#DA0EDD"/>
+    <polygon points="0,0 100,  0  97, 26" fill="#EE00CC"/>
+    <polygon points="0,0  97, 26  87, 50" fill="#FF00BB"/>
+    <!-- fill the gap at bottom-right -->
+    <polygon points="0,0  87, 50  70, 71  50,87  26,97  0,100" fill="#FF00BB" opacity="0.5"/>
+  </g>
+  <!-- "Founders Yard" wordmark in white for dark backgrounds -->
+  <text x="140" y="266"
+        text-anchor="middle"
+        font-family="'Space Grotesk', Arial, sans-serif"
+        font-weight="700"
+        font-size="36"
+        letter-spacing="-0.5"
+        fill="#F4F4F2">Founders Yard</text>
+</svg>

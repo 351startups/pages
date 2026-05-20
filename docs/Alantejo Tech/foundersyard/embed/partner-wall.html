@@ -1,0 +1,28 @@
+<!-- ALENTEJO TECH — PARTNER WALL EMBED
+     Drop into an Elementor HTML widget. Set data-base to the deployed URL.
+     Optional: data-tier="founding|vc|corporate|gov" to filter by tier. -->
+
+<link rel="stylesheet" href="https://YOUR-GITHUB-PAGES/alentejotech/assets/css/embed.css" />
+
+<div class="fy-embed" data-fy-partners data-base="https://YOUR-GITHUB-PAGES/alentejotech">
+  <p class="fy-eyebrow">Backed by</p>
+  <h2 class="fy-h2">Founding, corporate, venture and public partners.</h2>
+  <div class="fy-partner-wall" data-grid style="margin-top: 24px;"></div>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('[data-fy-partners]:not([data-init])');
+  if (!root) return;
+  root.setAttribute('data-init','1');
+  var BASE = root.getAttribute('data-base') || '';
+  var tier = root.getAttribute('data-tier');
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];});}
+  fetch(BASE + '/assets/data/data.json').then(function (r) { return r.json(); }).then(function (data) {
+    var list = tier ? data.partners.filter(function (p) { return p.tier === tier; }) : data.partners;
+    root.querySelector('[data-grid]').innerHTML = list.map(function (p) {
+      return '<a class="fy-partner" href="' + (p.url||'#') + '" target="_blank" rel="noopener">' + esc(p.name) + '</a>';
+    }).join('');
+  });
+})();
+</script>

@@ -1,0 +1,32 @@
+<!-- ALENTEJO TECH — STATS BAR EMBED
+     Drop into an Elementor HTML widget. Set data-base to the deployed URL. -->
+
+<link rel="stylesheet" href="https://YOUR-GITHUB-PAGES/alentejotech/assets/css/embed.css" />
+
+<div class="fy-embed" data-fy-stats data-base="https://YOUR-GITHUB-PAGES/alentejotech">
+  <p class="fy-eyebrow">Alentejo Tech, in numbers</p>
+  <h2 class="fy-h2">Portugal's next gigawatt tech region.</h2>
+  <div class="fy-stats__grid" data-grid style="margin-top: 24px;"></div>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('[data-fy-stats]:not([data-init])');
+  if (!root) return;
+  root.setAttribute('data-init','1');
+  var BASE = root.getAttribute('data-base') || '';
+  fetch(BASE + '/assets/data/data.json').then(function (r) { return r.json(); }).then(function (data) {
+    var s = data.stats;
+    var items = [
+      { num: '€' + s.investment_pipeline_eur_b + 'B',           label: 'Investment pipeline' },
+      { num: s.datacenter_capacity_gw + ' GW',                  label: 'Data-centre capacity' },
+      { num: s.industrial_land_ha.toLocaleString() + ' ha',     label: 'ZILS Sines' },
+      { num: s.submarine_cables + '+',                          label: 'Subsea cables' },
+      { num: s.incubators + ' + ' + s.rd_centers,               label: 'Incubators + R&D' }
+    ];
+    root.querySelector('[data-grid]').innerHTML = items.map(function (it) {
+      return '<div><div class="fy-stat__num">' + it.num + '</div><div class="fy-stat__label">' + it.label + '</div></div>';
+    }).join('');
+  });
+})();
+</script>

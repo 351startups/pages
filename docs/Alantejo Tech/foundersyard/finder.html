@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finder — Alentejo Tech</title>
+  <meta name="description" content="Find anchors, incubators, R&D centres, startups, events, programs, perks, mentors and partners across Alentejo Tech. Filter by vertical and founder stage." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div data-include="header"></div>
+
+  <section class="fy-pagehead">
+    <div class="fy-wrap">
+      <p class="fy-eyebrow">Finder</p>
+      <h1 class="fy-h1">One place to find everything.</h1>
+      <p class="fy-lead">Anchors, incubators, R&amp;D centres, startups, events, programs, perks, mentors and partners — every entity in the Alentejo Tech ecosystem, filterable by vertical and founder stage.</p>
+    </div>
+  </section>
+
+  <section class="fy-section--tight">
+    <div class="fy-wrap" data-finder>
+      <div class="fy-pillrow">
+        <span class="fy-pillrow__label">Type</span>
+        <div class="fy-pills" data-pills-type></div>
+      </div>
+      <div class="fy-pillrow">
+        <span class="fy-pillrow__label">Vertical</span>
+        <div class="fy-pills" data-pills-vertical></div>
+      </div>
+      <div class="fy-pillrow">
+        <span class="fy-pillrow__label">Stage</span>
+        <div class="fy-pills" data-pills-stage></div>
+        <button class="fy-clear" data-clear>Clear filters</button>
+      </div>
+
+      <div class="fy-results-count"><span data-count>—</span></div>
+      <div data-grid class="fy-grid"></div>
+    </div>
+  </section>
+
+  <div data-include="footer"></div>
+
+  <script src="assets/js/data-loader.js"></script>
+  <script src="assets/js/include.js"></script>
+  <script src="assets/js/finder.js"></script>
+</body>
+</html>

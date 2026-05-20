@@ -1,0 +1,39 @@
+<!-- ALENTEJO TECH — ANCHORS GRID EMBED (formerly locations)
+     Paste into an Elementor HTML widget. Set data-base to the deployed URL. -->
+
+<link rel="stylesheet" href="https://YOUR-GITHUB-PAGES/alentejotech/assets/css/embed.css" />
+
+<div class="fy-embed" data-fy-locations data-base="https://YOUR-GITHUB-PAGES/alentejotech">
+  <p class="fy-eyebrow">Anchor companies</p>
+  <h2 class="fy-h2">The pillars of Alentejo Tech.</h2>
+  <p class="fy-meta" style="margin: 0 0 22px;">Industrial, energy and digital-infrastructure giants anchoring the region — from Start Campus's SINES DC to Aernnova Évora and EDIA Alqueva.</p>
+  <div class="fy-ecogrid" data-grid></div>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('[data-fy-locations]:not([data-init])');
+  if (!root) return;
+  root.setAttribute('data-init', '1');
+  var BASE = root.getAttribute('data-base') || '';
+  fetch(BASE + '/assets/data/data.json').then(function (r) { return r.json(); }).then(function (data) {
+    var verts = data.verticals;
+    function vertLabel(id) { var v = verts.find(function(x){return x.id===id;}); return v ? v.label : id; }
+    function esc(s) { return String(s==null?'':s).replace(/[&<>"]/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];}); }
+    root.querySelector('[data-grid]').innerHTML = (data.anchors || []).map(function (l) {
+      var verts2 = l.vertical_focus || l.vertical || [];
+      var v = verts2[0] || 'other';
+      var tags = verts2.slice(0,2).map(function (vid) {
+        return '<span class="fy-tag fy-tag--vert" data-vert="' + vid + '">' + esc(vertLabel(vid)) + '</span>';
+      }).join('');
+      var flagship = l.flagship ? ' <span class="fy-flagship-pill">FLAGSHIP</span>' : '';
+      return '<a class="fy-ecocard fy-ecocard--lg" href="' + (l.url||'#') + '" target="_blank" rel="noopener" data-vert="' + v + '">' +
+        '<div class="fy-ecocard__name">' + esc(l.name) + flagship + '</div>' +
+        '<div class="fy-ecocard__city">' + esc(l.city) + '</div>' +
+        (l.blurb ? '<p class="fy-ecocard__blurb">' + esc(l.blurb) + '</p>' : '') +
+        (tags ? '<div class="fy-card__tags">' + tags + '</div>' : '') +
+      '</a>';
+    }).join('');
+  });
+})();
+</script>
