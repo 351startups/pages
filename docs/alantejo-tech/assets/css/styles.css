@@ -387,12 +387,22 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   display: flex; gap: 16px; flex-wrap: wrap;
   margin-bottom: 14px; align-items: center;
 }
+/* Wide-row variant: when the chip group wraps onto multiple lines,
+   align the label to the top so it doesn't visually orphan above the chips. */
+.fy-pillrow--wrap { align-items: flex-start; margin-top: 4px; }
+.fy-pillrow--wrap .fy-pillrow__label { padding-top: 10px; }
+.fy-pillrow--wrap .fy-clear { margin-top: 10px; }
 .fy-pillrow__label {
   font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--fy-muted); font-weight: 600; min-width: 88px;
 }
 .fy-clear { font-size: 13px; color: var(--fy-accent); font-weight: 600; }
-.fy-results-count { font-size: 13px; color: var(--fy-muted); margin: 12px 0 22px; }
+.fy-results-count {
+  font-size: 13px; color: var(--fy-muted);
+  margin: 40px 0 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--fy-line);
+}
 
 /* Locations grid */
 .fy-locgrid {
