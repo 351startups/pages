@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programa RAMPA — Rede Alentejana de Multiplicação do Empreendedorismo em Projetos-Âncora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0F171A;
+    --night-2:#152025;
+    --parchment:#F1EAD9;
+    --parchment-2:#E8DFC9;
+    --ink:#181510;
+    --muted:#6E6552;
+    --muted-dark:#9BAAA6;
+    --gold:#C7972B;
+    --gold-soft:#E4C878;
+    --gold-dark:#7A5C12;
+    --rust:#A0472A;
+    --rust-soft:#D6825C;
+    --rust-dark:#7A2D19;
+    --teal:#1E7A72;
+    --teal-dark:#0F5750;
+    --line:#D3C6A4;
+    --line-dark:rgba(241,234,217,0.14);
+    --off:#F5F0E4;
+    --disp:'Space Grotesk', 'Arial Narrow', sans-serif;
+    --body:'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --mono:'IBM Plex Mono', 'Courier New', monospace;
+    --maxw:1160px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
+  ::selection{background:var(--gold-soft);color:var(--night);}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  @media (max-width:720px){ .wrap{padding:0 20px;} }
+
+  h1,h2,h3,h4{font-family:var(--disp);margin:0;font-weight:600;letter-spacing:-0.01em;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--gold-dark);display:inline-block;}
+  .section--dark .eyebrow{color:var(--gold-soft);}
+  .section--dark .eyebrow::before{background:var(--gold-soft);}
+
+  section{padding:96px 0;position:relative;}
+  @media (max-width:720px){ section{padding:64px 0;} }
+  .section--dark{background:var(--night);color:var(--off);}
+  .section--dark .muted{color:var(--muted-dark);}
+  .muted{color:var(--muted);}
+
+  /* ---------- divider motif : baseline + 8 verticals ---------- */
+  .motif{width:100%;height:34px;margin:0 auto;}
+  .motif svg{width:100%;height:100%;display:block;}
+  .motif .tick{stroke:var(--line);stroke-width:1;}
+  .section--dark .motif .tick{stroke:var(--line-dark);}
+  .motif .base{stroke:var(--line);stroke-width:1;}
+  .section--dark .motif .base{stroke:var(--line-dark);}
+  .motif .node{fill:var(--rust);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:radial-gradient(120% 140% at 78% 0%, #182428 0%, var(--night) 55%), var(--night);
+    color:var(--off);
+    padding:76px 0 0 0;
+    overflow:hidden;
+  }
+  .hero__top{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--muted-dark);
+    padding-bottom:56px;border-bottom:1px solid var(--line-dark);
+  }
+  .hero__top span b{color:var(--gold-soft);font-weight:500;}
+  .hero__body{padding:56px 0 24px;}
+  .hero__kicker{
+    font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--gold-soft);margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(40px, 6.4vw, 78px);
+    line-height:0.98;
+    max-width:15ch;
+    color:var(--off);
+  }
+  .hero h1 em{
+    font-style:normal;color:var(--gold-soft);
+  }
+  .hero__tagline{
+    font-family:var(--body);font-style:italic;font-size:clamp(18px,2vw,23px);
+    color:var(--off);max-width:46ch;margin:28px 0 0;line-height:1.55;
+  }
+  .hero__meta{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    margin-top:58px;border-top:1px solid var(--line-dark);
+  }
+  .hero__meta div{padding:20px 22px 24px 0;border-right:1px solid var(--line-dark);}
+  .hero__meta div:last-child{border-right:none;}
+  .hero__meta .k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:8px;}
+  .hero__meta .v{font-family:var(--disp);font-size:17px;color:var(--off);line-height:1.3;}
+  @media (max-width:860px){
+    .hero__meta{grid-template-columns:repeat(2,1fr);}
+    .hero__meta div{border-right:none;border-bottom:1px solid var(--line-dark);padding:16px 0;}
+  }
+
+  .hero__stage{margin-top:40px;}
+  .hero__stage svg{width:100%;height:auto;display:block;}
+
+  /* ---------- STAT STRIP ---------- */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line-dark);
+    border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);
+  }
+  .stats .stat{background:var(--night);padding:34px 26px;}
+  .stats .num{font-family:var(--disp);font-size:clamp(26px,3vw,34px);color:var(--gold-soft);font-weight:700;}
+  .stats .lbl{font-family:var(--mono);font-size:12px;color:var(--muted-dark);margin-top:8px;line-height:1.5;}
+  @media (max-width:760px){ .stats{grid-template-columns:repeat(2,1fr);} }
+
+  /* ---------- generic light section headings ---------- */
+  .h-title{font-size:clamp(28px,3.6vw,42px);max-width:18ch;margin-bottom:0;}
+  .h-lede{font-family:var(--body);font-size:19px;color:var(--muted);max-width:62ch;margin-top:18px;line-height:1.65;}
+  .section--dark .h-lede{color:var(--muted-dark);}
+
+  /* ---------- problema ---------- */
+  .problema{display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:start;}
+  @media (max-width:860px){ .problema{grid-template-columns:1fr;gap:36px;} }
+  .quote-block{
+    font-family:var(--body);font-style:italic;font-size:clamp(21px,2.6vw,27px);
+    line-height:1.5;border-left:2px solid var(--rust);padding-left:26px;color:var(--ink);
+  }
+  .chip-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;}
+  .chip{
+    font-family:var(--mono);font-size:12.5px;padding:6px 12px;border:1px solid var(--line);
+    border-radius:2px;color:var(--muted);
+  }
+
+  /* ---------- alavancas ---------- */
+  .alavancas{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-dark);margin-top:52px;}
+  .alavanca{background:var(--night);padding:34px 30px 38px;}
+  .alavanca .no{font-family:var(--mono);font-size:12px;color:var(--rust-soft);letter-spacing:.08em;}
+  .alavanca h3{font-size:21px;color:var(--off);margin-top:14px;line-height:1.25;}
+  .alavanca p{font-size:15px;color:var(--muted-dark);margin-top:12px;line-height:1.6;}
+  @media (max-width:860px){ .alavancas{grid-template-columns:1fr;} }
+
+  /* ---------- verticais grid ---------- */
+  .verticais{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:52px;}
+  .vertical{background:var(--parchment);padding:26px 22px 28px;min-height:190px;display:flex;flex-direction:column;}
+  .vertical .vno{font-family:var(--mono);font-size:11px;color:var(--rust);}
+  .vertical h4{font-size:16.5px;margin-top:10px;line-height:1.28;}
+  .vertical .anchor{font-family:var(--mono);font-size:11px;color:var(--teal-dark);margin-top:10px;letter-spacing:.02em;}
+  .vertical p{font-size:13.5px;color:var(--muted);margin-top:10px;line-height:1.5;flex-grow:1;}
+  @media (max-width:900px){ .verticais{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .verticais{grid-template-columns:1fr;} }
+
+  /* ---------- sub-grids: programas / eventos / perks / mentores ---------- */
+  .cov-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:64px;}
+  @media (max-width:860px){ .cov-grid{grid-template-columns:1fr;gap:40px;} }
+  .cov-block h3{font-size:14px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--rust);margin-bottom:18px;}
+  .prog-list{list-style:none;margin:0;padding:0;}
+  .prog-list li{
+    padding:12px 0;border-bottom:1px solid var(--line);
+    font-size:15.5px;display:flex;justify-content:space-between;gap:16px;
+  }
+  .prog-list li span.tag{font-family:var(--mono);font-size:11.5px;color:var(--muted);white-space:nowrap;}
+
+  .perk-note{font-size:14px;color:var(--muted);margin-top:16px;line-height:1.6;}
+
+  .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;margin-top:2px;}
+  .partner-grid div{
+    font-size:14.5px;padding:9px 0;border-bottom:1px dotted var(--line);
+  }
+  @media (max-width:520px){ .partner-grid{grid-template-columns:1fr;} }
+
+  /* ---------- timeline ---------- */
+  .timeline{margin-top:56px;border-top:1px solid var(--line-dark);}
+  .phase{
+    display:grid;grid-template-columns:140px 1fr;gap:28px;
+    padding:26px 0;border-bottom:1px solid var(--line-dark);
+  }
+  .phase .when{font-family:var(--mono);font-size:13px;color:var(--gold-soft);}
+  .phase h4{color:var(--off);font-size:18px;margin-bottom:8px;}
+  .phase p{color:var(--muted-dark);font-size:14.5px;margin:0;line-height:1.6;}
+  @media (max-width:640px){ .phase{grid-template-columns:1fr;gap:8px;} }
+
+  .blocks{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line-dark);margin-top:40px;}
+  .block{background:var(--night);padding:20px 16px;}
+  .block .letter{font-family:var(--mono);color:var(--rust-soft);font-size:13px;}
+  .block .vol{font-family:var(--disp);font-size:20px;color:var(--gold-soft);margin-top:10px;}
+  .block .desc{font-size:12.5px;color:var(--muted-dark);margin-top:6px;line-height:1.5;}
+  @media (max-width:860px){ .blocks{grid-template-columns:repeat(2,1fr);} }
+
+  /* ---------- equipa ---------- */
+  .team{margin-top:52px;border-top:1px solid var(--line);}
+  .role{
+    display:grid;grid-template-columns:1.4fr 0.5fr 2fr 0.6fr;gap:20px;
+    padding:18px 0;border-bottom:1px solid var(--line);align-items:center;
+  }
+  .role .name{font-family:var(--disp);font-weight:600;font-size:15.5px;}
+  .role .vinc{font-family:var(--mono);font-size:11.5px;color:var(--muted);}
+  .role .tasks{font-size:13.5px;color:var(--muted);line-height:1.5;}
+  .role .afet{font-family:var(--mono);font-size:15px;color:var(--rust);text-align:right;}
+  .role.head{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-bottom:12px;}
+  @media (max-width:760px){
+    .role{grid-template-columns:1fr;gap:6px;}
+    .role .afet{text-align:left;}
+    .role.head{display:none;}
+  }
+
+  /* ---------- orçamento ---------- */
+  .budget-top{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:52px;align-items:end;}
+  @media (max-width:860px){ .budget-top{grid-template-columns:1fr;gap:36px;} }
+  .big-figure .num{font-family:var(--disp);font-size:clamp(48px,7vw,86px);font-weight:700;color:var(--off);line-height:0.95;}
+  .big-figure .sub{font-family:var(--mono);font-size:13px;color:var(--muted-dark);margin-top:12px;}
+  .split-bar{height:34px;width:100%;display:flex;border-radius:2px;overflow:hidden;margin-bottom:14px;}
+  .split-bar .fse{background:var(--gold);}
+  .split-bar .nat{background:var(--rust);}
+  .split-legend{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12.5px;color:var(--muted-dark);}
+  .split-legend b{color:var(--off);font-family:var(--disp);}
+
+  table.budget{width:100%;border-collapse:collapse;margin-top:56px;font-size:14.5px;}
+  table.budget th{
+    text-align:left;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--muted-dark);padding:0 12px 12px 0;border-bottom:1px solid var(--line-dark);font-weight:400;
+  }
+  table.budget td{padding:13px 12px 13px 0;border-bottom:1px solid var(--line-dark);}
+  table.budget tr td:first-child{font-family:var(--disp);font-weight:500;}
+  table.budget tr.total td{font-family:var(--disp);font-weight:700;border-bottom:none;padding-top:16px;}
+  table.budget td.num, table.budget th.num{text-align:right;font-family:var(--mono);}
+
+  /* ---------- indicadores ---------- */
+  .ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-dark);margin-top:52px;}
+  .ind{background:var(--night);padding:32px 26px;}
+  .ind .code{font-family:var(--mono);font-size:11.5px;color:var(--rust-soft);}
+  .ind .num{font-family:var(--disp);font-size:44px;color:var(--gold-soft);margin-top:10px;font-weight:700;}
+  .ind .lbl{font-size:14px;color:var(--muted-dark);margin-top:10px;line-height:1.5;}
+  @media (max-width:860px){ .ind-grid{grid-template-columns:1fr;} }
+
+  /* ---------- mérito ---------- */
+  .merit-head{display:flex;align-items:baseline;gap:18px;margin:52px 0 30px;flex-wrap:wrap;}
+  .merit-head .score{font-family:var(--disp);font-size:52px;font-weight:700;color:var(--gold-soft);}
+  .merit-head .of{font-family:var(--mono);font-size:14px;color:var(--muted-dark);}
+  .merit-row{display:grid;grid-template-columns:1.6fr 3fr 0.5fr;gap:18px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line-dark);}
+  .merit-row .crit{font-size:14px;}
+  .merit-row .crit b{font-family:var(--disp);display:block;font-size:14.5px;margin-bottom:2px;}
+  .merit-row .bar{height:8px;background:var(--parchment-2);border-radius:2px;overflow:hidden;}
+  .merit-row .bar span{display:block;height:100%;background:var(--rust);}
+  .merit-row .pond{font-family:var(--mono);font-size:12.5px;color:var(--muted-dark);text-align:right;}
+  @media (max-width:700px){ .merit-row{grid-template-columns:1fr;gap:8px;} .merit-row .pond{text-align:left;} }
+
+  /* ---------- eliminatorios ---------- */
+  .elim-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:52px;}
+  @media (max-width:860px){ .elim-grid{grid-template-columns:1fr;} }
+  .elim h4{font-size:16px;color:var(--off);}
+  .elim .code{font-family:var(--mono);font-size:11px;color:var(--gold-soft);display:block;margin-bottom:10px;}
+  .elim ul{padding-left:18px;margin:14px 0 0;}
+  .elim li{font-size:13.5px;color:var(--muted-dark);margin-bottom:8px;line-height:1.55;}
+
+  /* ---------- riscos ---------- */
+  .risk-table{width:100%;border-collapse:collapse;margin-top:52px;}
+  .risk-table th{text-align:left;font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--ink);padding:0 14px 12px 0;font-weight:400;}
+  .risk-table td{padding:16px 14px 16px 0;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top;}
+  .risk-table td:first-child{font-family:var(--disp);font-weight:500;max-width:220px;}
+  .lvl{font-family:var(--mono);font-size:11.5px;padding:4px 9px;border-radius:2px;white-space:nowrap;}
+  .lvl.alto{background:rgba(160,71,42,.14);color:var(--rust-dark);}
+  .lvl.medio{background:rgba(199,151,43,.16);color:var(--gold-dark);}
+  .lvl.baixo{background:rgba(30,122,114,.14);color:var(--teal-dark);}
+  @media (max-width:760px){
+    .risk-table thead{display:none;}
+    .risk-table, .risk-table tbody, .risk-table tr, .risk-table td{display:block;width:100%;}
+    .risk-table tr{padding:14px 0;border-bottom:1px solid var(--line);}
+    .risk-table td{border-bottom:none;padding:4px 0;}
+  }
+
+  /* ---------- footer / CTA ---------- */
+  .footer{background:var(--night);color:var(--off);}
+  .footer-top{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:start;}
+  @media (max-width:860px){ .footer-top{grid-template-columns:1fr;gap:40px;} }
+  .deadline{
+    border:1px solid var(--line-dark);padding:26px 28px;
+  }
+  .deadline .k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dark);}
+  .deadline .d{font-family:var(--disp);font-size:26px;color:var(--gold-soft);margin-top:10px;}
+  .checklist{list-style:none;margin:24px 0 0;padding:0;}
+  .checklist li{
+    font-size:14px;color:var(--muted-dark);padding:10px 0;border-bottom:1px solid var(--line-dark);
+    display:flex;gap:12px;
+  }
+  .checklist li::before{content:"—";color:var(--rust-soft);}
+  .foot-bottom{
+    margin-top:80px;padding-top:24px;border-top:1px solid var(--line-dark);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-family:var(--mono);font-size:11.5px;color:var(--muted-dark);
+  }
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1;transform:none;transition:none;}
+    #ramp-path{stroke-dashoffset:0 !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero__top">
+      <span>351 · <b>ASSOCIAÇÃO PORTUGUESA DE STARTUPS</b></span>
+      <span>ALT2030-2026-18</span>
+    </div>
+    <div class="hero__body">
+      <div class="hero__kicker">Memória descritiva · plano de atividades · fundamentação do mérito</div>
+      <h1>RAMPA — a rampa de lançamento entre o <em>gigawatt</em> e o território</h1>
+      <p class="hero__tagline">As maiores âncoras industriais e digitais da Europa estão no Alentejo. A RAMPA liga o território a elas.</p>
+
+      <div class="hero__meta">
+        <div><div class="k">Programa</div><div class="v">Alentejo 2030 — FSE+</div></div>
+        <div><div class="k">Tipologia 4006</div><div class="v">Capacitação de entidades territoriais</div></div>
+        <div><div class="k">Duração</div><div class="v">24 meses</div></div>
+        <div><div class="k">Custo total elegível</div><div class="v">301.280 € <span style="color:var(--muted-dark)">· FSE+ 256.088 €</span></div></div>
+      </div>
+    </div>
+
+    <div class="hero__stage">
+      <svg id="hero-svg" viewBox="0 0 1200 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- baseline: território -->
+        <line x1="40" y1="205" x2="1160" y2="205" stroke="var(--line-dark)" stroke-width="1"/>
+        <!-- 8 verticals as small plots along the baseline -->
+        <g id="plots"></g>
+        <!-- anchor tower -->
+        <line x1="990" y1="205" x2="990" y2="56" stroke="var(--teal)" stroke-width="1.4"/>
+        <rect x="978" y="40" width="24" height="16" fill="none" stroke="var(--teal)" stroke-width="1.4"/>
+        <text x="990" y="34" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted-dark)" letter-spacing="0.5">SINES DC · 1,2GW</text>
+        <!-- ramp curve -->
+        <path id="ramp-path" d="M 990 60 C 760 60, 560 205, 150 205" fill="none" stroke="var(--gold)" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="150" cy="205" r="4" fill="var(--gold)"/>
+        <text x="150" y="228" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--gold-soft)" letter-spacing="0.5">TERRITÓRIO</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">8,5 mM €</div><div class="lbl">Investimento SINES Data Campus (1,2 GW)</div></div>
+    <div class="stat"><div class="num">130.000 ha</div><div class="lbl">Cinturão agroalimentar do Alentejo</div></div>
+    <div class="stat"><div class="num">20 mM €</div><div class="lbl">Investimento comprometido no território</div></div>
+    <div class="stat"><div class="num">2.400+</div><div class="lbl">Membros na comunidade 351 Startups</div></div>
+  </div>
+</header>
+
+<!-- ================= 0 · SUMÁRIO ================= -->
+<section class="section--light">
+  <div class="wrap reveal">
+    <div class="eyebrow">§0 — Sumário executivo</div>
+    <h2 class="h-title">Oito verticais, oito programas, uma equipa por trás do capacitador.</h2>
+    <p class="h-lede">O Alentejo é hoje a plataforma tecnológica mais consequente de Portugal — mas o valor está a chegar «chave na mão» e o tecido local não o capta. A RAMPA aterra a proposta <b>Alentejo Tech</b> (351 Startups + Start Campus) no território, capacitando ADL, incubadoras e associações empresariais para transformarem a procura das âncoras em empresas, autoemprego e emprego de base local.</p>
+    <div class="chip-list">
+      <span class="chip">8 verticais</span>
+      <span class="chip">8 programas</span>
+      <span class="chip">10+ perks · +700.000 €</span>
+      <span class="chip">12 mentores / entidades</span>
+      <span class="chip">mapa vivo do ecossistema</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="motif"><svg viewBox="0 0 1200 34" preserveAspectRatio="none"><line class="base" x1="0" y1="17" x2="1200" y2="17"/><g id="motif-nodes"></g></svg></div></div>
+
+<!-- ================= 1 · PROBLEMA ================= -->
+<section>
+  <div class="wrap reveal">
+    <div class="eyebrow">§1 — Enquadramento e diagnóstico</div>
+    <div class="problema">
+      <div>
+        <h2 class="h-title" style="margin-bottom:24px;">Um momento único, e um problema concreto</h2>
+        <p class="quote-block">«Não estamos a colher os frutos» — o tecido local admite-o. A procura chega chave na mão, as rendas aproximam-se de Lisboa, e faltam fornecedores locais.</p>
+        <p style="margin-top:24px;color:var(--muted);font-size:15px;line-height:1.7;">Crescem perfis em engenharia, energia, manutenção industrial, automação, logística, digitalização e tecnologias ambientais — mas o território não tem a máquina que converte procura em empresas locais. As entidades de proximidade precisam de capacitação: é este o objeto do Aviso ALT2030-2026-18.</p>
+      </div>
+      <div>
+        <div class="eyebrow" style="margin-top:4px;">1.1 — Âncoras já instaladas</div>
+        <ul style="list-style:none;padding:0;margin:0;">
+          <li style="padding:14px 0;border-bottom:1px solid var(--line);"><b>SINES Data Campus</b><br><span class="muted" style="font-size:14px;">1,2 GW · 8,5 mM € · 6 edifícios · Microsoft / NVIDIA / Nscale · 100% renovável, PUE 1,1</span></li>
+          <li style="padding:14px 0;border-bottom:1px solid var(--line);"><b>Energia e hidrogénio verde</b><br><span class="muted" style="font-size:14px;">500 MW H₂ verde · 60+ projetos na ZILS · &gt;3 mM € · ~1.000 postos</span></li>
+          <li style="padding:14px 0;"><b>Aeronáutica, agritech e conhecimento</b><br><span class="muted" style="font-size:14px;">Aernnova (Évora) · cinturão agroalimentar 130.000 ha · CEBAL e PACT (Beja) · 3 universidades</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2 · CONCEITO ================= -->
+<section class="section--dark">
+  <div class="wrap reveal">
+    <div class="eyebrow">§2 — O conceito RAMPA, «out of the box»</div>
+    <h2 class="h-title" style="color:var(--off);">Um projeto-âncora só gera valor local se houver uma rampa que multiplique empreendedores à sua volta.</h2>
+    <p class="h-lede">A RAMPA constrói essa rampa, ligando cada vertical Alentejo Tech — âncora + base de I&amp;D + startups — a percursos de capacitação que terminam em empresas e candidaturas.</p>
+    <div class="alavancas">
+      <div class="alavanca">
+        <div class="no">Alavanca 1</div>
+        <h3>Demand-pull</h3>
+        <p>Cada percurso nasce da procura documentada das âncoras — com a Start Campus e a AICEP Global Parques — e termina num plano de investimento candidatável.</p>
+      </div>
+      <div class="alavanca">
+        <div class="no">Alavanca 2</div>
+        <h3>Comunidade como infraestrutura</h3>
+        <p>Slack (1.600+), Techstars Startup Weekend, Community Leader Academy, EPIC-X e o Portugal Tech Week tornam-se recursos partilhados que as entidades do Alentejo passam a operar.</p>
+      </div>
+      <div class="alavanca">
+        <div class="no">Alavanca 3</div>
+        <h3>Capacitar o capacitador</h3>
+        <p>Transfere metodologia e ferramentas para o pessoal das entidades territoriais, deixando capacidade instalada e autónoma.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3 · COBERTURA — VERTICAIS ================= -->
+<section>
+  <div class="wrap reveal">
+    <div class="eyebrow">§3 — Cobertura da proposta Alentejo Tech</div>
+    <h2 class="h-title">As 8 verticais do território</h2>
+    <p class="h-lede">Cada vertical liga uma âncora ou base regional a um foco concreto de capacitação — fornecedores, autoemprego e PME de base local.</p>
+
+    <div class="verticais">
+      <div class="vertical"><div class="vno">01</div><h4>Data centres, IA e computação</h4><div class="anchor">Start Campus · SINES DC</div><p>Fornecedores e serviços digitais em torno do data center — edge, dados, manutenção, cibersegurança.</p></div>
+      <div class="vertical"><div class="vno">02</div><h4>Energia e hidrogénio verde</h4><div class="anchor">ZILS · EDP</div><p>Autoemprego e PME na fileira do H₂ verde, renováveis e eficiência energética.</p></div>
+      <div class="vertical"><div class="vno">03</div><h4>Aeronáutica e indústria avançada</h4><div class="anchor">Aernnova · Évora</div><p>Cadeia de fornecimento industrial, automação e materiais.</p></div>
+      <div class="vertical"><div class="vno">04</div><h4>Agritech e agroalimentar</h4><div class="anchor">CEBAL · 130.000 ha</div><p>Inovação agroalimentar, regadio inteligente, valorização de recursos endógenos.</p></div>
+      <div class="vertical"><div class="vno">05</div><h4>Economia azul, portos e logística</h4><div class="anchor">Porto de Sines · ZILS</div><p>Logística, serviços portuários e cadeias de valor associadas.</p></div>
+      <div class="vertical"><div class="vno">06</div><h4>Ambiente e economia circular</h4><div class="anchor">—</div><p>Tecnologias ambientais, água, resíduos e circularidade.</p></div>
+      <div class="vertical"><div class="vno">07</div><h4>Turismo, património e criativas</h4><div class="anchor">Recursos endógenos</div><p>Empreendedorismo de base local e economia social (Lei 30/2013).</p></div>
+      <div class="vertical"><div class="vno">08</div><h4>Serviços digitais e software</h4><div class="anchor">Fibra · 4 continentes</div><p>Founders «remote-first» fixados no interior de baixa densidade.</p></div>
+    </div>
+
+    <div class="cov-grid">
+      <div class="cov-block">
+        <h3>3.2 — Oito programas</h3>
+        <ul class="prog-list">
+          <li>AI/Data Residency <span class="tag">vertical 01</span></li>
+          <li>Agritech Sprint <span class="tag">vertical 04</span></li>
+          <li>Hydrogen Builders <span class="tag">vertical 02</span></li>
+          <li>Founder Bootcamp <span class="tag">transversal</span></li>
+          <li>Techstars Startup Weekend Alentejo <span class="tag">transversal</span></li>
+          <li>Supply-Chain Accelerator <span class="tag">cadeia das âncoras</span></li>
+          <li>EPIC-X Women Founders <span class="tag">igualdade</span></li>
+          <li>Community Leader Academy Alentejo <span class="tag">capacitar o capacitador</span></li>
+        </ul>
+      </div>
+      <div class="cov-block">
+        <h3>3.3 — Eventos &amp; 3.4 — Perks mobilizados</h3>
+        <p style="font-size:15px;color:var(--muted);line-height:1.7;">Campus tours ao SINES DC, field days agritech, demo nights, <b>track Alentejo no Portugal Tech Week</b>, mentor office hours, hydrogen builder day e encontros de boas práticas entre entidades territoriais.</p>
+        <p class="perk-note">Catálogo de <b>10+ perks</b> — cloud credits, acesso a GPU (via Start Campus/Nscale/Microsoft), horas jurídicas, apoio a vistos, software e workspace da rede 351 — <b>mais de 700.000 €</b> em recursos em espécie de parceiros, contando como coinvestimento (critério 3.1) sem onerar o orçamento elegível.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:64px;">
+      <div class="eyebrow">3.5 — Mentores e entidades parceiras (12)</div>
+      <div class="partner-grid">
+        <div>Start Campus — âncora-farol, coautora Alentejo Tech</div>
+        <div>ADRAL — histórico regional</div>
+        <div>AICEP Global Parques — gestão da ZILS</div>
+        <div>Universidade de Évora — I&amp;D e talento</div>
+        <div>Sines Tecnopolo — incubação no litoral</div>
+        <div>Indico Capital Partners — capital de risco</div>
+        <div>EDP Ventures — corporate venture, energia</div>
+        <div>CEBAL — I&amp;D agroalimentar (Beja)</div>
+        <div>PACT — incubadora / infraestrutura tecnológica</div>
+        <div>Municípios — Sines, Évora, Beja, Portalegre</div>
+        <div>Associações empresariais e ADL — alvo do aviso</div>
+        <div>Rede EPIC-X (351) — mulheres em deep tech, 16 países</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="motif"><svg viewBox="0 0 1200 34" preserveAspectRatio="none"><line class="base" x1="0" y1="17" x2="1200" y2="17"/><g class="motif-nodes-2"></g></svg></div></div>
+
+<!-- ================= 4 · OBJETIVOS + 5 PLANO ================= -->
+<section class="section--dark">
+  <div class="wrap reveal">
+    <div class="eyebrow">§4–5 — Objetivos e plano de atividades</div>
+    <h2 class="h-title" style="color:var(--off);">Capacitar as entidades territoriais para transformar investimento-âncora em emprego local</h2>
+    <p class="h-lede">Cinco ações elegíveis, integrando programas, eventos, perks e mentores da proposta. Só ações de grupo contam para o indicador de realização.</p>
+
+    <div class="blocks">
+      <div class="block"><div class="letter">A</div><div class="vol">≈20 ações</div><div class="desc">Informação e sensibilização — roadshow pelas 4 sub-regiões, campus tours, sessões de descoberta da procura.</div></div>
+      <div class="block"><div class="letter">B</div><div class="vol">≈16 ações</div><div class="desc">Capacitação em modelos de negócio e planos de investimento — os 8 programas.</div></div>
+      <div class="block"><div class="letter">C</div><div class="vol">30 empresas</div><div class="desc">Mentoria e consultoria especializada — 12 mentores/entidades + perks.</div></div>
+      <div class="block"><div class="letter">D</div><div class="vol">Kit completo</div><div class="desc">Materiais de divulgação — onboarding, fichas de oportunidade, mapa vivo.</div></div>
+      <div class="block"><div class="letter">E</div><div class="vol">≈12 ações</div><div class="desc">Troca de experiências — encontros territoriais, demo nights, track Alentejo PTW.</div></div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:64px;">5.1 — Calendarização · 24 meses</div>
+    <div class="timeline">
+      <div class="phase"><div class="when">M1 – M3</div><div><h4>Fase 0 · Arranque e diagnóstico</h4><p>Registo no Balcão dos Fundos, protocolos com parceiros e âncoras, mapeamento de procura, plano detalhado.</p></div></div>
+      <div class="phase"><div class="when">M3 – M9</div><div><h4>Fase 1 · Capacitar o capacitador</h4><p>Formação das equipas das entidades territoriais; desenho dos percursos por vertical.</p></div></div>
+      <div class="phase"><div class="when">M6 – M18</div><div><h4>Fase 2 · Mobilização e conceção</h4><p>Programas, Startup Weekends, oficinas de planos de investimento; entrada em mentoria.</p></div></div>
+      <div class="phase"><div class="when">M12 – M22</div><div><h4>Fase 3 · Consolidação e candidaturas</h4><p>Acompanhamento, submissão de candidaturas, demo days, ligação a perks e financiamento.</p></div></div>
+      <div class="phase"><div class="when">M20 – M24</div><div><h4>Fase 4 · Avaliação e disseminação</h4><p>Manual de boas práticas, avaliação de impacto, pedido de pagamento de saldo final.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6 · EQUIPA ================= -->
+<section>
+  <div class="wrap reveal">
+    <div class="eyebrow">§6 — Equipa técnica e perfis profissionais</div>
+    <h2 class="h-title">Quem entrega — só custos diretos com pessoal operacional</h2>
+    <p class="h-lede">Funções de direção, administrativas, financeiras ou auxiliares não são elegíveis como custo direto — são cobertas pela taxa fixa de 40%. Afetação sempre ≥ 20%, justificada.</p>
+    <div class="team">
+      <div class="role head"><div>Perfil</div><div>Vínculo</div><div>Tarefas / relação</div><div>Afetação</div></div>
+      <div class="role"><div class="name">Lead de Capacitação e Ecossistema</div><div class="vinc">Interno</div><div class="tasks">Desenho e entrega dos percursos; coordenação técnico-pedagógica; ligação às âncoras.</div><div class="afet">80%</div></div>
+      <div class="role"><div class="name">Ecosystem Builder / Gestor de Comunidade Territorial</div><div class="vinc">Interno</div><div class="tasks">Dinamização da comunidade, matchmaking, Startup Weekends, animação das sub-regiões.</div><div class="afet">80%</div></div>
+      <div class="role"><div class="name">Especialista de Empreendedorismo e Mentoria</div><div class="vinc">Interno</div><div class="tasks">Mentoria, modelos de negócio e elaboração de planos de investimento.</div><div class="afet">60%</div></div>
+      <div class="role"><div class="name">Produtor de Conteúdos e Comunicação</div><div class="vinc">Interno</div><div class="tasks">Materiais de divulgação, fichas de oportunidade, mapa vivo, audiovisuais.</div><div class="afet">40%</div></div>
+      <div class="role"><div class="name">Bolsa de mentores/consultores especializados</div><div class="vinc">Externo</div><div class="tasks">Honorários de peritos por vertical e mentores EPIC-X.</div><div class="afet">variável</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7 · ORÇAMENTO ================= -->
+<section class="section--dark">
+  <div class="wrap reveal">
+    <div class="eyebrow">§7 — Orçamento e metodologia de cálculo (OCS)</div>
+    <h2 class="h-title" style="color:var(--off);">Taxa fixa de 40% sobre os custos diretos com pessoal</h2>
+    <p class="h-lede">Custo total elegível = Custos diretos com pessoal × 140%.</p>
+
+    <div class="budget-top">
+      <div class="big-figure">
+        <div class="num" style="color:var(--off);">301.280&nbsp;€</div>
+        <div class="sub">Custo total elegível da operação · 24 meses</div>
+      </div>
+      <div>
+        <div class="split-bar"><div class="fse" style="width:85%;"></div><div class="nat" style="width:15%;"></div></div>
+        <div class="split-legend">
+          <span><b>85%</b> FSE+ — 256.088 €</span>
+          <span><b>15%</b> Contrapartida pública nacional — 45.192 €</span>
+        </div>
+      </div>
+    </div>
+
+    <table class="budget">
+      <thead><tr><th>Base de custos diretos com pessoal</th><th class="num">Mensal</th><th class="num">Meses</th><th class="num">Afet.</th><th class="num">Total</th></tr></thead>
+      <tbody>
+        <tr><td>Lead de Capacitação e Ecossistema</td><td class="num">3.200 €</td><td class="num">24</td><td class="num">80%</td><td class="num">61.440 €</td></tr>
+        <tr><td>Ecosystem Builder / Gestor de Comunidade</td><td class="num">2.600 €</td><td class="num">24</td><td class="num">80%</td><td class="num">49.920 €</td></tr>
+        <tr><td>Especialista de Empreendedorismo e Mentoria</td><td class="num">2.900 €</td><td class="num">24</td><td class="num">60%</td><td class="num">41.760 €</td></tr>
+        <tr><td>Produtor de Conteúdos e Comunicação</td><td class="num">2.300 €</td><td class="num">24</td><td class="num">40%</td><td class="num">22.080 €</td></tr>
+        <tr><td>Bolsa de mentores/consultores externos</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">40.000 €</td></tr>
+        <tr class="total"><td>Base de custos diretos com pessoal (A)</td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num">215.200 €</td></tr>
+        <tr><td>Restantes custos — taxa fixa 40% de A (B)</td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num">86.080 €</td></tr>
+        <tr class="total"><td>Custo total elegível (A + B)</td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num">301.280 €</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13.5px;color:var(--muted-dark);margin-top:20px;max-width:70ch;line-height:1.6;">Alavancagem: os perks (GPU, cloud, jurídico, espaços) e a mentoria dos 12 parceiros são coinvestimento em espécie que multiplica o impacto sem onerar o orçamento — reforçando a racionalidade económica e o custo/benefício.</p>
+  </div>
+</section>
+
+<!-- ================= 8 · INDICADORES ================= -->
+<section>
+  <div class="wrap reveal">
+    <div class="eyebrow">§8 — Indicadores e metas</div>
+    <h2 class="h-title">O que a operação promete entregar</h2>
+    <div class="ind-grid">
+      <div class="ind"><div class="code">EEPO030 · Ind. 1</div><div class="num">48</div><div class="lbl">Ações de capacitação, comunicação, informação, sensibilização e divulgação (grupo)</div></div>
+      <div class="ind"><div class="code">EEPO028 · Ind. 2</div><div class="num">30</div><div class="lbl">Empresas que beneficiam de mentoria ou consultoria especializada</div></div>
+      <div class="ind"><div class="code">EEPR042 · Ind. 3</div><div class="num">15</div><div class="lbl">Candidaturas apresentadas em resultado do apoio — meta ≥ 12 coloca a operação em «Muito Bom»</div></div>
+    </div>
+    <p style="font-size:13.5px;color:var(--muted);margin-top:24px;">Sendo o Alentejo maioritariamente de baixa densidade, o limiar de tolerância aplicável é de 70%.</p>
+  </div>
+</section>
+
+<!-- ================= 9 · MÉRITO ================= -->
+<section class="section--dark">
+  <div class="wrap reveal">
+    <div class="eyebrow">§9 — Fundamentação do mérito</div>
+    <h2 class="h-title" style="color:var(--off);">Estimativa de mérito global ponderado</h2>
+    <div class="merit-head"><div class="score">~4,75</div><div class="of">/ 5,00 — mínimo exigido: 3,00</div></div>
+
+    <div class="merit-row"><div class="crit"><b>1.1.1 Contributo p/ indicadores</b>Ind. 3 ≥ 12 (meta 15)</div><div class="bar"><span style="width:100%;"></span></div><div class="pond">15% · nível 5</div></div>
+    <div class="merit-row"><div class="crit"><b>2.1 Emprego de qualidade e qualificado</b>Postos nas 8 verticais + founders digitais</div><div class="bar"><span style="width:85%;"></span></div><div class="pond">10% · nível 4–5</div></div>
+    <div class="merit-row"><div class="crit"><b>2.2 Desenvolvimento do território</b>Capta valor-âncora, riqueza local nas 4 sub-regiões</div><div class="bar"><span style="width:100%;"></span></div><div class="pond">10% · nível 5</div></div>
+    <div class="merit-row"><div class="crit"><b>2.3 Melhoria do serviço das entidades</b>«Capacitar o capacitador» com 12 parceiros</div><div class="bar"><span style="width:100%;"></span></div><div class="pond">10% · nível 5</div></div>
+    <div class="merit-row"><div class="crit"><b>3.1 Meios físicos e tecnológicos</b>GPU/cloud, PACT, mapa vivo, infraestrutura 351</div><div class="bar"><span style="width:100%;"></span></div><div class="pond">10% · nível 5</div></div>
+    <div class="merit-row"><div class="crit"><b>3.2 Capacidade administrativo-financeira</b>Histórico — ver §11 riscos</div><div class="bar"><span style="width:70%;"></span></div><div class="pond">10% · nível 3–4</div></div>
+    <div class="merit-row"><div class="crit"><b>4.1 Caráter inovador</b>Demand-pull + comunidade-infraestrutura + mapa vivo</div><div class="bar"><span style="width:100%;"></span></div><div class="pond">10% · nível 5</div></div>
+    <div class="merit-row"><div class="crit"><b>4.2 Monitorização e avaliação</b>Quadro de M&amp;A, 12 parceiros envolvidos</div><div class="bar"><span style="width:100%;"></span></div><div class="pond">5% · nível 5</div></div>
+    <div class="merit-row"><div class="crit"><b>4.3 Igualdade e género</b>Trilho EPIC-X, 4+ medidas concretas</div><div class="bar"><span style="width:100%;"></span></div><div class="pond">10% · nível 5</div></div>
+    <div class="merit-row"><div class="crit"><b>4.4 Desenvolvimento sustentável</b>Verticais verdes, remote-first, eficiência</div><div class="bar"><span style="width:100%;"></span></div><div class="pond">10% · nível 5</div></div>
+
+    <div class="elim-grid">
+      <div class="elim"><span class="code">§10.1 · [4.3]</span><h4>Igualdade de oportunidades e género</h4><ul>
+        <li>Acesso prioritário a pessoas vulneráveis (desemprego de longa duração, inativos, migrantes, deficiência)</li>
+        <li>Trilho de mulheres fundadoras via EPIC-X (16 países)</li>
+        <li>Acessibilidade e formatos híbridos/remotos</li>
+      </ul></div>
+      <div class="elim"><span class="code">§10.2 · [4.4]</span><h4>Desenvolvimento sustentável</h4><ul>
+        <li>Verticais alinhadas com transição energética e H₂ verde</li>
+        <li>Modelo remote-first, reduz deslocações e pegada de carbono</li>
+        <li>Boas práticas ESG e digitalização de processos</li>
+      </ul></div>
+      <div class="elim"><span class="code">§10.3 · [4.2]</span><h4>Acompanhamento e avaliação</h4><ul>
+        <li>Quadro de M&amp;A por vertical e sub-região, apoiado no mapa vivo</li>
+        <li>Avaliação intercalar e final</li>
+        <li>Suporte digital validado por contabilista certificado</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11 · RISCOS ================= -->
+<section>
+  <div class="wrap reveal">
+    <div class="eyebrow">§11 — Riscos e mitigação</div>
+    <h2 class="h-title">Onde a operação pode falhar — e como isso é evitado</h2>
+    <table class="risk-table">
+      <thead><tr><th>Risco</th><th>Nível</th><th>Mitigação</th></tr></thead>
+      <tbody>
+        <tr><td>Histórico ao nível do Alentejo 2020 (critério 3.2)</td><td><span class="lvl alto">Médio-alto</span></td><td>A 351 é nacional. Mitigar com histórico nacional (PRR, Erasmus+, EIT) e cartas de compromisso de ADRAL, Sines Tecnopolo, PACT e outras entidades com histórico regional; a parceria com a Start Campus reforça a credibilidade da operação.</td></tr>
+        <tr><td>Footprint territorial no Alentejo</td><td><span class="lvl medio">Médio</span></td><td>Protocolos com entidades das 4 sub-regiões e ponto de operação no território (ex.: Sines/Beja/Évora).</td></tr>
+        <tr><td>Elegibilidade de pessoal</td><td><span class="lvl medio">Baixo-médio</span></td><td>Excluir funções de direção/administrativas/financeiras da base; garantir afetações ≥ 20% com mapas de horas e declarações.</td></tr>
+        <tr><td>Perks e recursos de parceiros</td><td><span class="lvl baixo">Baixo</span></td><td>Enquadrar como recursos em espécie (não elegíveis) mas mobilizados; formalizar disponibilização por escrito.</td></tr>
+        <tr><td>Cumprimento de metas</td><td><span class="lvl baixo">Baixo</span></td><td>Metas com margem; limiar de tolerância 70% (baixa densidade); pipeline construído desde a Fase 1.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= FOOTER / PRÓXIMOS PASSOS ================= -->
+<footer class="footer section--dark">
+  <div class="wrap" style="padding:96px 0 40px;">
+    <div class="eyebrow">§12 — Próximos passos e checklist de submissão</div>
+    <div class="footer-top">
+      <div>
+        <h2 class="h-title" style="color:var(--off);max-width:22ch;">Cinco ações imediatas antes do Balcão dos Fundos fechar</h2>
+        <ul class="checklist">
+          <li>Confirmar verticais / programas / mentores contra o finder Alentejo Tech</li>
+          <li>Validar valores salariais reais da equipa técnica</li>
+          <li>Angariar cartas de compromisso dos parceiros</li>
+          <li>Alinhar metas com a Start Campus e a AICEP</li>
+          <li>Submeter candidatura completa (Anexo A-1)</li>
+        </ul>
+      </div>
+      <div class="deadline">
+        <div class="k">Prazo de submissão</div>
+        <div class="d">27 de julho de 2026, 18h00</div>
+        <p class="muted" style="font-size:13.5px;margin-top:14px;line-height:1.6;">Balcão dos Fundos · Programa Regional do Alentejo 2030 — FSE+ · Aviso ALT2030-2026-18</p>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>PROGRAMA RAMPA · REDE ALENTEJANA DE MULTIPLICAÇÃO DO EMPREENDEDORISMO EM PROJETOS-ÂNCORA</span>
+      <span>351 — ASSOCIAÇÃO PORTUGUESA DE STARTUPS · INICIATIVA ALENTEJO TECH</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // build the 8 vertical "plots" on the hero baseline + divider motifs
+  function buildPlots(svgId, count, x0, x1, baseY, tall){
+    var svg = document.getElementById(svgId);
+    if(!svg) return;
+    var g = svg.querySelector('#plots') || svg.querySelector('g');
+    var ns = 'http://www.w3.org/2000/svg';
+    for(var i=0;i<count;i++){
+      var x = x0 + (x1-x0) * (i/(count-1));
+      var h = tall ? (10 + (i%3)*6) : 8;
+      var tick = document.createElementNS(ns,'line');
+      tick.setAttribute('x1', x); tick.setAttribute('x2', x);
+      tick.setAttribute('y1', baseY); tick.setAttribute('y2', baseY-h);
+      tick.setAttribute('stroke', i%3===0 ? 'var(--rust)' : (i%3===1 ? 'var(--gold)' : 'var(--teal)'));
+      tick.setAttribute('stroke-width','2');
+      tick.setAttribute('stroke-linecap','round');
+      g.appendChild(tick);
+    }
+  }
+  buildPlots('hero-svg', 8, 90, 900, 205, true);
+
+  document.querySelectorAll('.motif svg').forEach(function(svg){
+    var ns='http://www.w3.org/2000/svg';
+    var g = svg.querySelector('g');
+    for(var i=0;i<8;i++){
+      var x = 60 + (1080)*(i/7);
+      var c = document.createElementNS(ns,'circle');
+      c.setAttribute('cx',x); c.setAttribute('cy',17); c.setAttribute('r',3);
+      c.setAttribute('fill', i%3===0 ? 'var(--rust)' : (i%3===1 ? 'var(--gold)' : 'var(--teal)'));
+      g.appendChild(c);
+    }
+  });
+
+  // draw-in animation for the ramp path
+  var path = document.getElementById('ramp-path');
+  if(path && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var len = path.getTotalLength();
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+    requestAnimationFrame(function(){
+      path.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.4,.1,.2,1) .3s';
+      path.style.strokeDashoffset = '0';
+    });
+  }
+
+  // scroll reveal
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.12});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+
+</body>
+</html>
